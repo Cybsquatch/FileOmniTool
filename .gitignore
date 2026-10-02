@@ -1,0 +1,31 @@
+# Node & Next.js
+node_modules/
+web/node_modules/
+.next/
+web/.next/
+out/
+web/out/
+build/
+web/build/
+*.tsbuildinfo
+next-env.d.ts
+web/next-env.d.ts
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Environment Variables
+.env*.local
+web/.env*.local
+
+# Vercel
+.vercel/
+
+# OS
+.DS_Store
+Thumbs.db
