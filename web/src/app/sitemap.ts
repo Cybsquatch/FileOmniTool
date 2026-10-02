@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { TOOLS_REGISTRY } from "@/lib/tools-registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://fileomnitool.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.fileomnitool.com";
 
   const toolUrls: MetadataRoute.Sitemap = TOOLS_REGISTRY.map((tool) => ({
     url: `${baseUrl}/tools/${tool.id}`,

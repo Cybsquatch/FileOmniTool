@@ -21,6 +21,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.fileomnitool.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: "FileOmniTool - Free, Private & 100% In-Browser File Tools",
   description: "Merge PDFs, convert images (WebP/PNG/JPG), compress files, create & extract ZIPs directly in your browser. Zero cloud uploads, 100% private, free forever.",
   keywords: [
@@ -33,6 +37,7 @@ export const metadata: Metadata = {
     description: "Merge PDFs, convert images, and unpack archives without uploading files to any server. 100% in-browser.",
     type: "website",
     siteName: "FileOmniTool",
+    url: "https://www.fileomnitool.com",
   },
   robots: {
     index: true,

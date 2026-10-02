@@ -6,7 +6,7 @@ import { AdBanner } from "../ads/AdBanner";
 import { QrCode, Download, Copy, Check, Sparkles } from "lucide-react";
 
 export const QrGeneratorTool: React.FC = () => {
-  const [text, setText] = useState("https://fileomnitool.com");
+  const [text, setText] = useState("https://www.fileomnitool.com");
   const [darkColor, setDarkColor] = useState("#000000");
   const [errorLevel, setErrorLevel] = useState<"L" | "M" | "Q" | "H">("M");
   const [qrDataUrl, setQrDataUrl] = useState<string>("");

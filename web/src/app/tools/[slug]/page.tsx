@@ -33,10 +33,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: tool.metaTitle.en,
       description: tool.metaDescription.en,
       type: "website",
-      url: `https://fileomnitool.com/tools/${tool.id}`,
+      url: `https://www.fileomnitool.com/tools/${tool.id}`,
     },
     alternates: {
-      canonical: `https://fileomnitool.com/tools/${tool.id}`,
+      canonical: `https://www.fileomnitool.com/tools/${tool.id}`,
     },
   };
 }
@@ -56,7 +56,7 @@ export default async function ToolPage({ params }: PageProps) {
       {
         "@type": "WebApplication",
         "name": tool.title.en,
-        "url": `https://fileomnitool.com/tools/${tool.id}`,
+        "url": `https://www.fileomnitool.com/tools/${tool.id}`,
         "description": tool.metaDescription.en,
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All",
