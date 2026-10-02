@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ToolDefinition } from "@/lib/tools-registry";
+import { ToolDefinition, TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { useLanguage } from "@/lib/i18n/context";
 import { PdfMergeTool } from "@/components/tools/PdfMergeTool";
 import { PdfSplitTool } from "@/components/tools/PdfSplitTool";
@@ -122,6 +122,10 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
     }
   };
 
+  const relatedTools = TOOLS_REGISTRY.filter(
+    (t) => t.id !== tool.id && (t.category === tool.category || t.popular)
+  ).slice(0, 4);
+
   return (
     <>
       {/* Breadcrumb Navigation */}
@@ -198,6 +202,41 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Related Tools Section for Topic Cluster Internal Linking */}
+      <section className="mx-auto mt-12 mb-16 max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between pb-4">
+          <h2 className="text-base font-bold text-zinc-900 dark:text-white">
+            {language === "it" ? "Strumenti Correlati & Consigliati" : "Related & Recommended Tools"}
+          </h2>
+          <Link
+            href="/"
+            className="text-xs font-semibold text-emerald-600 hover:underline dark:text-emerald-400"
+          >
+            {language === "it" ? "Vedi tutti i 32 strumenti →" : "View all 32 tools →"}
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {relatedTools.map((relTool) => (
+            <Link
+              key={relTool.id}
+              href={`/tools/${relTool.id}`}
+              className="flex items-center justify-between rounded-xl border border-zinc-200/80 bg-white p-4 shadow-sm transition hover:border-emerald-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:border-emerald-700"
+            >
+              <div>
+                <h3 className="text-xs font-bold text-zinc-900 dark:text-white">
+                  {relTool.title[language] || relTool.title.en}
+                </h3>
+                <p className="mt-1 text-[11px] text-zinc-500 line-clamp-1 dark:text-zinc-400">
+                  {relTool.description[language] || relTool.description.en}
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 shrink-0 text-zinc-400" />
+            </Link>
+          ))}
         </div>
       </section>
 

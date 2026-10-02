@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { PrivacyBadge } from "@/components/common/PrivacyBadge";
@@ -8,7 +9,7 @@ import { ToolCard } from "@/components/tools/ToolCard";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { useLanguage } from "@/lib/i18n/context";
-import { Search, Sparkles, Shield, Cpu, Zap, Lock } from "lucide-react";
+import { Search, Sparkles, Shield, Cpu, Zap, Lock, ArrowRight, Layers } from "lucide-react";
 
 export default function HomePage() {
   const { language, t } = useLanguage();
@@ -28,8 +29,43 @@ export default function HomePage() {
     return matchesCategory && matchesSearch;
   });
 
+  // Schema.org per indicizzazione primaria e Google Sitelinks (ItemList + WebSite)
+  const homeJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "FileOmniTool",
+        "url": "https://www.fileomnitool.com",
+        "description": "Free, Private & 100% In-Browser File Tools Suite. Zero cloud uploads.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.fileomnitool.com/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "ItemList",
+        "name": "FileOmniTool Complete Client-Side Tools Directory",
+        "description": "32 privacy-focused in-browser file utilities",
+        "numberOfItems": TOOLS_REGISTRY.length,
+        "itemListElement": TOOLS_REGISTRY.map((tool, idx) => ({
+          "@type": "ListItem",
+          "position": idx + 1,
+          "name": tool.title.en,
+          "description": tool.description.en,
+          "url": `https://www.fileomnitool.com/tools/${tool.id}`
+        }))
+      }
+    ]
+  };
+
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50/50 font-sans text-zinc-900 selection:bg-emerald-500 selection:text-white dark:bg-zinc-950 dark:text-zinc-100">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
       <Header />
 
       <main className="flex-1">
@@ -187,6 +223,50 @@ export default function HomePage() {
               <p className="mt-2 text-xs text-zinc-500 leading-relaxed dark:text-zinc-400">
                 {t("why.card4.desc")}
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* SEO Crawl Hub: Direct static links with high-intent keywords for Googlebot indexing */}
+        <section className="border-t border-zinc-200/80 bg-white py-14 dark:border-zinc-800/80 dark:bg-zinc-900/40">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-8">
+              <div>
+                <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                  {language === "it" ? "Tutti i 32 Strumenti per File Gratuiti" : "All 32 Free In-Browser File Tools"}
+                </h2>
+                <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                  {language === "it" 
+                    ? "Accesso immediato senza login, limiti di dimensione o caricamento su cloud server." 
+                    : "Instant client-side file tools with zero cloud uploads and 100% privacy guarantee."}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {TOOLS_REGISTRY.map((tool) => (
+                <Link
+                  key={tool.id}
+                  href={`/tools/${tool.id}`}
+                  className="group flex flex-col justify-between rounded-xl border border-zinc-100 bg-zinc-50/60 p-4 transition hover:border-emerald-300 hover:bg-white hover:shadow-sm dark:border-zinc-800/80 dark:bg-zinc-950/40 dark:hover:border-emerald-800 dark:hover:bg-zinc-900"
+                >
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                      {tool.category}
+                    </span>
+                    <h3 className="mt-1 text-sm font-semibold text-zinc-900 group-hover:text-emerald-600 dark:text-zinc-100 dark:group-hover:text-emerald-400">
+                      {tool.title[language] || tool.title.en}
+                    </h3>
+                    <p className="mt-1 text-xs text-zinc-500 line-clamp-2 dark:text-zinc-400">
+                      {tool.description[language] || tool.description.en}
+                    </p>
+                  </div>
+                  <div className="mt-3 flex items-center gap-1 text-[11px] font-semibold text-emerald-600 group-hover:translate-x-1 transition-transform dark:text-emerald-400">
+                    <span>{t("tools.useTool")}</span>
+                    <ArrowRight className="h-3 w-3" />
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

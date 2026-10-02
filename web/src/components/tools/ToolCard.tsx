@@ -34,7 +34,9 @@ import {
   Pipette,
   Sliders,
   KeyRound,
-  Fingerprint
+  Fingerprint,
+  FileImage,
+  Sparkles
 } from "lucide-react";
 
 interface ToolCardProps {
@@ -70,7 +72,9 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Pipette,
   Sliders,
   KeyRound,
-  Fingerprint
+  Fingerprint,
+  FileImage,
+  Sparkles
 };
 
 export const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
