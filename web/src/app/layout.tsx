@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/context";
@@ -50,7 +49,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-7211822056148504";
   const gscId = process.env.NEXT_PUBLIC_GSC_VERIFICATION || "google5a4b4e98d9296d35";
 
   return (
@@ -61,12 +60,10 @@ export default function RootLayout({
       <head>
         {gscId && <meta name="google-site-verification" content={gscId} />}
         {adsenseId && (
-          <Script
-            id="google-adsense"
+          <script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
             crossOrigin="anonymous"
-            strategy="afterInteractive"
           />
         )}
       </head>

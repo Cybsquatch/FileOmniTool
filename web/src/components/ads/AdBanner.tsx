@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { Sparkles, EyeOff } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { EyeOff } from "lucide-react";
 
 export type AdSlotType = "leaderboard" | "action-card" | "sticky-footer";
 
@@ -15,12 +15,30 @@ interface AdBannerProps {
 export const AdBanner: React.FC<AdBannerProps> = ({
   slot,
   className = "",
-  adClient,
+  adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-7211822056148504",
   adSlotId,
 }) => {
   const [closed, setClosed] = useState(false);
 
+  useEffect(() => {
+    if (adSlotId && typeof window !== "undefined") {
+      try {
+        // @ts-expect-error Google adsbygoogle array
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.error("AdSense unit initialization error", e);
+      }
+    }
+  }, [adSlotId]);
+
   if (closed) return null;
+
+  // Se non c'è uno slot ID manuale configurato, non mostriamo segnaposto fittizi
+  // così la revisione di Google AdSense vede un sito pulito e gli Annunci Automatici (Auto Ads)
+  // inseriscono i banner nativamente dove rendono di più.
+  if (!adSlotId) {
+    return null;
+  }
 
   // Stile e dimensioni fisse per prevenire CLS (Cumulative Layout Shift)
   const getDimensions = () => {
@@ -34,39 +52,19 @@ export const AdBanner: React.FC<AdBannerProps> = ({
     }
   };
 
-  // Se abbiamo chiavi AdSense reali e siamo in produzione, possiamo montare il tag ins di AdSense
-  const isRealAd = !!adClient && !!adSlotId;
-
   return (
     <div
-      className={`relative my-4 flex items-center justify-center overflow-hidden rounded-xl border border-dashed border-zinc-300 bg-zinc-50/80 p-2 text-center transition-all dark:border-zinc-800 dark:bg-zinc-900/50 ${getDimensions()} ${className}`}
-      aria-label="Spazio Pubblicitario Sponsorizzato"
+      className={`relative my-4 flex items-center justify-center overflow-hidden rounded-xl bg-transparent text-center transition-all ${getDimensions()} ${className}`}
+      aria-label="Advertisement"
     >
-      {isRealAd ? (
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client={adClient}
-          data-ad-slot={adSlotId}
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-      ) : (
-        <div className="flex flex-col items-center justify-center gap-1.5 p-3 text-zinc-500 dark:text-zinc-400">
-          <div className="flex items-center gap-1.5 text-xs font-semibold tracking-wider text-emerald-600 uppercase dark:text-emerald-400">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>Spazio Pubblicitario • {slot.replace("-", " ").toUpperCase()}</span>
-          </div>
-          <p className="text-xs text-zinc-600 dark:text-zinc-400">
-            Google AdSense / Ezoic Ready • Slot protetto a ingombro fisso (Zero CLS)
-          </p>
-          <span className="rounded bg-zinc-200/80 px-2 py-0.5 text-[10px] font-mono text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
-            {slot === "leaderboard" && "728 × 90 Responsive Banner"}
-            {slot === "action-card" && "300 × 250 Post-Action Card"}
-            {slot === "sticky-footer" && "Sticky Footer 728 × 90 / 320 × 50"}
-          </span>
-        </div>
-      )}
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client={adClient}
+        data-ad-slot={adSlotId}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
 
       {slot === "sticky-footer" && (
         <button
