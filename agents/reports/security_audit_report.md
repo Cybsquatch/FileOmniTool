@@ -1,6 +1,6 @@
 # SecurityAuditorAgent - Report Ufficiale
 **Ruolo:** Esperto di Sicurezza Informatica & AppSec Code Auditor
-**Data Generazione:** 2026-10-02 10:50:30
+**Data Generazione:** 2026-10-02 12:03:35
 **Progetto:** FileOmniTool
 
 ---
@@ -9,7 +9,7 @@
 ## 1. Audit di Sicurezza del Codice & Prevenzione Vulnerabilità
 
 ### A. Valutazione Rischio DOM-Based XSS
-- **File sorgente analizzati:** 41
+- **File sorgente analizzati:** 44
 - **Occorrenze non sicure di `dangerouslySetInnerHTML`:** 0
 - **Esito Audit XSS:** [SICURO] Nessun bypass del DOM rilevato. React gestisce l'escape nativo dei nomi file.
 

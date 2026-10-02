@@ -33,6 +33,9 @@ import { ColorPickerTool } from "@/components/tools/ColorPickerTool";
 import { AudioBoosterTool } from "@/components/tools/AudioBoosterTool";
 import { PasswordGeneratorTool } from "@/components/tools/PasswordGeneratorTool";
 import { UuidGeneratorTool } from "@/components/tools/UuidGeneratorTool";
+import { ImageToPdfTool } from "@/components/tools/ImageToPdfTool";
+import { WordCounterTool } from "@/components/tools/WordCounterTool";
+import { FaviconGeneratorTool } from "@/components/tools/FaviconGeneratorTool";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { ShieldCheck, ChevronRight, HelpCircle } from "lucide-react";
 
@@ -108,6 +111,12 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         return <PasswordGeneratorTool />;
       case "uuid-generator":
         return <UuidGeneratorTool />;
+      case "image-to-pdf":
+        return <ImageToPdfTool />;
+      case "word-counter":
+        return <WordCounterTool />;
+      case "favicon-generator":
+        return <FaviconGeneratorTool />;
       default:
         return <div>Tool in development.</div>;
     }

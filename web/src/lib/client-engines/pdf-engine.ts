@@ -88,3 +88,109 @@ function parsePageRange(input: string, maxPages: number): number[] {
 
   return Array.from(pageSet).sort((a, b) => a - b);
 }
+
+export interface ImageToPdfConfig {
+  orientation: "auto" | "portrait" | "landscape";
+  pageSize: "a4" | "fit";
+  margin: number; // 0, 15, 30 pt
+}
+
+/**
+ * Converte una serie di immagini in un unico documento PDF (100% client-side in RAM)
+ */
+export async function convertImagesToPdf(
+  files: File[],
+  config: ImageToPdfConfig = { orientation: "auto", pageSize: "a4", margin: 15 }
+): Promise<Uint8Array> {
+  if (files.length === 0) {
+    throw new Error("Seleziona almeno un'immagine da convertire in PDF.");
+  }
+
+  const pdfDoc = await PDFDocument.create();
+
+  // A4 dimensioni standard in punti (72 pt per pollice): 595.28 x 841.89
+  const A4_WIDTH = 595.28;
+  const A4_HEIGHT = 841.89;
+
+  for (const file of files) {
+    // Leggi immagine via elemento Image o canvas per supportare PNG, JPG, WebP in modo trasparente
+    const dataUrl = await new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+
+    const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+      const el = new Image();
+      el.onload = () => resolve(el);
+      el.onerror = reject;
+      el.src = dataUrl;
+    });
+
+    // Renderizza su canvas ed esporta come PNG o JPEG standard per pdf-lib
+    const canvas = document.createElement("canvas");
+    canvas.width = img.naturalWidth || img.width;
+    canvas.height = img.naturalHeight || img.height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("Impossibile inizializzare il contesto Canvas.");
+    ctx.drawImage(img, 0, 0);
+
+    const isPng = file.type === "image/png" || file.name.toLowerCase().endsWith(".png");
+    const mime = isPng ? "image/png" : "image/jpeg";
+    const blob = await new Promise<Blob>((resolve, reject) => {
+      canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Errore rendering immagine"))), mime, 0.92);
+    });
+
+    const imageBytes = new Uint8Array(await blob.arrayBuffer());
+    const embeddedImage = isPng ? await pdfDoc.embedPng(imageBytes) : await pdfDoc.embedJpg(imageBytes);
+
+    const origW = embeddedImage.width;
+    const origH = embeddedImage.height;
+
+    let pageWidth = A4_WIDTH;
+    let pageHeight = A4_HEIGHT;
+
+    if (config.pageSize === "fit") {
+      pageWidth = origW + config.margin * 2;
+      pageHeight = origH + config.margin * 2;
+    } else {
+      // Formato A4
+      let isLandscape = false;
+      if (config.orientation === "landscape") {
+        isLandscape = true;
+      } else if (config.orientation === "auto") {
+        isLandscape = origW > origH;
+      }
+
+      if (isLandscape) {
+        pageWidth = A4_HEIGHT;
+        pageHeight = A4_WIDTH;
+      } else {
+        pageWidth = A4_WIDTH;
+        pageHeight = A4_HEIGHT;
+      }
+    }
+
+    const page = pdfDoc.addPage([pageWidth, pageHeight]);
+
+    const availW = pageWidth - config.margin * 2;
+    const availH = pageHeight - config.margin * 2;
+
+    const scale = Math.min(availW / origW, availH / origH, config.pageSize === "fit" ? 1 : 100);
+    const drawW = origW * scale;
+    const drawH = origH * scale;
+
+    const x = config.margin + (availW - drawW) / 2;
+    const y = config.margin + (availH - drawH) / 2;
+
+    page.drawImage(embeddedImage, {
+      x,
+      y,
+      width: drawW,
+      height: drawH,
+    });
+  }
+
+  return await pdfDoc.save();
+}

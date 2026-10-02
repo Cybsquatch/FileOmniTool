@@ -23,13 +23,18 @@ class SecurityAuditorAgent(BaseAgent):
                 scanned += 1
                 try:
                     content = p.read_text(encoding="utf-8")
-                    # Se contiene dangerouslySetInnerHTML, verifichiamo che sia solo per lo script JSON-LD strutturato
                     if "dangerouslySetInnerHTML" in content:
-                        # Rimuoviamo le occorrenze sicure legate a schema JSON-LD
+                        # Rimuoviamo le occorrenze sicure legate a schema JSON-LD o Google Analytics
                         sanitized_content = re.sub(
                             r'<script[^>]*type=[\'"]application/ld\+json[\'"][^>]*dangerouslySetInnerHTML[^\/]*/>',
                             '',
                             content,
+                            flags=re.DOTALL
+                        )
+                        sanitized_content = re.sub(
+                            r'<script[^>]*id=[\'"]google-analytics[\'"][^>]*dangerouslySetInnerHTML[^\/]*/>',
+                            '',
+                            sanitized_content,
                             flags=re.DOTALL
                         )
                         if "dangerouslySetInnerHTML" in sanitized_content:

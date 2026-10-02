@@ -51,6 +51,7 @@ export default function RootLayout({
 }>) {
   const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-7211822056148504";
   const gscId = process.env.NEXT_PUBLIC_GSC_VERIFICATION || "google5a4b4e98d9296d35";
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
   return (
     <html
@@ -65,6 +66,25 @@ export default function RootLayout({
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
             crossOrigin="anonymous"
           />
+        )}
+        {gaId && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            />
+            <script
+              id="google-analytics"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}', { page_path: window.location.pathname });
+                `,
+              }}
+            />
+          </>
         )}
       </head>
       <body className="min-h-full flex flex-col">

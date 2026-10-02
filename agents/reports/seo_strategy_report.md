@@ -1,6 +1,6 @@
 # SeoAgent - Report Ufficiale
 **Ruolo:** Specialista SEO Tecnico & Programmatic Content Strategy
-**Data Generazione:** 2026-10-02 10:50:30
+**Data Generazione:** 2026-10-02 12:03:35
 **Progetto:** FileOmniTool
 
 ---
@@ -43,6 +43,9 @@ Il vantaggio competitivo chiave di **FileOmniTool** rispetto a giganti come *ILo
 | `audio-booster` | **Audio Volume Booster (Up to 300%)** (AUDIO) | `audio volume booster (up to 300%) gratis senza caricamento` | `Audio Volume Booster (Up to 300%) Gratis e Sicuro al 100% | FileOmniTool` | `Usa Audio Volume Booster (Up to 300%) direttamente nel tuo browse...` |
 | `password-generator` | **Secure Password Generator & Entropy Meter** (TEXT) | `secure password generator & entropy meter gratis senza caricamento` | `Secure Password Generator & Entropy Meter Gratis e Sicuro al 100% | FileOmniTool` | `Usa Secure Password Generator & Entropy Meter direttamente nel tu...` |
 | `uuid-generator` | **UUID / GUID v4 Batch Generator** (TEXT) | `uuid / guid v4 batch generator gratis senza caricamento` | `UUID / GUID v4 Batch Generator Gratis e Sicuro al 100% | FileOmniTool` | `Usa UUID / GUID v4 Batch Generator direttamente nel tuo browser. ...` |
+| `image-to-pdf` | **JPG to PDF / Image to PDF** (PDF) | `jpg to pdf / image to pdf gratis senza caricamento` | `JPG to PDF / Image to PDF Gratis e Sicuro al 100% | FileOmniTool` | `Usa JPG to PDF / Image to PDF direttamente nel tuo browser. Zero ...` |
+| `word-counter` | **Word Counter & Character Counter** (TEXT) | `word counter & character counter gratis senza caricamento` | `Word Counter & Character Counter Gratis e Sicuro al 100% | FileOmniTool` | `Usa Word Counter & Character Counter direttamente nel tuo browser...` |
+| `favicon-generator` | **Favicon & App Icon Generator** (IMAGE) | `favicon & app icon generator gratis senza caricamento` | `Favicon & App Icon Generator Gratis e Sicuro al 100% | FileOmniTool` | `Usa Favicon & App Icon Generator direttamente nel tuo browser. Ze...` |
 
 ---
 

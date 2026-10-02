@@ -1710,6 +1710,199 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
         }
       ]
     }
+  },
+  {
+    id: "image-to-pdf",
+    category: "pdf",
+    iconName: "FileImage",
+    badge: { en: "High Demand", it: "Molto Richiesto" },
+    popular: true,
+    acceptedMime: ".jpg,.jpeg,.png,.webp,image/*",
+    maxSizeMB: 100,
+    title: {
+      en: "JPG to PDF / Image to PDF",
+      it: "Convertitore Immagini in PDF (JPG in PDF)"
+    },
+    description: {
+      en: "Convert JPG, PNG, and WebP images into a single professional PDF document. Reorder pages, adjust margins, and download instantly without server uploads.",
+      it: "Converti foto e immagini JPG, PNG e WebP in un unico documento PDF professionale. Riordina le pagine, imposta i margini e scarica subito senza caricare file sui server."
+    },
+    seoKeyword: {
+      en: "jpg to pdf online free no upload",
+      it: "convertire jpg in pdf online gratis senza caricamento"
+    },
+    metaTitle: {
+      en: "JPG to PDF Free in Browser - Convert Images to PDF | FileOmniTool",
+      it: "Convertitore JPG in PDF Gratis Online - 100% Privato | FileOmniTool"
+    },
+    metaDescription: {
+      en: "Combine multiple JPG and PNG images into a PDF document directly in your browser. 100% private, free, fast, and secure with zero cloud uploads.",
+      it: "Unisci foto JPG e immagini in un documento PDF direttamente nel browser. Veloce, gratuito, sicuro e 100% privato senza upload."
+    },
+    instructions: {
+      en: [
+        "Drag and drop or select one or more images (JPG, PNG, WebP).",
+        "Reorder the images using the arrow buttons or remove unwanted ones.",
+        "Choose your desired page format (A4 or Fit to Image), orientation, and margins.",
+        "Click 'Convert to PDF' and download your document in seconds."
+      ],
+      it: [
+        "Trascina o seleziona una o più immagini (JPG, PNG, WebP).",
+        "Riordina le immagini con le frecce su/giù o rimuovi quelle non necessarie.",
+        "Scegli il formato pagina (A4 o Adatta a Immagine), l'orientamento e i margini.",
+        "Clicca su 'Converti in PDF' e scarica istantaneamente il documento."
+      ]
+    },
+    faq: {
+      en: [
+        {
+          question: "Can I convert multiple images into a single PDF?",
+          answer: "Yes, you can upload dozens of images at once, reorder them as you like, and merge them into one organized PDF file."
+        },
+        {
+          question: "Are my private photos uploaded to any server?",
+          answer: "Never. The PDF is assembled entirely in your device's memory using client-side JavaScript. No data ever leaves your browser."
+        }
+      ],
+      it: [
+        {
+          question: "Posso convertire più foto in un unico PDF?",
+          answer: "Sì, puoi caricare decine di foto contemporaneamente, ordinarle a tuo piacimento e unirle in un unico file PDF ordinato."
+        },
+        {
+          question: "Le mie foto private vengono caricate su server esterni?",
+          answer: "Assolutamente no. Il PDF viene generato interamente nella memoria RAM del tuo dispositivo: nessuna foto lascia mai il tuo computer."
+        }
+      ]
+    }
+  },
+  {
+    id: "word-counter",
+    category: "text",
+    iconName: "Type",
+    badge: { en: "SEO Essential", it: "Essenziale SEO" },
+    popular: true,
+    title: {
+      en: "Word Counter & Character Counter",
+      it: "Contatore Parole, Caratteri e Densità Keyword"
+    },
+    description: {
+      en: "Real-time word count, character count with and without spaces, reading time estimate, and top keyword density analysis. 100% private in-browser text tool.",
+      it: "Conteggio in tempo reale di parole, caratteri (con e senza spazi), tempo di lettura e analisi della densità delle keyword. Gratuito e 100% privato nel browser."
+    },
+    seoKeyword: {
+      en: "word counter character count online",
+      it: "contatore parole caratteri online battute"
+    },
+    metaTitle: {
+      en: "Free Word Counter & Character Counter Online | FileOmniTool",
+      it: "Contatore Parole e Caratteri Online Gratis - Calcolo Battute | FileOmniTool"
+    },
+    metaDescription: {
+      en: "Count words, characters, sentences, paragraphs, and reading time in real time. Fast, accurate, and 100% private text analysis.",
+      it: "Conta parole, caratteri con e senza spazi, frasi, paragrafi e stima tempi di lettura e pronuncia in tempo reale. Veloce, accurato e sicuro."
+    },
+    instructions: {
+      en: [
+        "Type or paste your text into the editor.",
+        "Instantly view words, characters, reading time, and speaking duration.",
+        "Check keyword density to optimize your articles and content for SEO.",
+        "Copy transformed text or export directly as a .txt file."
+      ],
+      it: [
+        "Digita o incolla il tuo testo nell'editor.",
+        "Visualizza subito il numero di parole, battute, tempi di lettura e pronuncia.",
+        "Consulta la densità delle parole chiave per ottimizzare i tuoi testi in ottica SEO.",
+        "Copia il testo trasformato o esportalo direttamente in formato .txt."
+      ]
+    },
+    faq: {
+      en: [
+        {
+          question: "How is reading time calculated?",
+          answer: "Reading time is calculated based on the standard average adult reading speed of 200 words per minute (WPM)."
+        },
+        {
+          question: "Is my text saved or sent to any server?",
+          answer: "No. All text counting and analysis is executed locally inside your web browser. Your text is never stored or transmitted."
+        }
+      ],
+      it: [
+        {
+          question: "Come viene calcolato il tempo di lettura?",
+          answer: "Il tempo di lettura si basa sulla velocità media standard di lettura di un adulto, pari a circa 200 parole al minuto."
+        },
+        {
+          question: "Il mio testo viene salvato o inviato a server esterni?",
+          answer: "No. L'analisi del testo avviene in tempo reale nel tuo browser. Nessun dato viene registrato o trasmesso."
+        }
+      ]
+    }
+  },
+  {
+    id: "favicon-generator",
+    category: "image",
+    iconName: "Sparkles",
+    badge: { en: "Webmaster Pick", it: "Per Webmaster" },
+    popular: true,
+    acceptedMime: ".png,.jpg,.jpeg,.svg,.webp,image/*",
+    maxSizeMB: 25,
+    title: {
+      en: "Favicon & App Icon Generator",
+      it: "Generatore Favicon & Icone App Web/Mobile"
+    },
+    description: {
+      en: "Generate all standard favicon sizes (16x16, 32x32, 180x180, 512x512) and favicon.ico in one click. Includes browser mockup and ready-to-use HTML code in a ZIP.",
+      it: "Genera tutte le dimensioni favicon (16x16, 32x32, 180x180 Apple Touch, 512x512) e favicon.ico in un clic. Con anteprima browser e codice HTML incluso in file ZIP."
+    },
+    seoKeyword: {
+      en: "favicon generator app icon creator online free",
+      it: "generatore favicon online icone app pacchetto zip"
+    },
+    metaTitle: {
+      en: "Favicon Generator - Free App & Browser Icon Creator | FileOmniTool",
+      it: "Generatore Favicon Online Gratis - Crea Icone Web e Mobile | FileOmniTool"
+    },
+    metaDescription: {
+      en: "Create multi-size favicons and touch icons from any image. Download complete favicon package ZIP with HTML head tags. 100% in-browser.",
+      it: "Crea favicon multi-formato e icone app da qualsiasi immagine. Scarica il pacchetto completo in formato ZIP con tag HTML pronti."
+    },
+    instructions: {
+      en: [
+        "Upload your square logo, icon, or image (PNG, SVG, JPG, WebP).",
+        "Preview how your favicon looks in a real browser tab.",
+        "Check all generated sizes (16x16, 32x32, 180x180, 512x512).",
+        "Download the complete ZIP package or individual PNG files, and copy the HTML tags."
+      ],
+      it: [
+        "Carica il tuo logo, icona o immagine (PNG, SVG, JPG, WebP).",
+        "Verifica l'anteprima realistica della favicon nella scheda del browser.",
+        "Controlla tutte le risoluzioni generate automaticamente.",
+        "Scarica il pacchetto completo ZIP o i singoli PNG e copia i tag HTML per il tuo sito."
+      ]
+    },
+    faq: {
+      en: [
+        {
+          question: "Which sizes are included in the ZIP package?",
+          answer: "The package includes 16x16, 32x32, 48x48, 180x180 (Apple Touch Icon), 192x192, 512x512, favicon.ico, and ready-to-paste HTML snippet."
+        },
+        {
+          question: "What is the recommended image ratio?",
+          answer: "A square image (1:1 aspect ratio) of at least 512x512 pixels with a transparent background produces the crispest result."
+        }
+      ],
+      it: [
+        {
+          question: "Quali dimensioni sono incluse nel pacchetto ZIP?",
+          answer: "Il pacchetto include 16x16, 32x32, 48x48, 180x180 (Apple Touch Icon), 192x192, 512x512, favicon.ico e il file HTML con i tag pronti."
+        },
+        {
+          question: "Qual è il formato immagine consigliato?",
+          answer: "Un'immagine quadrata (rapporto 1:1) di almeno 512x512 pixel, preferibilmente con sfondo trasparente in formato PNG o SVG."
+        }
+      ]
+    }
   }
 ];
 
