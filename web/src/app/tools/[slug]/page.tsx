@@ -35,6 +35,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "website",
       url: `https://www.fileomnitool.com/tools/${tool.id}`,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: tool.metaTitle.en,
+      description: tool.metaDescription.en,
+    },
     alternates: {
       canonical: `https://www.fileomnitool.com/tools/${tool.id}`,
     },
@@ -49,7 +54,16 @@ export default async function ToolPage({ params }: PageProps) {
     notFound();
   }
 
-  // Schema JSON-LD per i motori di ricerca (internazionale in inglese + rich FAQ)
+  const categoryNames: Record<string, string> = {
+    pdf: "PDF Tools",
+    image: "Image Tools",
+    audio: "Audio & Video Tools",
+    document: "Document & Office",
+    text: "Text & Dev Utilities",
+    archive: "Archive Utilities",
+  };
+
+  // Schema JSON-LD per i motori di ricerca (internazionale in inglese + rich FAQ + Breadcrumbs)
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -70,6 +84,29 @@ export default async function ToolPage({ params }: PageProps) {
           "Zero file uploads to cloud servers",
           "Free without registration or limits",
         ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.fileomnitool.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": categoryNames[tool.category] || tool.category.toUpperCase(),
+            "item": `https://www.fileomnitool.com/#${tool.category}`
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": tool.title.en,
+            "item": `https://www.fileomnitool.com/tools/${tool.id}`
+          }
+        ]
       },
       {
         "@type": "FAQPage",
