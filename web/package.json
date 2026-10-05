@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "stats": "node scripts/analytics-report.mjs"
   },
   "dependencies": {
     "@breezystack/lamejs": "^1.2.7",
