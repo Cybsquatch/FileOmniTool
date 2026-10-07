@@ -37,7 +37,8 @@ import { ImageToPdfTool } from "@/components/tools/ImageToPdfTool";
 import { WordCounterTool } from "@/components/tools/WordCounterTool";
 import { FaviconGeneratorTool } from "@/components/tools/FaviconGeneratorTool";
 import { AdBanner } from "@/components/ads/AdBanner";
-import { ShieldCheck, ChevronRight, HelpCircle } from "lucide-react";
+import { getGuideByToolId } from "@/lib/guides-registry";
+import { ShieldCheck, ChevronRight, HelpCircle, BookOpen } from "lucide-react";
 
 interface ToolPageClientProps {
   tool: ToolDefinition;
@@ -126,6 +127,8 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
     (t) => t.id !== tool.id && (t.category === tool.category || t.popular)
   ).slice(0, 4);
 
+  const guide = getGuideByToolId(tool.id);
+
   return (
     <>
       {/* Breadcrumb Navigation */}
@@ -154,6 +157,22 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         <p className="mx-auto mt-2 max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
           {description}
         </p>
+
+        {guide && (
+          <div className="mt-4">
+            <Link
+              href={`/guides/${guide.slug}`}
+              className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50/70 px-3.5 py-1 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100 hover:shadow-sm dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300"
+            >
+              <BookOpen className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span>
+                {language === "it"
+                  ? `Guida completa: ${guide.title.it} →`
+                  : `Full Tutorial: ${guide.title.en} →`}
+              </span>
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Interactive Tool Area */}

@@ -2,9 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { ShieldCheck, Heart, Lock, FileText, Image as ImageIcon, Music, Archive, Code2 } from "lucide-react";
+import { ShieldCheck, Heart, Lock, FileText, Image as ImageIcon, Music, Archive, Code2, BookOpen } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
 import { TOOLS_REGISTRY } from "@/lib/tools-registry";
+import { GUIDES_REGISTRY } from "@/lib/guides-registry";
 
 export const Footer: React.FC = () => {
   const { language, t } = useLanguage();
@@ -162,6 +163,33 @@ export const Footer: React.FC = () => {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        {/* Guides & SEO Pillar Articles Crawl Block */}
+        <div className="mt-12 border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80">
+          <div className="flex items-center justify-between pb-4">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-white">
+              <BookOpen className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <span>{language === "it" ? "Guide e Tutorial Passo-Passo" : "Step-by-Step Guides & Tutorials"}</span>
+            </div>
+            <Link
+              href="/guides"
+              className="text-xs font-semibold text-emerald-600 hover:underline dark:text-emerald-400"
+            >
+              {language === "it" ? "Tutte le guide →" : "All guides →"}
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {GUIDES_REGISTRY.map((guide) => (
+              <Link
+                key={guide.slug}
+                href={`/guides/${guide.slug}`}
+                className="rounded-lg p-2 text-xs text-zinc-600 transition hover:bg-emerald-50/50 hover:text-emerald-700 dark:text-zinc-400 dark:hover:bg-emerald-950/30 dark:hover:text-emerald-300"
+              >
+                <span className="font-semibold">{guide.title[language] || guide.title.en}</span>
+              </Link>
+            ))}
           </div>
         </div>
 
