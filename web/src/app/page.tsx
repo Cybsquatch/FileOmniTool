@@ -47,7 +47,7 @@ export default function HomePage() {
       {
         "@type": "ItemList",
         "name": "FileOmniTool Complete Client-Side Tools Directory",
-        "description": "32 privacy-focused in-browser file utilities",
+        "description": `${TOOLS_REGISTRY.length} privacy-focused in-browser file utilities`,
         "numberOfItems": TOOLS_REGISTRY.length,
         "itemListElement": TOOLS_REGISTRY.map((tool, idx) => ({
           "@type": "ListItem",

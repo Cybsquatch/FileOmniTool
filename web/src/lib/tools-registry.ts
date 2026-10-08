@@ -1,3 +1,5 @@
+import { EXPANDED_TOOLS } from "./tools-registry-expanded";
+
 export interface ToolFaq {
   question: string;
   answer: string;
@@ -27,7 +29,7 @@ export interface ToolDefinition {
   faq: LocalizedContent<ToolFaq[]>;
 }
 
-export const TOOLS_REGISTRY: ToolDefinition[] = [
+const BASE_TOOLS: ToolDefinition[] = [
   {
     id: "pdf-merge",
     category: "pdf",
@@ -1905,6 +1907,8 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
     }
   }
 ];
+
+export const TOOLS_REGISTRY: ToolDefinition[] = [...BASE_TOOLS, ...EXPANDED_TOOLS];
 
 export function getToolById(id: string): ToolDefinition | undefined {
   return TOOLS_REGISTRY.find(t => t.id === id);

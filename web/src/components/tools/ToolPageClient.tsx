@@ -36,6 +36,34 @@ import { UuidGeneratorTool } from "@/components/tools/UuidGeneratorTool";
 import { ImageToPdfTool } from "@/components/tools/ImageToPdfTool";
 import { WordCounterTool } from "@/components/tools/WordCounterTool";
 import { FaviconGeneratorTool } from "@/components/tools/FaviconGeneratorTool";
+import { PdfPageNumberTool } from "@/components/tools/PdfPageNumberTool";
+import { PdfToTextTool } from "@/components/tools/PdfToTextTool";
+import { PdfGrayscaleTool } from "@/components/tools/PdfGrayscaleTool";
+import { PdfMetadataTool } from "@/components/tools/PdfMetadataTool";
+import { PdfOrganizeTool } from "@/components/tools/PdfOrganizeTool";
+import { ImageCropTool } from "@/components/tools/ImageCropTool";
+import { ImageBlurTool } from "@/components/tools/ImageBlurTool";
+import { ImageInvertTool } from "@/components/tools/ImageInvertTool";
+import { ImageFlipTool } from "@/components/tools/ImageFlipTool";
+import { ImageGrayscaleTool } from "@/components/tools/ImageGrayscaleTool";
+import { ImageToBase64Tool } from "@/components/tools/ImageToBase64Tool";
+import { AudioSpeedTool } from "@/components/tools/AudioSpeedTool";
+import { AudioReverseTool } from "@/components/tools/AudioReverseTool";
+import { AudioStereoToMonoTool } from "@/components/tools/AudioStereoToMonoTool";
+import { AudioToneTool } from "@/components/tools/AudioToneTool";
+import { CsvToMarkdownTool } from "@/components/tools/CsvToMarkdownTool";
+import { TextToPdfTool } from "@/components/tools/TextToPdfTool";
+import { JsonFormatterTool } from "@/components/tools/JsonFormatterTool";
+import { XmlJsonTool } from "@/components/tools/XmlJsonTool";
+import { YamlJsonTool } from "@/components/tools/YamlJsonTool";
+import { KeywordDensityTool } from "@/components/tools/KeywordDensityTool";
+import { ColorConverterTool } from "@/components/tools/ColorConverterTool";
+import { HtmlEntitiesTool } from "@/components/tools/HtmlEntitiesTool";
+import { RegexTesterTool } from "@/components/tools/RegexTesterTool";
+import { SlugGeneratorTool } from "@/components/tools/SlugGeneratorTool";
+import { FileChecksumTool } from "@/components/tools/FileChecksumTool";
+import { HexViewerTool } from "@/components/tools/HexViewerTool";
+import { Base64ToImageTool } from "@/components/tools/Base64ToImageTool";
 import { ComparisonTable } from "@/components/tools/ComparisonTable";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { getGuideByToolId } from "@/lib/guides-registry";
@@ -119,6 +147,62 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         return <WordCounterTool />;
       case "favicon-generator":
         return <FaviconGeneratorTool />;
+      case "pdf-page-number":
+        return <PdfPageNumberTool />;
+      case "pdf-to-text":
+        return <PdfToTextTool />;
+      case "pdf-grayscale":
+        return <PdfGrayscaleTool />;
+      case "pdf-metadata":
+        return <PdfMetadataTool />;
+      case "pdf-organize":
+        return <PdfOrganizeTool />;
+      case "image-crop":
+        return <ImageCropTool />;
+      case "image-blur":
+        return <ImageBlurTool />;
+      case "image-invert":
+        return <ImageInvertTool />;
+      case "image-flip":
+        return <ImageFlipTool />;
+      case "image-grayscale":
+        return <ImageGrayscaleTool />;
+      case "image-to-base64":
+        return <ImageToBase64Tool />;
+      case "audio-speed":
+        return <AudioSpeedTool />;
+      case "audio-reverse":
+        return <AudioReverseTool />;
+      case "audio-stereo-to-mono":
+        return <AudioStereoToMonoTool />;
+      case "audio-tone":
+        return <AudioToneTool />;
+      case "csv-to-markdown":
+        return <CsvToMarkdownTool />;
+      case "text-to-pdf":
+        return <TextToPdfTool />;
+      case "json-formatter":
+        return <JsonFormatterTool />;
+      case "xml-json":
+        return <XmlJsonTool />;
+      case "yaml-json":
+        return <YamlJsonTool />;
+      case "keyword-density":
+        return <KeywordDensityTool />;
+      case "color-converter":
+        return <ColorConverterTool />;
+      case "html-entities":
+        return <HtmlEntitiesTool />;
+      case "regex-tester":
+        return <RegexTesterTool />;
+      case "slug-generator":
+        return <SlugGeneratorTool />;
+      case "file-checksum":
+        return <FileChecksumTool />;
+      case "hex-viewer":
+        return <HexViewerTool />;
+      case "base64-to-image":
+        return <Base64ToImageTool />;
       default:
         return <div>Tool in development.</div>;
     }

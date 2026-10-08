@@ -132,7 +132,7 @@ export const Footer: React.FC = () => {
               <span>Testo & Documenti</span>
             </div>
             <ul className="mt-4 space-y-2 text-xs">
-              {textTools.slice(0, 6).map((tool) => (
+              {textTools.slice(0, 12).map((tool) => (
                 <li key={tool.id}>
                   <Link
                     href={`/tools/${tool.id}`}
@@ -152,7 +152,7 @@ export const Footer: React.FC = () => {
               <span>Dev & Crittografia</span>
             </div>
             <ul className="mt-4 space-y-2 text-xs">
-              {textTools.slice(6).map((tool) => (
+              {textTools.slice(12).map((tool) => (
                 <li key={tool.id}>
                   <Link
                     href={`/tools/${tool.id}`}
