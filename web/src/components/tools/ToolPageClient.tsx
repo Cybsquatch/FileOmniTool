@@ -36,6 +36,7 @@ import { UuidGeneratorTool } from "@/components/tools/UuidGeneratorTool";
 import { ImageToPdfTool } from "@/components/tools/ImageToPdfTool";
 import { WordCounterTool } from "@/components/tools/WordCounterTool";
 import { FaviconGeneratorTool } from "@/components/tools/FaviconGeneratorTool";
+import { ComparisonTable } from "@/components/tools/ComparisonTable";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { getGuideByToolId } from "@/lib/guides-registry";
 import { ShieldCheck, ChevronRight, HelpCircle, BookOpen } from "lucide-react";
@@ -199,8 +200,11 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         </div>
       </section>
 
+      {/* Comparison Table: FileOmniTool vs Traditional Cloud Converters */}
+      <ComparisonTable />
+
       {/* FAQ Section */}
-      <section className="mx-auto mt-10 max-w-4xl px-4 sm:px-6 lg:px-8">
+      <section className="mx-auto mt-12 max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70">
           <div className="flex items-center gap-2">
             <HelpCircle className="h-5 w-5 text-emerald-600" />

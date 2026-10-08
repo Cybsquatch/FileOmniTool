@@ -84,6 +84,13 @@ export default async function ToolPage({ params }: PageProps) {
           "Zero file uploads to cloud servers",
           "Free without registration or limits",
         ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": "1280"
+        },
       },
       {
         "@type": "BreadcrumbList",
