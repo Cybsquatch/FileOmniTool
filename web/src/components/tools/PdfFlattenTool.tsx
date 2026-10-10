@@ -5,7 +5,7 @@ import { Dropzone } from "./Dropzone";
 import { Download, Loader2, CheckCircle2, ShieldCheck, FileCheck } from "lucide-react";
 import { flattenPdf } from "@/lib/client-engines/pdf-engine";
 import { useLanguage } from "@/lib/i18n/context";
-import { formatBytes } from "@/lib/utils";
+import { formatBytes } from "@/lib/security-guard";
 
 export const PdfFlattenTool: React.FC = () => {
   const { language } = useLanguage();

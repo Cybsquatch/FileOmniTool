@@ -646,7 +646,6 @@ export const WAVE3_GUIDES: GuideArticle[] = [
       },
       {
         title: { en: "Choose Table & Dialect", it: "Imposta tabella e dialetto" },
-        text: { en: "", it: "" },
         description: {
           en: "Type the target table name and select MySQL, PostgreSQL, or SQLite.",
           it: "Scrivi il nome della tabella desiderata e scegli tra MySQL, PostgreSQL o SQLite.",

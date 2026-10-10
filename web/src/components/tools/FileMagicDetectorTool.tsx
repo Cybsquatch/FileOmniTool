@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Dropzone } from "./Dropzone";
 import { FileSearch, Download, CheckCircle2, AlertCircle, FileCode } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
-import { formatBytes } from "@/lib/utils";
+import { formatBytes } from "@/lib/security-guard";
 
 interface MagicSignature {
   name: string;

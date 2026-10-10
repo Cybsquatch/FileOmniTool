@@ -35,15 +35,15 @@ export const GifFrameExtractorTool: React.FC = () => {
 
     try {
       // Check if modern ImageDecoder is supported
-      if (typeof window !== "undefined" && "ImageDecoder" in window) {
-        // @ts-expect-error ImageDecoder is standard Web Codecs API
-        const decoder = new window.ImageDecoder({
+      const win = window as unknown as Record<string, unknown>;
+      if (typeof window !== "undefined" && typeof win.ImageDecoder === "function") {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const decoder = new (win.ImageDecoder as any)({
           data: file.stream(),
           type: "image/gif",
         });
 
         await decoder.tracks.ready;
-        // @ts-expect-error frameCount on selectedTrack
         const frameCount = decoder.tracks.selectedTrack?.frameCount || 1;
         const extracted: GifFrame[] = [];
 

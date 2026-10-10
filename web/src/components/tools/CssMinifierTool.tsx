@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Dropzone } from "./Dropzone";
 import { Copy, Download, Sparkles, CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
-import { formatBytes } from "@/lib/utils";
+import { formatBytes } from "@/lib/security-guard";
 
 export const CssMinifierTool: React.FC = () => {
   const { language } = useLanguage();
