@@ -81,6 +81,7 @@ import { FileToBase64Tool } from "@/components/tools/FileToBase64Tool";
 import { FileMagicDetectorTool } from "@/components/tools/FileMagicDetectorTool";
 import { ComparisonTable } from "@/components/tools/ComparisonTable";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { EmbedWidgetModal } from "@/components/tools/EmbedWidgetModal";
 import { getGuideByToolId } from "@/lib/guides-registry";
 import { ShieldCheck, ChevronRight, HelpCircle, BookOpen } from "lucide-react";
 
@@ -288,8 +289,8 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
           {description}
         </p>
 
-        {guide && (
-          <div className="mt-4">
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+          {guide && (
             <Link
               href={`/guides/${guide.slug}`}
               className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50/70 px-3.5 py-1 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100 hover:shadow-sm dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300"
@@ -301,8 +302,9 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
                   : `Full Tutorial: ${guide.title.en} →`}
               </span>
             </Link>
-          </div>
-        )}
+          )}
+          <EmbedWidgetModal toolId={tool.id} toolTitle={title} />
+        </div>
       </div>
 
       {/* Interactive Tool Area */}

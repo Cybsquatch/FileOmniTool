@@ -1,17 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { ShieldCheck, Layers, Menu, X, FileText, Image as ImageIcon, Archive, FileCode, Globe, BookOpen } from "lucide-react";
-import { useLanguage } from "@/lib/i18n/context";
+import { ShieldCheck, Layers, Menu, X, FileText, Image as ImageIcon, Archive, FileCode, Globe, BookOpen, ChevronDown } from "lucide-react";
+import { useLanguage, AVAILABLE_LANGUAGES, Language } from "@/lib/i18n/context";
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const toggleLanguage = () => {
-    setLanguage(language === "en" ? "it" : "en");
-  };
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setLangDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const currentLang = AVAILABLE_LANGUAGES.find((l) => l.code === language) || AVAILABLE_LANGUAGES[0];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-zinc-200/80 bg-white/80 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/80">
@@ -92,27 +103,48 @@ export const Header: React.FC = () => {
             {t("nav.privacy")}
           </Link>
 
-          {/* Language Switcher Pill */}
-          <button
-            onClick={toggleLanguage}
-            className="flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs font-semibold text-zinc-700 shadow-sm transition hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200"
-            title="Switch Language / Cambia Lingua"
-          >
-            <Globe className="h-3.5 w-3.5 text-emerald-600" />
-            <span>{language === "en" ? "🇬🇧 EN" : "🇮🇹 IT"}</span>
-          </button>
+          {/* Desktop Language Selector Dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              className="flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs font-semibold text-zinc-700 shadow-sm transition hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200"
+              title="Select Language"
+              aria-label="Select Language"
+            >
+              <Globe className="h-3.5 w-3.5 text-emerald-600" />
+              <span>{currentLang.flag} {currentLang.code.toUpperCase()}</span>
+              <ChevronDown className={`h-3 w-3 text-zinc-400 transition-transform ${langDropdownOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {langDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-40 rounded-xl border border-zinc-200 bg-white py-1.5 shadow-lg dark:border-zinc-800 dark:bg-zinc-900">
+                {AVAILABLE_LANGUAGES.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => {
+                      setLanguage(l.code);
+                      setLangDropdownOpen(false);
+                    }}
+                    className={`flex w-full items-center justify-between px-3 py-1.5 text-left text-xs transition ${
+                      language === l.code
+                        ? "bg-emerald-50 font-bold text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300"
+                        : "text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span>{l.flag}</span>
+                      <span>{l.label}</span>
+                    </span>
+                    {language === l.code && <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
-        {/* Mobile Buttons */}
+        {/* Mobile Header Right */}
         <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={toggleLanguage}
-            className="flex items-center gap-1 rounded-lg border border-zinc-200 px-2 py-1 text-xs font-bold text-zinc-700 dark:border-zinc-800 dark:text-zinc-300"
-          >
-            <Globe className="h-3.5 w-3.5 text-emerald-600" />
-            <span>{language.toUpperCase()}</span>
-          </button>
-
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="rounded-lg p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
@@ -127,6 +159,30 @@ export const Header: React.FC = () => {
       {mobileMenuOpen && (
         <div className="border-b border-zinc-200 bg-white px-4 py-4 md:hidden dark:border-zinc-800 dark:bg-zinc-900">
           <div className="flex flex-col gap-3">
+            {/* Language Selector on Mobile */}
+            <div className="border-b border-zinc-100 pb-3 dark:border-zinc-800">
+              <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Language</p>
+              <div className="grid grid-cols-3 gap-1.5">
+                {AVAILABLE_LANGUAGES.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => {
+                      setLanguage(l.code);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex items-center justify-center gap-1.5 rounded-lg border px-2 py-1.5 text-xs font-semibold ${
+                      language === l.code
+                        ? "border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300"
+                        : "border-zinc-200 bg-zinc-50 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-800 dark:text-zinc-300"
+                    }`}
+                  >
+                    <span>{l.flag}</span>
+                    <span>{l.code.toUpperCase()}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}

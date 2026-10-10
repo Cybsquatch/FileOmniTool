@@ -9,6 +9,11 @@ export interface ToolFaq {
 export interface LocalizedContent<T> {
   en: T;
   it: T;
+  es?: T;
+  fr?: T;
+  de?: T;
+  pt?: T;
+  [key: string]: T | undefined;
 }
 
 export interface ToolDefinition {

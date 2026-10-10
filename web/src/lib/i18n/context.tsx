@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-export type Language = "en" | "it";
+export type Language = "en" | "it" | "es" | "fr" | "de" | "pt";
 
 interface LanguageContextType {
   language: Language;
@@ -79,6 +79,13 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "tool.remove": "Remove",
     "tool.removeAll": "Remove all",
     "tool.changeFile": "Change file",
+
+    // Embed Widget
+    "tool.embedBtn": "Embed Tool",
+    "tool.embedTitle": "Embed this tool on your website",
+    "tool.embedDesc": "Copy and paste this HTML snippet to embed this free, 100% private in-browser tool directly on your website or blog.",
+    "tool.embedCopy": "Copy Embed Code",
+    "tool.embedCopied": "Copied to clipboard!",
 
     // Ad Banner
     "ad.label": "SPONSORED ADVERTISEMENT",
@@ -164,6 +171,13 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "tool.removeAll": "Rimuovi tutti",
     "tool.changeFile": "Cambia file",
 
+    // Embed Widget
+    "tool.embedBtn": "Incorpora Tool",
+    "tool.embedTitle": "Incorpora questo strumento sul tuo sito web",
+    "tool.embedDesc": "Copia e incolla questo codice HTML per offrire questo strumento gratuito e 100% privato direttamente sul tuo blog o sito web.",
+    "tool.embedCopy": "Copia Codice HTML",
+    "tool.embedCopied": "Copiato negli appunti!",
+
     // Ad Banner
     "ad.label": "SPAZIO PUBBLICITARIO SPONSORIZZATO",
     "ad.desc": "Google AdSense Ready • Dimensioni fisse protette (Zero CLS)",
@@ -178,8 +192,381 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "footer.terms": "Termini di Servizio",
     "footer.rights": "Tutti i diritti riservati. Sostenuto da pubblicità non invasiva.",
     "footer.builtWith": "Costruito con cura per la sicurezza dei tuoi dati",
+  },
+  es: {
+    // Brand & Header
+    "brand.tagline": "Herramientas de archivos gratuitas y privadas en el navegador",
+    "badge.clientSide": "100% en el Navegador",
+    "nav.allTools": "Todas las herramientas",
+    "nav.pdf": "PDF",
+    "nav.images": "Imágenes",
+    "nav.audio": "Audio",
+    "nav.zip": "ZIP",
+    "nav.data": "Datos y Texto",
+    "nav.privacy": "Garantía de Privacidad",
+
+    // Hero
+    "hero.pill": "Ningún archivo toca nuestros servidores • Procesamiento 100% en el navegador",
+    "hero.title1": "Todas las herramientas de archivos, ",
+    "hero.titleHighlight": "100% gratis y privadas",
+    "hero.subtitle": "Une PDFs, convierte imágenes, extrae archivos ZIP y genera hashes directamente en la memoria de tu dispositivo. Sin registro, sin límites y sin subidas a la nube.",
+    "hero.searchPlaceholder": "Buscar herramienta (ej. convertir ogg a mp3, unir pdf, svg a png)...",
+    "hero.all": "Todas",
+    "hero.pdfCategory": "PDF y Documentos",
+    "hero.imageCategory": "Imágenes (WebP/PNG/JPG)",
+    "hero.audioCategory": "Audio (OGG/MP3/WAV)",
+    "hero.archiveCategory": "Archivos ZIP",
+    "hero.textCategory": "Datos y Criptografía",
+
+    // Privacy Banner
+    "privacyBanner.title": "Garantía Absoluta de Privacidad: Procesamiento 100% Client-Side",
+    "privacyBanner.desc": "A diferencia de otros convertidores online que suben tus documentos confidenciales a servidores en la nube, FileOmniTool funciona enteramente en tu navegador mediante WebAssembly y HTML5. Tus archivos nunca se suben ni se almacenan en ningún servidor.",
+    "privacyBanner.btn": "Cómo funciona",
+    "privacyBanner.bullet1": "Cero Subidas: Ningún dato sale de tu dispositivo",
+    "privacyBanner.bullet2": "Velocidad Inmediata: Sin colas ni esperas en la nube",
+    "privacyBanner.bullet3": "Aceleración de hardware local mediante WebAssembly",
+
+    // Section Titles
+    "tools.sectionTitle": "Herramientas Disponibles",
+    "tools.sectionSubtitle": "Selecciona una herramienta para comenzar el procesamiento instantáneo en tu navegador",
+    "tools.noResults": "No se encontraron herramientas que coincidan con",
+    "tools.resetFilters": "Restablecer filtros",
+    "tools.useTool": "Abrir Herramienta",
+    "tools.inBrowser": "100% en el Navegador",
+
+    // Why Section
+    "why.title": "¿Por qué FileOmniTool es diferente a otros sitios de conversión?",
+    "why.subtitle": "Una mirada transparente a la privacidad, la velocidad y la arquitectura client-side.",
+    "why.card1.title": "Cero Subidas a Servidores",
+    "why.card1.desc": "Tus contratos, documentos sensibles y fotos personales nunca viajan por servidores desconocidos.",
+    "why.card2.title": "Velocidad Inmediata",
+    "why.card2.desc": "Sin tiempos de espera. El procesamiento aprovecha la potencia de tu propio procesador y gráfica.",
+    "why.card3.title": "Siempre Gratuito",
+    "why.card3.desc": "Al no tener costes de servidores cloud masivos, este servicio es y seguirá siendo 100% gratuito.",
+    "why.card4.title": "WebAssembly y HTML5",
+    "why.card4.desc": "Desarrollado con motores web modernos para máxima eficiencia de memoria y seguridad.",
+
+    // Dropzone & General Tool UI
+    "dropzone.default": "Arrastra tus archivos aquí o haz clic para seleccionar",
+    "dropzone.maxSize": "Tamaño máximo",
+    "dropzone.perFile": "por archivo • Procesamiento local 100% privado",
+    "dropzone.browseBtn": "Elegir desde tu dispositivo",
+    "dropzone.errorEmpty": "El archivo seleccionado está vacío (0 bytes).",
+    "tool.howItWorks": "Cómo usar",
+    "tool.faq": "Preguntas Frecuentes (FAQ)",
+    "tool.processing": "Procesando en tu navegador...",
+    "tool.download": "Descargar Archivo Procesado",
+    "tool.processAnother": "Procesar otro",
+    "tool.privacyNote": "100% en el Navegador • Tus archivos nunca salen de tu dispositivo",
+    "tool.remove": "Eliminar",
+    "tool.removeAll": "Eliminar todos",
+    "tool.changeFile": "Cambiar archivo",
+
+    // Embed Widget
+    "tool.embedBtn": "Incrustar Herramienta",
+    "tool.embedTitle": "Incrusta esta herramienta en tu sitio web",
+    "tool.embedDesc": "Copia y pega este código HTML para ofrecer esta herramienta gratuita y 100% privada directamente en tu blog o web.",
+    "tool.embedCopy": "Copiar Código HTML",
+    "tool.embedCopied": "¡Copiado al portapapeles!",
+
+    // Ad Banner
+    "ad.label": "PUBLICIDAD PATROCINADA",
+    "ad.desc": "Google AdSense Ready • Dimensiones fijas (Zero CLS)",
+
+    // Footer
+    "footer.desc": "La plataforma completa de herramientas gratuitas de archivos en el navegador. Todos los archivos se procesan localmente en tu memoria vía WebAssembly/Canvas sin enviarse jamás a servidores remotos.",
+    "footer.privacyNote": "Sin registros, sin rastreo de archivos, 100% privacidad garantizada.",
+    "footer.popular": "Herramientas Populares",
+    "footer.info": "Información y Privacidad",
+    "footer.privacyGuarantee": "Garantía de Privacidad Zero-Upload",
+    "footer.cookiePolicy": "Cookies y Consentimiento RGPD (TCF 2.2)",
+    "footer.terms": "Términos del Servicio",
+    "footer.rights": "Todos los derechos reservados. Mantenido con anuncios no invasivos.",
+    "footer.builtWith": "Creado con dedicación para proteger tu privacidad",
+  },
+  fr: {
+    // Brand & Header
+    "brand.tagline": "Outils de fichiers gratuits et privés dans votre navigateur",
+    "badge.clientSide": "100% Côté Client",
+    "nav.allTools": "Tous les outils",
+    "nav.pdf": "PDF",
+    "nav.images": "Images",
+    "nav.audio": "Audio",
+    "nav.zip": "ZIP",
+    "nav.data": "Données et Texte",
+    "nav.privacy": "Garantie de Confidentialité",
+
+    // Hero
+    "hero.pill": "Aucun fichier n'atteint nos serveurs • Traitement 100% dans le navigateur",
+    "hero.title1": "Tous vos outils de fichiers, ",
+    "hero.titleHighlight": "100% gratuits et privés",
+    "hero.subtitle": "Fusionnez des PDF, convertissez des images, extrayez des archives ZIP et calculez des hashs directement dans la mémoire de votre appareil. Sans inscription, sans limites et sans aucun téléversement.",
+    "hero.searchPlaceholder": "Rechercher un outil (ex: convertir ogg en mp3, fusionner pdf, svg en png)...",
+    "hero.all": "Tous les outils",
+    "hero.pdfCategory": "PDF et Documents",
+    "hero.imageCategory": "Images (WebP/PNG/JPG)",
+    "hero.audioCategory": "Audio (OGG/MP3/WAV)",
+    "hero.archiveCategory": "Archives ZIP",
+    "hero.textCategory": "Données et Cryptographie",
+
+    // Privacy Banner
+    "privacyBanner.title": "Garantie Absolue de Confidentialité : Traitement 100% Côté Client",
+    "privacyBanner.desc": "Contrairement aux convertisseurs classiques qui envoient vos fichiers sensibles sur des serveurs distants, FileOmniTool fonctionne intégralement dans votre navigateur grâce à WebAssembly et HTML5 Canvas. Vos fichiers ne sont jamais téléchargés ni stockés.",
+    "privacyBanner.btn": "Comment ça fonctionne",
+    "privacyBanner.bullet1": "Zéro Téléversement : Aucun octet ne quitte votre appareil",
+    "privacyBanner.bullet2": "Vitesse Instantanée : Pas de file d'attente ni de délai cloud",
+    "privacyBanner.bullet3": "Accélération matérielle locale via WebAssembly",
+
+    // Section Titles
+    "tools.sectionTitle": "Outils Disponibles",
+    "tools.sectionSubtitle": "Choisissez un outil pour démarrer le traitement instantané dans votre navigateur",
+    "tools.noResults": "Aucun outil trouvé pour",
+    "tools.resetFilters": "Réinitialiser les filtres",
+    "tools.useTool": "Ouvrir l'outil",
+    "tools.inBrowser": "100% dans le Navigateur",
+
+    // Why Section
+    "why.title": "Pourquoi FileOmniTool est-il différent des autres convertisseurs ?",
+    "why.subtitle": "Une vue transparente sur la confidentialité, la rapidité et l'architecture locale.",
+    "why.card1.title": "Zéro Téléversement sur Serveur",
+    "why.card1.desc": "Vos contrats, documents confidentiels et photos personnelles ne transitent jamais sur des serveurs inconnus.",
+    "why.card2.title": "Vitesse Immédiate",
+    "why.card2.desc": "Aucun délai de transfert réseau. Le traitement utilise la puissance brute de votre processeur et carte graphique.",
+    "why.card3.title": "Toujours Gratuit",
+    "why.card3.desc": "N'ayant aucun coût de serveurs de calcul volumineux, ce service est et restera 100% gratuit.",
+    "why.card4.title": "WebAssembly et HTML5",
+    "why.card4.desc": "Conçu avec les moteurs web modernes pour une efficacité mémoire et une sécurité optimales.",
+
+    // Dropzone & General Tool UI
+    "dropzone.default": "Glissez-déposez vos fichiers ici ou cliquez pour parcourir",
+    "dropzone.maxSize": "Taille maximale",
+    "dropzone.perFile": "par fichier • Traitement local 100% privé",
+    "dropzone.browseBtn": "Choisir sur votre appareil",
+    "dropzone.errorEmpty": "Le fichier sélectionné est vide (0 octet).",
+    "tool.howItWorks": "Mode d'emploi",
+    "tool.faq": "Foire Aux Questions (FAQ)",
+    "tool.processing": "Traitement en cours dans votre navigateur...",
+    "tool.download": "Télécharger le Fichier Traité",
+    "tool.processAnother": "Traiter un autre fichier",
+    "tool.privacyNote": "100% dans le Navigateur • Vos fichiers ne quittent jamais votre appareil",
+    "tool.remove": "Supprimer",
+    "tool.removeAll": "Tout supprimer",
+    "tool.changeFile": "Changer de fichier",
+
+    // Embed Widget
+    "tool.embedBtn": "Intégrer l'outil",
+    "tool.embedTitle": "Intégrez cet outil sur votre site web",
+    "tool.embedDesc": "Copiez-collez ce code HTML pour offrir cet outil gratuit et 100% confidentiel directement sur votre site ou blog.",
+    "tool.embedCopy": "Copier le code HTML",
+    "tool.embedCopied": "Copié dans le presse-papiers !",
+
+    // Ad Banner
+    "ad.label": "ESPACE PUBLICITAIRE SPONSORISÉ",
+    "ad.desc": "Google AdSense Ready • Dimensions fixes protégées (Zero CLS)",
+
+    // Footer
+    "footer.desc": "La suite complète d'outils de fichiers gratuits dans le navigateur. Tous les fichiers sont manipulés localement en mémoire via WebAssembly/Canvas sans jamais être envoyés sur des serveurs distants.",
+    "footer.privacyNote": "Zéro journal, aucun pistage de fichiers, respect absolu de la vie privée.",
+    "footer.popular": "Outils Populaires",
+    "footer.info": "Informations et Confidentialité",
+    "footer.privacyGuarantee": "Garantie Confidentialité Zéro-Téléversement",
+    "footer.cookiePolicy": "Cookies et Consentement RGPD (TCF 2.2)",
+    "footer.terms": "Conditions d'Utilisation",
+    "footer.rights": "Tous droits réservés. Financé par des publicités non intrusives.",
+    "footer.builtWith": "Développé avec soin pour préserver la confidentialité de vos données",
+  },
+  de: {
+    // Brand & Header
+    "brand.tagline": "Kostenlose & private browserbasierte Datei-Tools",
+    "badge.clientSide": "100% Client-Side",
+    "nav.allTools": "Alle Werkzeuge",
+    "nav.pdf": "PDF",
+    "nav.images": "Bilder",
+    "nav.audio": "Audio",
+    "nav.zip": "ZIP",
+    "nav.data": "Daten & Text",
+    "nav.privacy": "Datenschutzgarantie",
+
+    // Hero
+    "hero.pill": "Keine Dateien erreichen unsere Server • 100% Verarbeitung im Browser",
+    "hero.title1": "Alle Ihre Datei-Werkzeuge, ",
+    "hero.titleHighlight": "100% kostenlos und privat",
+    "hero.subtitle": "PDFs zusammenfügen, Bilder konvertieren, ZIPs entpacken und Prüfsummen berechnen – direkt im Arbeitsspeicher Ihres Geräts. Ohne Registrierung, ohne Limits, ohne Cloud-Uploads.",
+    "hero.searchPlaceholder": "Werkzeug suchen (z.B. OGG zu MP3, PDF zusammenfügen, SVG zu PNG)...",
+    "hero.all": "Alle Werkzeuge",
+    "hero.pdfCategory": "PDF & Dokumente",
+    "hero.imageCategory": "Bilder (WebP/PNG/JPG)",
+    "hero.audioCategory": "Audio (OGG/MP3/WAV)",
+    "hero.archiveCategory": "ZIP-Archive",
+    "hero.textCategory": "Daten & Kryptographie",
+
+    // Privacy Banner
+    "privacyBanner.title": "Absolute Datenschutzgarantie: 100% Client-Side Verarbeitung",
+    "privacyBanner.desc": "Im Gegensatz zu herkömmlichen Online-Konvertern, die Ihre vertraulichen Dokumente auf Cloud-Server laden, läuft FileOmniTool vollständig in Ihrem Browser über WebAssembly und HTML5 Canvas. Ihre Daten werden niemals hochgeladen oder gespeichert.",
+    "privacyBanner.btn": "So funktioniert es",
+    "privacyBanner.bullet1": "Zero Uploads: Keine Bytes verlassen Ihr Gerät",
+    "privacyBanner.bullet2": "Sofortige Geschwindigkeit: Keine Warteschlangen oder Server-Verzögerungen",
+    "privacyBanner.bullet3": "Hardware-beschleunigt über WebAssembly & Web APIs",
+
+    // Section Titles
+    "tools.sectionTitle": "Verfügbare Werkzeuge",
+    "tools.sectionSubtitle": "Wählen Sie ein Werkzeug für die sofortige Ausführung im Browser",
+    "tools.noResults": "Keine passenden Werkzeuge gefunden für",
+    "tools.resetFilters": "Filter zurücksetzen",
+    "tools.useTool": "Werkzeug öffnen",
+    "tools.inBrowser": "100% im Browser",
+
+    // Why Section
+    "why.title": "Warum unterscheidet sich FileOmniTool von anderen Konvertern?",
+    "why.subtitle": "Ein transparenter Einblick in Datenschutz, Geschwindigkeit und moderne lokale Web-Architektur.",
+    "why.card1.title": "Keine Server-Uploads",
+    "why.card1.desc": "Ihre Verträge, vertraulichen Dokumente und Fotos werden nie über fremde Server übertragen.",
+    "why.card2.title": "Sofortige Ausführung",
+    "why.card2.desc": "Keine Wartezeiten beim Hoch- und Herunterladen. Die Berechnung nutzt Ihre eigene CPU und GPU.",
+    "why.card3.title": "Dauerhaft Kostenlos",
+    "why.card3.desc": "Da wir keine kostspieligen Cloud-Server betreiben müssen, ist und bleibt der Dienst 100% kostenlos.",
+    "why.card4.title": "WebAssembly & HTML5",
+    "why.card4.desc": "Entwickelt mit modernsten Web-Technologien für höchste Speichereffizienz und Sicherheit.",
+
+    // Dropzone & General Tool UI
+    "dropzone.default": "Dateien hierher ziehen oder zum Auswählen klicken",
+    "dropzone.maxSize": "Maximale Dateigröße",
+    "dropzone.perFile": "pro Datei • 100% private lokale Verarbeitung",
+    "dropzone.browseBtn": "Vom Gerät auswählen",
+    "dropzone.errorEmpty": "Die ausgewählte Datei ist leer (0 Bytes).",
+    "tool.howItWorks": "Anleitung",
+    "tool.faq": "Häufig gestellte Fragen (FAQ)",
+    "tool.processing": "Wird im Browser verarbeitet...",
+    "tool.download": "Verarbeitete Datei herunterladen",
+    "tool.processAnother": "Weitere Datei verarbeiten",
+    "tool.privacyNote": "100% im Browser • Ihre Daten verlassen niemals Ihr Gerät",
+    "tool.remove": "Entfernen",
+    "tool.removeAll": "Alle entfernen",
+    "tool.changeFile": "Datei ändern",
+
+    // Embed Widget
+    "tool.embedBtn": "Werkzeug einbetten",
+    "tool.embedTitle": "Binden Sie dieses Werkzeug auf Ihrer Website ein",
+    "tool.embedDesc": "Kopieren Sie diesen HTML-Code, um dieses kostenlose und 100% datenschutzkonforme Tool auf Ihrer Webseite anzubieten.",
+    "tool.embedCopy": "HTML-Code kopieren",
+    "tool.embedCopied": "In die Zwischenablage kopiert!",
+
+    // Ad Banner
+    "ad.label": "GESPONSERTE ANZEIGE",
+    "ad.desc": "Google AdSense Bereit • Feste Maße (Zero CLS)",
+
+    // Footer
+    "footer.desc": "Die Komplettsuite für kostenlose Datei-Werkzeuge im Browser. Alle Dateien werden lokal im Speicher über WebAssembly/Canvas manipuliert, ohne jemals externe Server zu berühren.",
+    "footer.privacyNote": "Keine Logs, kein Datei-Tracking, 100% garantierter Datenschutz.",
+    "footer.popular": "Beliebte Werkzeuge",
+    "footer.info": "Informationen & Datenschutz",
+    "footer.privacyGuarantee": "Zero-Upload Datenschutzgarantie",
+    "footer.cookiePolicy": "Cookies & DSGVO-Einwilligung (TCF 2.2)",
+    "footer.terms": "Nutzungsbedingungen",
+    "footer.rights": "Alle Rechte vorbehalten. Unterstützt durch unaufdringliche Werbung.",
+    "footer.builtWith": "Entwickelt mit höchster Sorgfalt für Ihre Datensicherheit",
+  },
+  pt: {
+    // Brand & Header
+    "brand.tagline": "Ferramentas de arquivos gratuitas e privadas no navegador",
+    "badge.clientSide": "100% no Navegador",
+    "nav.allTools": "Todas as Ferramentas",
+    "nav.pdf": "PDF",
+    "nav.images": "Imagens",
+    "nav.audio": "Áudio",
+    "nav.zip": "ZIP",
+    "nav.data": "Dados e Texto",
+    "nav.privacy": "Garantia de Privacidade",
+
+    // Hero
+    "hero.pill": "Nenhum arquivo toca nossos servidores • Processamento 100% no navegador",
+    "hero.title1": "Todas as suas ferramentas de arquivos, ",
+    "hero.titleHighlight": "100% gratuitas e privadas",
+    "hero.subtitle": "Junte PDFs, converta imagens, extraia arquivos ZIP e calcule hashes diretamente na memória do seu dispositivo. Sem cadastro, sem limites e sem uploads na nuvem.",
+    "hero.searchPlaceholder": "Pesquisar ferramenta (ex: converter ogg para mp3, juntar pdf, svg para png)...",
+    "hero.all": "Todas as Ferramentas",
+    "hero.pdfCategory": "PDF e Documentos",
+    "hero.imageCategory": "Imagens (WebP/PNG/JPG)",
+    "hero.audioCategory": "Áudio (OGG/MP3/WAV)",
+    "hero.archiveCategory": "Arquivos ZIP",
+    "hero.textCategory": "Dados e Criptografia",
+
+    // Privacy Banner
+    "privacyBanner.title": "Garantia Absoluta de Privacidade: Processamento 100% Client-Side",
+    "privacyBanner.desc": "Diferente de conversores online que enviam seus arquivos confidenciais para servidores remotos na nuvem, o FileOmniTool funciona integralmente no seu navegador através de WebAssembly e HTML5 Canvas. Seus arquivos nunca são enviados nem armazenados.",
+    "privacyBanner.btn": "Como funciona",
+    "privacyBanner.bullet1": "Zero Uploads: Nenhum byte sai do seu computador",
+    "privacyBanner.bullet2": "Velocidade Imediata: Sem filas de espera ou lentidão da nuvem",
+    "privacyBanner.bullet3": "Aceleração de hardware local via WebAssembly e Web APIs",
+
+    // Section Titles
+    "tools.sectionTitle": "Ferramentas Disponíveis",
+    "tools.sectionSubtitle": "Selecione uma ferramenta para iniciar o processamento instantâneo no navegador",
+    "tools.noResults": "Nenhuma ferramenta encontrada para",
+    "tools.resetFilters": "Redefinir filtros",
+    "tools.useTool": "Abrir Ferramenta",
+    "tools.inBrowser": "100% no Navegador",
+
+    // Why Section
+    "why.title": "Por que o FileOmniTool é diferente de outros conversores?",
+    "why.subtitle": "Uma comparação transparente sobre privacidade, rapidez e arquitetura técnica moderna.",
+    "why.card1.title": "Zero Uploads para Servidores",
+    "why.card1.desc": "Seus contratos, documentos confidenciais e fotos pessoais nunca viajam por servidores desconhecidos.",
+    "why.card2.title": "Velocidade Imediata",
+    "why.card2.desc": "Sem tempos de espera para upload. O processamento aproveita o poder bruto do seu próprio processador.",
+    "why.card3.title": "Sempre Gratuito",
+    "why.card3.desc": "Como não pagamos por servidores de processamento pesados na nuvem, este serviço é e continuará 100% gratuito.",
+    "why.card4.title": "WebAssembly e HTML5",
+    "why.card4.desc": "Construído com tecnologia web moderna para máxima eficiência de memória e segurança.",
+
+    // Dropzone & General Tool UI
+    "dropzone.default": "Arraste seus arquivos aqui ou clique para selecionar",
+    "dropzone.maxSize": "Tamanho máximo",
+    "dropzone.perFile": "por arquivo • Processamento local 100% privado",
+    "dropzone.browseBtn": "Escolher do seu dispositivo",
+    "dropzone.errorEmpty": "O arquivo selecionado está vazio (0 bytes).",
+    "tool.howItWorks": "Como usar",
+    "tool.faq": "Perguntas Frequentes (FAQ)",
+    "tool.processing": "Processando no seu navegador...",
+    "tool.download": "Baixar Arquivo Processado",
+    "tool.processAnother": "Processar outro arquivo",
+    "tool.privacyNote": "100% no Navegador • Seus arquivos nunca saem do seu dispositivo",
+    "tool.remove": "Remover",
+    "tool.removeAll": "Remover todos",
+    "tool.changeFile": "Alterar arquivo",
+
+    // Embed Widget
+    "tool.embedBtn": "Incorporar Ferramenta",
+    "tool.embedTitle": "Incorpore esta ferramenta no seu site",
+    "tool.embedDesc": "Copie e cole este código HTML para oferecer esta ferramenta gratuita e 100% privada diretamente no seu site ou blog.",
+    "tool.embedCopy": "Copiar Código HTML",
+    "tool.embedCopied": "Copiado para a área de transferência!",
+
+    // Ad Banner
+    "ad.label": "ESPAÇO PUBLICITÁRIO PATROCINADO",
+    "ad.desc": "Google AdSense Ready • Dimensões fixas (Zero CLS)",
+
+    // Footer
+    "footer.desc": "A suíte completa de ferramentas gratuitas para manipular arquivos no navegador. Todos os arquivos são processados localmente via WebAssembly/Canvas sem nunca serem transmitidos para servidores remotos.",
+    "footer.privacyNote": "Sem logs, sem rastreamento de arquivos, 100% de privacidade respeitada.",
+    "footer.popular": "Ferramentas Populares",
+    "footer.info": "Informações e Privacidade",
+    "footer.privacyGuarantee": "Garantia de Privacidade Zero-Upload",
+    "footer.cookiePolicy": "Cookies e Consentimento LGPD/GDPR (TCF 2.2)",
+    "footer.terms": "Termos de Uso",
+    "footer.rights": "Todos os direitos reservados. Mantido por anúncios não invasivos.",
+    "footer.builtWith": "Desenvolvido com carinho para garantir a privacidade dos seus dados",
   }
 };
+
+export const AVAILABLE_LANGUAGES: { code: Language; label: string; flag: string }[] = [
+  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "it", label: "Italiano", flag: "🇮🇹" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "pt", label: "Português", flag: "🇵🇹" },
+];
 
 const LanguageContext = createContext<LanguageContextType>({
   language: "en",
@@ -191,20 +578,36 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [language, setLanguageState] = useState<Language>("en");
 
   useEffect(() => {
-    // Controlla preferenza salvata in localStorage
+    // 1. Controlla preferenza esplicita salvata in localStorage
     const saved = localStorage.getItem("fileomnitool_lang") as Language | null;
-    if (saved && (saved === "en" || saved === "it")) {
+    const validCodes: Language[] = ["en", "it", "es", "fr", "de", "pt"];
+    if (saved && validCodes.includes(saved)) {
       setLanguageState(saved);
+      document.documentElement.lang = saved;
       return;
     }
 
-    // Altrimenti rileva dalla lingua del browser dell'utente
+    // 2. Altrimenti rileva dalla lingua di sistema/browser dell'utente
     if (typeof window !== "undefined" && window.navigator) {
-      const browserLang = window.navigator.language.toLowerCase();
+      const browserLang = (window.navigator.language || "").toLowerCase();
       if (browserLang.startsWith("it")) {
         setLanguageState("it");
+        document.documentElement.lang = "it";
+      } else if (browserLang.startsWith("es")) {
+        setLanguageState("es");
+        document.documentElement.lang = "es";
+      } else if (browserLang.startsWith("fr")) {
+        setLanguageState("fr");
+        document.documentElement.lang = "fr";
+      } else if (browserLang.startsWith("de")) {
+        setLanguageState("de");
+        document.documentElement.lang = "de";
+      } else if (browserLang.startsWith("pt")) {
+        setLanguageState("pt");
+        document.documentElement.lang = "pt";
       } else {
-        setLanguageState("en"); // Inglese per tutti gli altri paesi
+        setLanguageState("en");
+        document.documentElement.lang = "en";
       }
     }
   }, []);

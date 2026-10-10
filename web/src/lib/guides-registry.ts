@@ -5,14 +5,24 @@ import { OFFICE_TEXT_GUIDES } from "./guides-office-text";
 import { DEV_INTEGRITY_GUIDES } from "./guides-dev-integrity";
 import { WAVE3_GUIDES } from "./guides-wave3";
 
+export interface LocalizedText {
+  en: string;
+  it: string;
+  es?: string;
+  fr?: string;
+  de?: string;
+  pt?: string;
+  [key: string]: string | undefined;
+}
+
 export interface GuideStep {
-  title: { en: string; it: string };
-  description: { en: string; it: string };
+  title: LocalizedText;
+  description: LocalizedText;
 }
 
 export interface GuideFaq {
-  question: { en: string; it: string };
-  answer: { en: string; it: string };
+  question: LocalizedText;
+  answer: LocalizedText;
 }
 
 export interface GuideArticle {
@@ -21,14 +31,14 @@ export interface GuideArticle {
   category: "pdf" | "image" | "audio" | "document" | "text" | "privacy";
   datePublished: string;
   readTime: string;
-  title: { en: string; it: string };
-  excerpt: { en: string; it: string };
-  metaTitle: { en: string; it: string };
-  metaDescription: { en: string; it: string };
-  seoKeyword: { en: string; it: string };
+  title: LocalizedText;
+  excerpt: LocalizedText;
+  metaTitle: LocalizedText;
+  metaDescription: LocalizedText;
+  seoKeyword: LocalizedText;
   steps: GuideStep[];
-  intro: { en: string; it: string };
-  deepDive: { en: string; it: string };
+  intro: LocalizedText;
+  deepDive: LocalizedText;
   faq: GuideFaq[];
 }
 

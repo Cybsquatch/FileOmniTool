@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -13,7 +13,7 @@ interface GuidesIndexClientProps {
 export const GuidesIndexClient: React.FC<GuidesIndexClientProps> = ({ guides }) => {
   const { language } = useLanguage();
 
-  const categoryLabels: Record<string, { en: string; it: string }> = {
+  const categoryLabels: Record<string, Record<string, string>> = {
     pdf: { en: "PDF Suite", it: "Suite PDF" },
     image: { en: "Image Suite", it: "Suite Immagini" },
     audio: { en: "Audio & Video", it: "Audio e Video" },
@@ -64,7 +64,7 @@ export const GuidesIndexClient: React.FC<GuidesIndexClientProps> = ({ guides }) 
           {guides.map((guide) => {
             const title = guide.title[language] || guide.title.en;
             const excerpt = guide.excerpt[language] || guide.excerpt.en;
-            const categoryName = categoryLabels[guide.category]?.[language] || guide.category;
+            const categoryName = categoryLabels[guide.category]?.[language] || categoryLabels[guide.category]?.en || guide.category;
 
             return (
               <article

@@ -34,7 +34,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
   const intro = guide.intro[language] || guide.intro.en;
   const deepDive = guide.deepDive[language] || guide.deepDive.en;
 
-  const categoryLabels: Record<string, { en: string; it: string }> = {
+  const categoryLabels: Record<string, Record<string, string>> = {
     pdf: { en: "PDF SUITE", it: "SUITE PDF" },
     image: { en: "IMAGE SUITE", it: "SUITE IMMAGINI" },
     audio: { en: "AUDIO & VIDEO", it: "AUDIO E VIDEO" },
@@ -43,7 +43,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
     privacy: { en: "PRIVACY & SECURITY", it: "PRIVACY & SICUREZZA" },
   };
 
-  const currentCategory = categoryLabels[guide.category]?.[language] || guide.category.toUpperCase();
+  const currentCategory = categoryLabels[guide.category]?.[language] || categoryLabels[guide.category]?.en || guide.category.toUpperCase();
 
   return (
     <>

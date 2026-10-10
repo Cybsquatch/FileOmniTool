@@ -1,13 +1,20 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { useLanguage } from "@/lib/i18n/context";
 import { Check, X, Shield, Zap, Sparkles } from "lucide-react";
 
+interface ComparisonItem {
+  feature: Record<string, string>;
+  omni: Record<string, string>;
+  others: Record<string, string>;
+  winner: boolean;
+}
+
 export const ComparisonTable: React.FC = () => {
   const { language } = useLanguage();
 
-  const comparisonData = [
+  const comparisonData: ComparisonItem[] = [
     {
       feature: {
         en: "Server Upload & Privacy",
