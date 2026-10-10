@@ -4,6 +4,7 @@ import { AUDIO_GUIDES } from "./guides-audio";
 import { OFFICE_TEXT_GUIDES } from "./guides-office-text";
 import { DEV_INTEGRITY_GUIDES } from "./guides-dev-integrity";
 import { WAVE3_GUIDES } from "./guides-wave3";
+import { GUIDES_TRANSLATIONS } from "./i18n/guides-translations";
 
 export interface LocalizedText {
   en: string;
@@ -49,7 +50,17 @@ export const GUIDES_REGISTRY: GuideArticle[] = [
   ...OFFICE_TEXT_GUIDES,
   ...DEV_INTEGRITY_GUIDES,
   ...WAVE3_GUIDES,
-];
+].map((guide) => {
+  const trans = GUIDES_TRANSLATIONS[guide.slug];
+  if (!trans) return guide;
+  return {
+    ...guide,
+    title: { ...guide.title, ...trans.title },
+    excerpt: { ...guide.excerpt, ...trans.excerpt },
+    intro: { ...guide.intro, ...(trans.intro || {}) },
+    deepDive: { ...guide.deepDive, ...(trans.deepDive || {}) },
+  };
+});
 
 export function getGuideBySlug(slug: string): GuideArticle | undefined {
   return GUIDES_REGISTRY.find((guide) => guide.slug === slug);

@@ -1,5 +1,6 @@
 import { EXPANDED_TOOLS } from "./tools-registry-expanded";
 import { WAVE3_TOOLS } from "./tools-registry-wave3";
+import { TOOLS_TRANSLATIONS } from "./i18n/tools-translations";
 
 export interface ToolFaq {
   question: string;
@@ -1914,7 +1915,21 @@ const BASE_TOOLS: ToolDefinition[] = [
   }
 ];
 
-export const TOOLS_REGISTRY: ToolDefinition[] = [...BASE_TOOLS, ...EXPANDED_TOOLS, ...WAVE3_TOOLS];
+export const TOOLS_REGISTRY: ToolDefinition[] = [
+  ...BASE_TOOLS,
+  ...EXPANDED_TOOLS,
+  ...WAVE3_TOOLS,
+].map((tool) => {
+  const trans = TOOLS_TRANSLATIONS[tool.id];
+  if (!trans) return tool;
+  return {
+    ...tool,
+    title: { ...tool.title, ...trans.title },
+    description: { ...tool.description, ...trans.description },
+    instructions: { ...tool.instructions, ...(trans.instructions || {}) },
+    faq: { ...tool.faq, ...(trans.faq || {}) },
+  };
+});
 
 export function getToolById(id: string): ToolDefinition | undefined {
   return TOOLS_REGISTRY.find(t => t.id === id);
