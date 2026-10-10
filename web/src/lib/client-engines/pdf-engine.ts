@@ -452,3 +452,18 @@ export async function extractTextFromPdf(file: File): Promise<string> {
   return extractedPieces.join("\n");
 }
 
+/**
+ * Appiattisce tutti i campi modulo interattivi (AcroForm) rendendoli statici e non modificabili
+ */
+export async function flattenPdf(file: File): Promise<Uint8Array> {
+  const arrayBuffer = await file.arrayBuffer();
+  const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+  try {
+    const form = pdfDoc.getForm();
+    form.flatten();
+  } catch {
+    // Il documento non contiene campi modulo compilabili
+  }
+  return await pdfDoc.save();
+}
+

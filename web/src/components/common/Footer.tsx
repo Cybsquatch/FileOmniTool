@@ -15,6 +15,7 @@ export const Footer: React.FC = () => {
   const audioTools = TOOLS_REGISTRY.filter((t) => t.category === "audio");
   const archiveTools = TOOLS_REGISTRY.filter((t) => t.category === "archive");
   const textTools = TOOLS_REGISTRY.filter((t) => t.category === "text");
+  const halfText = Math.ceil(textTools.length / 2);
 
   return (
     <footer className="border-t border-zinc-200 bg-zinc-50/80 pt-16 pb-16 text-zinc-600 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400">
@@ -132,7 +133,7 @@ export const Footer: React.FC = () => {
               <span>Testo & Documenti</span>
             </div>
             <ul className="mt-4 space-y-2 text-xs">
-              {textTools.slice(0, 12).map((tool) => (
+              {textTools.slice(0, halfText).map((tool) => (
                 <li key={tool.id}>
                   <Link
                     href={`/tools/${tool.id}`}
@@ -152,7 +153,7 @@ export const Footer: React.FC = () => {
               <span>Dev & Crittografia</span>
             </div>
             <ul className="mt-4 space-y-2 text-xs">
-              {textTools.slice(12).map((tool) => (
+              {textTools.slice(halfText).map((tool) => (
                 <li key={tool.id}>
                   <Link
                     href={`/tools/${tool.id}`}

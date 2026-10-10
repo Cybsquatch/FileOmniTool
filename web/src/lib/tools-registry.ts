@@ -1,4 +1,5 @@
 import { EXPANDED_TOOLS } from "./tools-registry-expanded";
+import { WAVE3_TOOLS } from "./tools-registry-wave3";
 
 export interface ToolFaq {
   question: string;
@@ -1908,7 +1909,7 @@ const BASE_TOOLS: ToolDefinition[] = [
   }
 ];
 
-export const TOOLS_REGISTRY: ToolDefinition[] = [...BASE_TOOLS, ...EXPANDED_TOOLS];
+export const TOOLS_REGISTRY: ToolDefinition[] = [...BASE_TOOLS, ...EXPANDED_TOOLS, ...WAVE3_TOOLS];
 
 export function getToolById(id: string): ToolDefinition | undefined {
   return TOOLS_REGISTRY.find(t => t.id === id);

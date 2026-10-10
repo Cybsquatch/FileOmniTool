@@ -3,6 +3,7 @@ import { IMAGE_GUIDES } from "./guides-images";
 import { AUDIO_GUIDES } from "./guides-audio";
 import { OFFICE_TEXT_GUIDES } from "./guides-office-text";
 import { DEV_INTEGRITY_GUIDES } from "./guides-dev-integrity";
+import { WAVE3_GUIDES } from "./guides-wave3";
 
 export interface GuideStep {
   title: { en: string; it: string };
@@ -37,6 +38,7 @@ export const GUIDES_REGISTRY: GuideArticle[] = [
   ...AUDIO_GUIDES,
   ...OFFICE_TEXT_GUIDES,
   ...DEV_INTEGRITY_GUIDES,
+  ...WAVE3_GUIDES,
 ];
 
 export function getGuideBySlug(slug: string): GuideArticle | undefined {

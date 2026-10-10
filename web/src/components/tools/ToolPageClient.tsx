@@ -64,6 +64,21 @@ import { SlugGeneratorTool } from "@/components/tools/SlugGeneratorTool";
 import { FileChecksumTool } from "@/components/tools/FileChecksumTool";
 import { HexViewerTool } from "@/components/tools/HexViewerTool";
 import { Base64ToImageTool } from "@/components/tools/Base64ToImageTool";
+import { SrtToVttTool } from "@/components/tools/SrtToVttTool";
+import { SrtToTxtTool } from "@/components/tools/SrtToTxtTool";
+import { GifFrameExtractorTool } from "@/components/tools/GifFrameExtractorTool";
+import { ImageToAsciiTool } from "@/components/tools/ImageToAsciiTool";
+import { PngToIcoTool } from "@/components/tools/PngToIcoTool";
+import { SvgCleanerTool } from "@/components/tools/SvgCleanerTool";
+import { PdfEncryptTool } from "@/components/tools/PdfEncryptTool";
+import { PdfFlattenTool } from "@/components/tools/PdfFlattenTool";
+import { JsonToSqlTool } from "@/components/tools/JsonToSqlTool";
+import { HtmlToMarkdownTool } from "@/components/tools/HtmlToMarkdownTool";
+import { JwtDecoderTool } from "@/components/tools/JwtDecoderTool";
+import { CssMinifierTool } from "@/components/tools/CssMinifierTool";
+import { EpochConverterTool } from "@/components/tools/EpochConverterTool";
+import { FileToBase64Tool } from "@/components/tools/FileToBase64Tool";
+import { FileMagicDetectorTool } from "@/components/tools/FileMagicDetectorTool";
 import { ComparisonTable } from "@/components/tools/ComparisonTable";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { getGuideByToolId } from "@/lib/guides-registry";
@@ -203,6 +218,36 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         return <HexViewerTool />;
       case "base64-to-image":
         return <Base64ToImageTool />;
+      case "srt-to-vtt":
+        return <SrtToVttTool />;
+      case "srt-to-txt":
+        return <SrtToTxtTool />;
+      case "gif-frame-extractor":
+        return <GifFrameExtractorTool />;
+      case "image-to-ascii":
+        return <ImageToAsciiTool />;
+      case "png-to-ico":
+        return <PngToIcoTool />;
+      case "svg-cleaner":
+        return <SvgCleanerTool />;
+      case "pdf-encrypt":
+        return <PdfEncryptTool />;
+      case "pdf-flatten":
+        return <PdfFlattenTool />;
+      case "json-to-sql":
+        return <JsonToSqlTool />;
+      case "html-to-markdown":
+        return <HtmlToMarkdownTool />;
+      case "jwt-decoder":
+        return <JwtDecoderTool />;
+      case "css-minifier":
+        return <CssMinifierTool />;
+      case "epoch-converter":
+        return <EpochConverterTool />;
+      case "file-to-base64":
+        return <FileToBase64Tool />;
+      case "file-magic-detector":
+        return <FileMagicDetectorTool />;
       default:
         return <div>Tool in development.</div>;
     }

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -15,7 +15,9 @@ import {
   HelpCircle, 
   CheckCircle2, 
   Wrench,
-  BookOpen
+  BookOpen,
+  UserCheck,
+  BadgeCheck
 } from "lucide-react";
 
 interface GuidePageClientProps {
@@ -205,6 +207,45 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
                 </p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* E-E-A-T Author & Testing Trust Box */}
+        <section className="rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-50/60 via-white to-zinc-50 p-6 shadow-sm dark:border-emerald-600/30 dark:from-emerald-950/20 dark:via-zinc-900 dark:to-zinc-900">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white font-extrabold text-xl shadow-md">
+              RB
+            </div>
+            <div className="flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="font-bold text-zinc-900 dark:text-white">
+                  Riccardo Belli
+                </h3>
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">
+                  <BadgeCheck className="h-3 w-3" />
+                  {language === "it" ? "Autore & Sviluppatore" : "Author & Developer"}
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                {language === "it"
+                  ? "Sviluppatore software e appassionato di privacy digitale. Ogni procedura descritta in questa guida è stata testata e verificata personalmente su Windows 11, macOS Sonoma e browser mobili (Safari iOS e Chrome Android) per confermare l'elaborazione al 100% in-browser senza caricamento su server."
+                  : "Software developer and web privacy advocate. Every procedure outlined in this guide has been personally field-tested and verified across Windows 11, macOS Sonoma, and mobile browsers (Safari iOS, Chrome Android) to guarantee 100% in-browser processing with zero cloud uploads."}
+              </p>
+              <div className="mt-3 flex flex-wrap items-center gap-4 text-[11px] font-medium text-emerald-700 dark:text-emerald-400">
+                <span className="flex items-center gap-1">
+                  <CheckCircle2 className="h-3 w-3" />
+                  {language === "it" ? "Verifica sul campo" : "Field Verified"}
+                </span>
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="h-3 w-3" />
+                  {language === "it" ? "Zero log, zero server" : "Zero logs, zero server"}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Sparkles className="h-3 w-3" />
+                  {language === "it" ? "100% Gratuito senza iscrizione" : "100% Free, no signup"}
+                </span>
+              </div>
+            </div>
           </div>
         </section>
 

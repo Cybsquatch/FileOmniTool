@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Header } from "@/components/common/Header";
@@ -105,8 +105,9 @@ export default async function SingleGuidePage({ params }: GuidePageProps) {
         "datePublished": guide.datePublished,
         "inLanguage": ["it", "en"],
         "author": {
-          "@type": "Organization",
-          "name": "FileOmniTool Editorial Team",
+          "@type": "Person",
+          "name": "Riccardo Belli",
+          "jobTitle": "Software Developer & Digital Privacy Advocate",
           "url": "https://www.fileomnitool.com",
         },
         "publisher": {
