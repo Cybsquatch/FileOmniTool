@@ -101,6 +101,54 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "footer.terms": "Terms of Service",
     "footer.rights": "All rights reserved. Supported by non-intrusive ads.",
     "footer.builtWith": "Built with care for your data privacy",
+
+    // Navigation & Categories
+    "nav.guides": "Guides & Tutorials",
+    "category.pdf": "PDF Suite",
+    "category.image": "Image Suite",
+    "category.audio": "Audio & Video",
+    "category.document": "Document & Office",
+    "category.text": "Text & Dev",
+    "category.privacy": "Privacy & Security",
+
+    // Guides Section
+    "guides.breadcrumb": "Guides & Tutorials",
+    "guides.heroPill": "Master Your Digital Files",
+    "guides.heroTitle": "Guides, Tutorials & ",
+    "guides.heroHighlight": "Privacy Best Practices",
+    "guides.heroSubtitle": "Practical walkthroughs for manipulating PDFs, optimizing photos, converting media, and securing your documents directly in your browser without uploading anything online.",
+    "guides.readTime": "read",
+    "guides.zeroUploads": "Zero Uploads",
+    "guides.readGuide": "Read Guide",
+    "guides.readyTitle": "Ready to work with your files?",
+    "guides.readySubtitle": "Browse our complete suite of 75 in-browser utilities. 100% private, free forever, no installation required.",
+    "guides.readyBtn": "Browse All 75 Free Tools",
+    "guides.freeTool": "Free In-Browser Tool",
+    "guides.launchTool": "Launch Tool Now",
+    "guides.whyLocal": "Why In-Browser Processing Matters",
+    "guides.stepByStep": "Step-by-Step Walkthrough",
+    "guides.techArch": "Technical Architecture & Security",
+    "guides.faqTitle": "Frequently Asked Questions (FAQ)",
+    "guides.authorRole": "Author & Developer",
+    "guides.authorBio": "Software developer and web privacy advocate. Every procedure outlined in this guide has been personally field-tested and verified across Windows 11, macOS Sonoma, and mobile browsers (Safari iOS, Chrome Android) to guarantee 100% in-browser processing with zero cloud uploads.",
+    "guides.fieldVerified": "Field Verified",
+    "guides.zeroLogs": "Zero logs, zero server",
+    "guides.freeNoSignup": "100% Free, no signup",
+    "guides.moreGuides": "More Practical Guides",
+    "guides.viewAllGuides": "View all guides →",
+
+    // Tool Detail Page
+    "tool.fullTutorial": "Full Tutorial:",
+    "tool.relatedTools": "Related & Recommended Tools",
+    "tool.viewAllTools": "View all 75 tools →",
+
+    // Home Page
+    "home.allToolsTitle": "All 75 Free In-Browser File Tools",
+    "home.allToolsSubtitle": "Instant client-side file tools with zero cloud uploads and 100% privacy guarantee.",
+
+    // Footer Guides
+    "footer.guidesTitle": "Step-by-Step Guides & Tutorials",
+    "footer.allGuides": "All guides →",
   },
   it: {
     // Brand & Header
@@ -192,6 +240,54 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "footer.terms": "Termini di Servizio",
     "footer.rights": "Tutti i diritti riservati. Sostenuto da pubblicità non invasiva.",
     "footer.builtWith": "Costruito con cura per la sicurezza dei tuoi dati",
+
+    // Navigation & Categories
+    "nav.guides": "Guide & Tutorial",
+    "category.pdf": "Suite PDF",
+    "category.image": "Suite Immagini",
+    "category.audio": "Audio e Video",
+    "category.document": "Documenti & Office",
+    "category.text": "Testo & Dev",
+    "category.privacy": "Privacy & Sicurezza",
+
+    // Guides Section
+    "guides.breadcrumb": "Guide e Tutorial",
+    "guides.heroPill": "Padroneggia i tuoi file digitali",
+    "guides.heroTitle": "Guide, Tutorial & ",
+    "guides.heroHighlight": "Best Practice per la Privacy",
+    "guides.heroSubtitle": "Istruzioni pratiche per modificare PDF, ottimizzare foto, convertire file multimediali e proteggere i tuoi documenti direttamente nel browser senza caricare nulla online.",
+    "guides.readTime": "lettura",
+    "guides.zeroUploads": "Zero Upload su Server",
+    "guides.readGuide": "Leggi Guida",
+    "guides.readyTitle": "Pronto a elaborare i tuoi file?",
+    "guides.readySubtitle": "Esplora la nostra suite completa di 75 strumenti gratuiti. 100% privati, gratuiti per sempre, senza registrazione.",
+    "guides.readyBtn": "Esplora tutti i 75 strumenti gratuiti",
+    "guides.freeTool": "Strumento Gratuito nel Browser",
+    "guides.launchTool": "Avvia Strumento Ora",
+    "guides.whyLocal": "Perché l'elaborazione locale è fondamentale",
+    "guides.stepByStep": "Procedura Passo-Passo",
+    "guides.techArch": "Architettura Tecnica & Sicurezza",
+    "guides.faqTitle": "Domande Frequenti (FAQ)",
+    "guides.authorRole": "Autore & Sviluppatore",
+    "guides.authorBio": "Sviluppatore software e appassionato di privacy digitale. Ogni procedura descritta in questa guida è stata testata e verificata personalmente su Windows 11, macOS Sonoma e browser mobili (Safari iOS e Chrome Android) per confermare l'elaborazione al 100% in-browser senza caricamento su server.",
+    "guides.fieldVerified": "Verifica sul campo",
+    "guides.zeroLogs": "Zero log, zero server",
+    "guides.freeNoSignup": "100% Gratuito senza iscrizione",
+    "guides.moreGuides": "Altre Guide Consigliate",
+    "guides.viewAllGuides": "Vedi tutte le guide →",
+
+    // Tool Detail Page
+    "tool.fullTutorial": "Guida completa:",
+    "tool.relatedTools": "Strumenti Correlati & Consigliati",
+    "tool.viewAllTools": "Vedi tutti i 75 strumenti →",
+
+    // Home Page
+    "home.allToolsTitle": "Tutti i 75 Strumenti per File Gratuiti",
+    "home.allToolsSubtitle": "Accesso immediato senza login, limiti di dimensione o caricamento su cloud server.",
+
+    // Footer Guides
+    "footer.guidesTitle": "Guide e Tutorial Passo-Passo",
+    "footer.allGuides": "Tutte le guide →",
   },
   es: {
     // Brand & Header
@@ -283,6 +379,54 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "footer.terms": "Términos del Servicio",
     "footer.rights": "Todos los derechos reservados. Mantenido con anuncios no invasivos.",
     "footer.builtWith": "Creado con dedicación para proteger tu privacidad",
+
+    // Navigation & Categories
+    "nav.guides": "Guías y Tutoriales",
+    "category.pdf": "Suite PDF",
+    "category.image": "Suite de Imágenes",
+    "category.audio": "Audio y Video",
+    "category.document": "Documentos y Oficina",
+    "category.text": "Texto y Dev",
+    "category.privacy": "Privacidad y Seguridad",
+
+    // Guides Section
+    "guides.breadcrumb": "Guías y Tutoriales",
+    "guides.heroPill": "Domina tus archivos digitales",
+    "guides.heroTitle": "Guías, Tutoriales y ",
+    "guides.heroHighlight": "Mejores Prácticas de Privacidad",
+    "guides.heroSubtitle": "Instrucciones prácticas para modificar PDF, optimizar fotos, convertir archivos multimedia y proteger tus documentos directamente en el navegador sin subir nada a la red.",
+    "guides.readTime": "lectura",
+    "guides.zeroUploads": "Cero Subidas a Servidores",
+    "guides.readGuide": "Leer Guía",
+    "guides.readyTitle": "¿Listo para trabajar con tus archivos?",
+    "guides.readySubtitle": "Explora nuestra suite completa de 75 herramientas gratuitas en el navegador. 100% privadas, gratis para siempre, sin instalación.",
+    "guides.readyBtn": "Explorar las 75 herramientas gratuitas",
+    "guides.freeTool": "Herramienta Gratuita en el Navegador",
+    "guides.launchTool": "Abrir Herramienta Ahora",
+    "guides.whyLocal": "Por qué es fundamental el procesamiento local",
+    "guides.stepByStep": "Procedimiento Paso a Paso",
+    "guides.techArch": "Arquitectura Técnica y Seguridad",
+    "guides.faqTitle": "Preguntas Frecuentes (FAQ)",
+    "guides.authorRole": "Autor y Desarrollador",
+    "guides.authorBio": "Desarrollador de software y defensor de la privacidad digital. Cada procedimiento descrito en esta guía ha sido probado y verificado personalmente en Windows 11, macOS Sonoma y navegadores móviles (Safari iOS, Chrome Android) para garantizar el procesamiento 100% en el navegador sin subir archivos a la nube.",
+    "guides.fieldVerified": "Verificado en la práctica",
+    "guides.zeroLogs": "Sin registros ni servidores",
+    "guides.freeNoSignup": "100% Gratis sin registro",
+    "guides.moreGuides": "Más Guías Prácticas",
+    "guides.viewAllGuides": "Ver todas las guías →",
+
+    // Tool Detail Page
+    "tool.fullTutorial": "Guía completa:",
+    "tool.relatedTools": "Herramientas Relacionadas y Recomendadas",
+    "tool.viewAllTools": "Ver las 75 herramientas →",
+
+    // Home Page
+    "home.allToolsTitle": "Las 75 Herramientas de Archivos Gratuitas",
+    "home.allToolsSubtitle": "Acceso inmediato sin registro, límites de tamaño ni subidas a servidores en la nube.",
+
+    // Footer Guides
+    "footer.guidesTitle": "Guías y Tutoriales Paso a Paso",
+    "footer.allGuides": "Todas las guías →",
   },
   fr: {
     // Brand & Header
@@ -374,6 +518,54 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "footer.terms": "Conditions d'Utilisation",
     "footer.rights": "Tous droits réservés. Financé par des publicités non intrusives.",
     "footer.builtWith": "Développé avec soin pour préserver la confidentialité de vos données",
+
+    // Navigation & Categories
+    "nav.guides": "Guides et Tutoriels",
+    "category.pdf": "Suite PDF",
+    "category.image": "Suite Images",
+    "category.audio": "Audio et Vidéo",
+    "category.document": "Documents et Bureautique",
+    "category.text": "Texte et Dev",
+    "category.privacy": "Confidentialité et Sécurité",
+
+    // Guides Section
+    "guides.breadcrumb": "Guides et Tutoriels",
+    "guides.heroPill": "Maîtrisez vos fichiers numériques",
+    "guides.heroTitle": "Guides, Tutoriels et ",
+    "guides.heroHighlight": "Meilleures Pratiques de Confidentialité",
+    "guides.heroSubtitle": "Tutoriels pratiques pour manipuler des PDF, optimiser des photos, convertir des fichiers multimédias et sécuriser vos documents directement dans votre navigateur sans téléversement.",
+    "guides.readTime": "lecture",
+    "guides.zeroUploads": "Zéro Téléversement Serveur",
+    "guides.readGuide": "Lire le Guide",
+    "guides.readyTitle": "Prêt à traiter vos fichiers ?",
+    "guides.readySubtitle": "Découvrez notre suite complète de 75 outils gratuits dans le navigateur. 100% privés, gratuits pour toujours, sans installation.",
+    "guides.readyBtn": "Explorer les 75 outils gratuits",
+    "guides.freeTool": "Outil Gratuit dans le Navigateur",
+    "guides.launchTool": "Lancer l'Outil Maintenant",
+    "guides.whyLocal": "Pourquoi le traitement local est essentiel",
+    "guides.stepByStep": "Procédure Étape par Étape",
+    "guides.techArch": "Architecture Technique et Sécurité",
+    "guides.faqTitle": "Foire Aux Questions (FAQ)",
+    "guides.authorRole": "Auteur et Développeur",
+    "guides.authorBio": "Développeur logiciel et défenseur de la vie privée en ligne. Chaque procédure décrite dans ce guide a été testée et vérifiée personnellement sur Windows 11, macOS Sonoma et navigateurs mobiles (Safari iOS, Chrome Android) afin de garantir un traitement 100% local sans transfert cloud.",
+    "guides.fieldVerified": "Vérifié sur le terrain",
+    "guides.zeroLogs": "Zéro journal, aucun serveur",
+    "guides.freeNoSignup": "100% Gratuit sans inscription",
+    "guides.moreGuides": "Autres Guides Pratiques",
+    "guides.viewAllGuides": "Voir tous les guides →",
+
+    // Tool Detail Page
+    "tool.fullTutorial": "Guide complet :",
+    "tool.relatedTools": "Outils Associés et Recommandés",
+    "tool.viewAllTools": "Voir les 75 outils →",
+
+    // Home Page
+    "home.allToolsTitle": "Les 75 Outils de Fichiers Gratuits dans le Navigateur",
+    "home.allToolsSubtitle": "Accès instantané sans inscription, sans limite de taille ni téléversement vers le cloud.",
+
+    // Footer Guides
+    "footer.guidesTitle": "Guides et Tutoriels Étape par Étape",
+    "footer.allGuides": "Tous les guides →",
   },
   de: {
     // Brand & Header
@@ -465,6 +657,54 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "footer.terms": "Nutzungsbedingungen",
     "footer.rights": "Alle Rechte vorbehalten. Unterstützt durch unaufdringliche Werbung.",
     "footer.builtWith": "Entwickelt mit höchster Sorgfalt für Ihre Datensicherheit",
+
+    // Navigation & Categories
+    "nav.guides": "Anleitungen & Tutorials",
+    "category.pdf": "PDF-Suite",
+    "category.image": "Bilder-Suite",
+    "category.audio": "Audio & Video",
+    "category.document": "Dokumente & Office",
+    "category.text": "Text & Dev",
+    "category.privacy": "Datenschutz & Sicherheit",
+
+    // Guides Section
+    "guides.breadcrumb": "Anleitungen und Tutorials",
+    "guides.heroPill": "Meistern Sie Ihre digitalen Dateien",
+    "guides.heroTitle": "Anleitungen, Tutorials & ",
+    "guides.heroHighlight": "Datenschutz Best Practices",
+    "guides.heroSubtitle": "Praktische Anleitungen zur Bearbeitung von PDFs, Optimierung von Fotos, Konvertierung von Mediendateien und Sicherung Ihrer Dokumente direkt im Browser ohne Server-Uploads.",
+    "guides.readTime": "Lesezeit",
+    "guides.zeroUploads": "Keine Server-Uploads",
+    "guides.readGuide": "Anleitung lesen",
+    "guides.readyTitle": "Bereit, Ihre Dateien zu bearbeiten?",
+    "guides.readySubtitle": "Entdecken Sie unsere Suite mit 75 kostenlosen Browser-Tools. 100% privat, dauerhaft kostenlos, ohne Installation.",
+    "guides.readyBtn": "Alle 75 kostenlosen Tools entdecken",
+    "guides.freeTool": "Kostenloses In-Browser-Tool",
+    "guides.launchTool": "Tool jetzt starten",
+    "guides.whyLocal": "Warum lokale Verarbeitung entscheidend ist",
+    "guides.stepByStep": "Schritt-für-Schritt Anleitung",
+    "guides.techArch": "Technische Architektur & Sicherheit",
+    "guides.faqTitle": "Häufig gestellte Fragen (FAQ)",
+    "guides.authorRole": "Autor & Entwickler",
+    "guides.authorBio": "Softwareentwickler und Verfechter digitaler Privatsphäre. Jedes Verfahren in dieser Anleitung wurde persönlich auf Windows 11, macOS Sonoma und mobilen Browsern (Safari iOS, Chrome Android) getestet und verifiziert, um eine 100% lokale Verarbeitung ohne Server-Uploads zu garantieren.",
+    "guides.fieldVerified": "Praxiserprobt & Verifiziert",
+    "guides.zeroLogs": "Keine Logs, keine Server",
+    "guides.freeNoSignup": "100% Kostenlos ohne Registrierung",
+    "guides.moreGuides": "Weitere praktische Anleitungen",
+    "guides.viewAllGuides": "Alle Anleitungen ansehen →",
+
+    // Tool Detail Page
+    "tool.fullTutorial": "Vollständige Anleitung:",
+    "tool.relatedTools": "Verwandte & Empfohlene Werkzeuge",
+    "tool.viewAllTools": "Alle 75 Werkzeuge ansehen →",
+
+    // Home Page
+    "home.allToolsTitle": "Alle 75 kostenlosen Datei-Werkzeuge im Browser",
+    "home.allToolsSubtitle": "Sofortiger Zugriff ohne Registrierung, Größenlimits oder Uploads auf Cloud-Server.",
+
+    // Footer Guides
+    "footer.guidesTitle": "Schritt-für-Schritt Anleitungen & Tutorials",
+    "footer.allGuides": "Alle Anleitungen →",
   },
   pt: {
     // Brand & Header
@@ -556,6 +796,54 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "footer.terms": "Termos de Uso",
     "footer.rights": "Todos os direitos reservados. Mantido por anúncios não invasivos.",
     "footer.builtWith": "Desenvolvido com carinho para garantir a privacidade dos seus dados",
+
+    // Navigation & Categories
+    "nav.guides": "Guias e Tutoriais",
+    "category.pdf": "Suíte PDF",
+    "category.image": "Suíte de Imagens",
+    "category.audio": "Áudio e Vídeo",
+    "category.document": "Documentos e Escritório",
+    "category.text": "Texto e Dev",
+    "category.privacy": "Privacidade e Segurança",
+
+    // Guides Section
+    "guides.breadcrumb": "Guias e Tutoriais",
+    "guides.heroPill": "Domine seus arquivos digitais",
+    "guides.heroTitle": "Guias, Tutoriais e ",
+    "guides.heroHighlight": "Melhores Práticas de Privacidade",
+    "guides.heroSubtitle": "Instruções práticas para manipular PDFs, otimizar fotos, converter mídias e proteger seus documentos diretamente no navegador sem enviar arquivos para a nuvem.",
+    "guides.readTime": "leitura",
+    "guides.zeroUploads": "Zero Uploads para Servidores",
+    "guides.readGuide": "Ler Guia",
+    "guides.readyTitle": "Pronto para processar seus arquivos?",
+    "guides.readySubtitle": "Explore nossa suíte completa de 75 ferramentas gratuitas no navegador. 100% privadas, gratuitas para sempre, sem instalação.",
+    "guides.readyBtn": "Explorar todas as 75 ferramentas gratuitas",
+    "guides.freeTool": "Ferramenta Gratuita no Navegador",
+    "guides.launchTool": "Iniciar Ferramenta Agora",
+    "guides.whyLocal": "Por que o processamento local é fundamental",
+    "guides.stepByStep": "Passo a Passo Detalhado",
+    "guides.techArch": "Arquitetura Técnica e Segurança",
+    "guides.faqTitle": "Perguntas Frequentes (FAQ)",
+    "guides.authorRole": "Autor e Desenvolvedor",
+    "guides.authorBio": "Desenvolvedor de software e defensor da privacidade digital. Cada procedimento descrito neste guia foi testado e verificado pessoalmente no Windows 11, macOS Sonoma e navegadores móveis (Safari iOS, Chrome Android) para garantir processamento 100% local sem uploads na nuvem.",
+    "guides.fieldVerified": "Verificado na prática",
+    "guides.zeroLogs": "Sem registros nem servidores",
+    "guides.freeNoSignup": "100% Grátis sem cadastro",
+    "guides.moreGuides": "Mais Guias Práticos",
+    "guides.viewAllGuides": "Ver todos os guias →",
+
+    // Tool Detail Page
+    "tool.fullTutorial": "Guia completo:",
+    "tool.relatedTools": "Ferramentas Relacionadas e Recomendadas",
+    "tool.viewAllTools": "Ver todas as 75 ferramentas →",
+
+    // Home Page
+    "home.allToolsTitle": "Todas as 75 Ferramentas Gratuitas de Arquivos",
+    "home.allToolsSubtitle": "Acesso imediato sem login, limites de tamanho ou uploads para servidores na nuvem.",
+
+    // Footer Guides
+    "footer.guidesTitle": "Guias e Tutoriais Passo a Passo",
+    "footer.allGuides": "Todos os guias →",
   }
 };
 

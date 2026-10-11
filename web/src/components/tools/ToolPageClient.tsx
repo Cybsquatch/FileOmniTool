@@ -297,9 +297,7 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
             >
               <BookOpen className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
               <span>
-                {language === "it"
-                  ? `Guida completa: ${guide.title.it} →`
-                  : `Full Tutorial: ${guide.title.en} →`}
+                {`${t("tool.fullTutorial")} ${guide.title[language] || guide.title.en} →`}
               </span>
             </Link>
           )}
@@ -363,13 +361,13 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
       <section className="mx-auto mt-12 mb-16 max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between pb-4">
           <h2 className="text-base font-bold text-zinc-900 dark:text-white">
-            {language === "it" ? "Strumenti Correlati & Consigliati" : "Related & Recommended Tools"}
+            {t("tool.relatedTools")}
           </h2>
           <Link
             href="/"
             className="text-xs font-semibold text-emerald-600 hover:underline dark:text-emerald-400"
           >
-            {language === "it" ? "Vedi tutti i 32 strumenti →" : "View all 32 tools →"}
+            {t("tool.viewAllTools")}
           </Link>
         </div>
 

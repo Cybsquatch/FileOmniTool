@@ -79,7 +79,7 @@ export default async function SingleGuidePage({ params }: GuidePageProps) {
         "@type": "HowTo",
         "name": guide.title.it,
         "description": guide.excerpt.it,
-        "inLanguage": ["it", "en"],
+        "inLanguage": ["it", "en", "es", "fr", "de", "pt"],
         "tool": tool
           ? [
               {
@@ -103,7 +103,7 @@ export default async function SingleGuidePage({ params }: GuidePageProps) {
         "alternativeHeadline": guide.title.en,
         "description": guide.excerpt.it,
         "datePublished": guide.datePublished,
-        "inLanguage": ["it", "en"],
+        "inLanguage": ["it", "en", "es", "fr", "de", "pt"],
         "author": {
           "@type": "Person",
           "name": "Riccardo Belli",

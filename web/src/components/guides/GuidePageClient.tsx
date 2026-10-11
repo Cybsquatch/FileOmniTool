@@ -26,7 +26,7 @@ interface GuidePageClientProps {
 }
 
 export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGuides }) => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const tool = getToolById(guide.toolId);
 
   const title = guide.title[language] || guide.title.en;
@@ -34,16 +34,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
   const intro = guide.intro[language] || guide.intro.en;
   const deepDive = guide.deepDive[language] || guide.deepDive.en;
 
-  const categoryLabels: Record<string, Record<string, string>> = {
-    pdf: { en: "PDF SUITE", it: "SUITE PDF" },
-    image: { en: "IMAGE SUITE", it: "SUITE IMMAGINI" },
-    audio: { en: "AUDIO & VIDEO", it: "AUDIO E VIDEO" },
-    document: { en: "DOCUMENT & OFFICE", it: "DOCUMENTI & OFFICE" },
-    text: { en: "TEXT & DEV", it: "TESTO & DEV" },
-    privacy: { en: "PRIVACY & SECURITY", it: "PRIVACY & SICUREZZA" },
-  };
-
-  const currentCategory = categoryLabels[guide.category]?.[language] || categoryLabels[guide.category]?.en || guide.category.toUpperCase();
+  const currentCategory = (t(`category.${guide.category}`) || guide.category).toUpperCase();
 
   return (
     <>
@@ -55,7 +46,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-zinc-400" />
           <Link href="/guides" className="hover:text-emerald-600 dark:hover:text-emerald-400">
-            {language === "it" ? "Guide" : "Guides"}
+            {t("nav.guides")}
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-zinc-400" />
           <span className="font-semibold text-zinc-800 dark:text-zinc-200 truncate max-w-xs sm:max-w-md">
@@ -73,12 +64,12 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
           <span>•</span>
           <span className="flex items-center gap-1">
             <Clock className="h-3.5 w-3.5 text-zinc-400" />
-            {guide.readTime} {language === "it" ? "lettura" : "read"}
+            {guide.readTime} {t("guides.readTime")}
           </span>
           <span>•</span>
           <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
             <ShieldCheck className="h-3.5 w-3.5" />
-            <span>{language === "it" ? "100% In-Browser Locale" : "100% Client-Side"}</span>
+            <span>{t("badge.clientSide")}</span>
           </div>
         </div>
 
@@ -99,7 +90,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
               <div>
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                   <Wrench className="h-4 w-4" />
-                  <span>{language === "it" ? "Strumento Gratuito nel Browser" : "Free In-Browser Tool"}</span>
+                  <span>{t("guides.freeTool")}</span>
                 </div>
                 <h2 className="mt-1 text-xl font-bold text-zinc-900 dark:text-white">
                   {tool.title[language] || tool.title.en}
@@ -114,7 +105,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-emerald-500 hover:shadow-lg"
               >
                 <Sparkles className="h-4 w-4" />
-                <span>{language === "it" ? "Avvia Strumento Ora" : "Launch Tool Now"}</span>
+                <span>{t("guides.launchTool")}</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -127,7 +118,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
         {/* Introduction Paragraph */}
         <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70">
           <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
-            {language === "it" ? "Perché l'elaborazione locale è fondamentale" : "Why In-Browser Processing Matters"}
+            {t("guides.whyLocal")}
           </h2>
           <p className="mt-4 text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
             {intro}
@@ -139,7 +130,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
           <div className="flex items-center gap-2">
             <BookOpen className="h-5 w-5 text-emerald-600" />
             <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
-              {language === "it" ? "Procedura Passo-Passo" : "Step-by-Step Walkthrough"}
+              {t("guides.stepByStep")}
             </h2>
           </div>
 
@@ -171,7 +162,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-5 w-5 text-emerald-600" />
             <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
-              {language === "it" ? "Architettura Tecnica & Sicurezza" : "Technical Architecture & Security"}
+              {t("guides.techArch")}
             </h2>
           </div>
           <p className="mt-4 text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
@@ -189,7 +180,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
           <div className="flex items-center gap-2">
             <HelpCircle className="h-5 w-5 text-emerald-600" />
             <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
-              {language === "it" ? "Domande Frequenti (FAQ)" : "Frequently Asked Questions"}
+              {t("guides.faqTitle")}
             </h2>
           </div>
 
@@ -223,26 +214,24 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
                 </h3>
                 <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">
                   <BadgeCheck className="h-3 w-3" />
-                  {language === "it" ? "Autore & Sviluppatore" : "Author & Developer"}
+                  {t("guides.authorRole")}
                 </span>
               </div>
               <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                {language === "it"
-                  ? "Sviluppatore software e appassionato di privacy digitale. Ogni procedura descritta in questa guida è stata testata e verificata personalmente su Windows 11, macOS Sonoma e browser mobili (Safari iOS e Chrome Android) per confermare l'elaborazione al 100% in-browser senza caricamento su server."
-                  : "Software developer and web privacy advocate. Every procedure outlined in this guide has been personally field-tested and verified across Windows 11, macOS Sonoma, and mobile browsers (Safari iOS, Chrome Android) to guarantee 100% in-browser processing with zero cloud uploads."}
+                {t("guides.authorBio")}
               </p>
               <div className="mt-3 flex flex-wrap items-center gap-4 text-[11px] font-medium text-emerald-700 dark:text-emerald-400">
                 <span className="flex items-center gap-1">
                   <CheckCircle2 className="h-3 w-3" />
-                  {language === "it" ? "Verifica sul campo" : "Field Verified"}
+                  {t("guides.fieldVerified")}
                 </span>
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="h-3 w-3" />
-                  {language === "it" ? "Zero log, zero server" : "Zero logs, zero server"}
+                  {t("guides.zeroLogs")}
                 </span>
                 <span className="flex items-center gap-1">
                   <Sparkles className="h-3 w-3" />
-                  {language === "it" ? "100% Gratuito senza iscrizione" : "100% Free, no signup"}
+                  {t("guides.freeNoSignup")}
                 </span>
               </div>
             </div>
@@ -253,13 +242,13 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
         <section className="pt-4">
           <div className="flex items-center justify-between pb-4">
             <h2 className="text-lg font-bold text-zinc-900 dark:text-white">
-              {language === "it" ? "Altre Guide Consigliate" : "More Practical Guides"}
+              {t("guides.moreGuides")}
             </h2>
             <Link
               href="/guides"
               className="text-xs font-semibold text-emerald-600 hover:underline dark:text-emerald-400"
             >
-              {language === "it" ? "Vedi tutte le guide →" : "View all guides →"}
+              {t("guides.viewAllGuides")}
             </Link>
           </div>
 
@@ -272,14 +261,14 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
               >
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                    {other.category}
+                    {t(`category.${other.category}`) || other.category}
                   </span>
                   <h3 className="mt-1 text-xs font-bold text-zinc-900 group-hover:text-emerald-600 transition dark:text-white dark:group-hover:text-emerald-400 line-clamp-2">
                     {other.title[language] || other.title.en}
                   </h3>
                 </div>
                 <div className="mt-4 flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
-                  <span>{language === "it" ? "Leggi Guida" : "Read Guide"}</span>
+                  <span>{t("guides.readGuide")}</span>
                   <ArrowRight className="h-3 w-3" />
                 </div>
               </Link>

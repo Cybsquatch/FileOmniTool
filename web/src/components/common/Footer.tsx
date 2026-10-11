@@ -172,13 +172,13 @@ export const Footer: React.FC = () => {
           <div className="flex items-center justify-between pb-4">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-white">
               <BookOpen className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-              <span>{language === "it" ? "Guide e Tutorial Passo-Passo" : "Step-by-Step Guides & Tutorials"}</span>
+              <span>{t("footer.guidesTitle")}</span>
             </div>
             <Link
               href="/guides"
               className="text-xs font-semibold text-emerald-600 hover:underline dark:text-emerald-400"
             >
-              {language === "it" ? "Tutte le guide →" : "All guides →"}
+              {t("footer.allGuides")}
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">

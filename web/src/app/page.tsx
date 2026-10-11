@@ -233,12 +233,10 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-8">
               <div>
                 <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                  {language === "it" ? "Tutti i 32 Strumenti per File Gratuiti" : "All 32 Free In-Browser File Tools"}
+                  {t("home.allToolsTitle")}
                 </h2>
                 <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-                  {language === "it" 
-                    ? "Accesso immediato senza login, limiti di dimensione o caricamento su cloud server." 
-                    : "Instant client-side file tools with zero cloud uploads and 100% privacy guarantee."}
+                  {t("home.allToolsSubtitle")}
                 </p>
               </div>
             </div>

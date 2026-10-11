@@ -93,7 +93,7 @@ export const Header: React.FC = () => {
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400"
           >
             <BookOpen className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-            <span>Guides</span>
+            <span>{t("nav.guides")}</span>
           </Link>
           <Link
             href="/privacy"
@@ -216,7 +216,7 @@ export const Header: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2 text-base font-medium text-zinc-800 dark:text-zinc-200"
             >
-              <BookOpen className="h-4 w-4 text-emerald-600" /> Guides & Tutorials
+              <BookOpen className="h-4 w-4 text-emerald-600" /> {t("nav.guides")}
             </Link>
             <Link
               href="/privacy"
