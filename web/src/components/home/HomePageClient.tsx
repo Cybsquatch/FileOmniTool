@@ -196,6 +196,11 @@ export function HomePageClient() {
           </div>
         </section>
 
+        {/* Pre-Directory Sponsor Slot (Non-Invasive, High Viewability) */}
+        <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+          <AdBanner slot="leaderboard" />
+        </section>
+
         {/* SEO Crawl Hub: Direct static links with high-intent keywords for Googlebot indexing */}
         <section className="border-t border-zinc-200/80 bg-white py-14 dark:border-zinc-800/80 dark:bg-zinc-900/40">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

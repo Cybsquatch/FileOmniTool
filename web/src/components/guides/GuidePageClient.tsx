@@ -245,6 +245,11 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
           </div>
         </section>
 
+        {/* End-of-Article Sponsor Slot (Non-Invasive, High Viewability) */}
+        <div className="py-2">
+          <AdBanner slot="leaderboard" />
+        </div>
+
         {/* Related Guides Section */}
         <section className="pt-4">
           <div className="flex items-center justify-between pb-4">

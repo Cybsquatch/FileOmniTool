@@ -317,8 +317,13 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         {renderToolComponent()}
       </div>
 
+      {/* Post-Tool Sponsor Slot (High Viewability, Non-Invasive) */}
+      <div className="mx-auto mt-10 max-w-4xl px-4 sm:px-6 lg:px-8">
+        <AdBanner slot="leaderboard" />
+      </div>
+
       {/* How It Works (Step-by-step Guide) */}
-      <section className="mx-auto mt-16 max-w-4xl px-4 sm:px-6 lg:px-8">
+      <section className="mx-auto mt-12 max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70">
           <h2 className="text-lg font-bold text-zinc-900 dark:text-white">
             {t("tool.howItWorks")} {title}
@@ -339,8 +344,13 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
       {/* Comparison Table: FileOmniTool vs Traditional Cloud Converters */}
       <ComparisonTable />
 
+      {/* Mid-Content Sponsor Slot */}
+      <div className="mx-auto mt-8 max-w-4xl px-4 sm:px-6 lg:px-8">
+        <AdBanner slot="leaderboard" />
+      </div>
+
       {/* FAQ Section */}
-      <section className="mx-auto mt-12 max-w-4xl px-4 sm:px-6 lg:px-8">
+      <section className="mx-auto mt-8 max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70">
           <div className="flex items-center gap-2">
             <HelpCircle className="h-5 w-5 text-emerald-600" />

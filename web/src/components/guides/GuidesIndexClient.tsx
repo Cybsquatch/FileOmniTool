@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { GuideArticle } from "@/lib/guides-registry";
 import { useLanguage } from "@/lib/i18n/context";
+import { AdBanner } from "@/components/ads/AdBanner";
 import { BookOpen, Clock, ArrowRight, ShieldCheck, ChevronRight } from "lucide-react";
 
 interface GuidesIndexClientProps {
@@ -100,8 +101,13 @@ export const GuidesIndexClient: React.FC<GuidesIndexClientProps> = ({ guides }) 
         </div>
       </section>
 
+      {/* Sponsor Banner (Non-Invasive) */}
+      <div className="mx-auto mt-12 max-w-5xl px-4 sm:px-6 lg:px-8">
+        <AdBanner slot="leaderboard" />
+      </div>
+
       {/* Explore All Tools Callout */}
-      <section className="mx-auto mt-16 max-w-5xl px-4 sm:px-6 lg:px-8">
+      <section className="mx-auto mt-10 max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/60 via-teal-50/30 to-white p-8 text-center dark:border-emerald-900/50 dark:from-emerald-950/30 dark:via-zinc-900 dark:to-zinc-900">
           <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
             {t("guides.readyTitle")}
