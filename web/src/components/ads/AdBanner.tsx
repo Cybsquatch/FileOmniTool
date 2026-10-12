@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { EyeOff } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/context";
 
-export type AdSlotType = "leaderboard" | "action-card" | "sticky-footer";
+export type AdSlotType = "leaderboard" | "action-card" | "sticky-footer" | "native";
 
 interface AdBannerProps {
   slot: AdSlotType;
@@ -57,6 +58,66 @@ const AdsterraSlot: React.FC<{ adKey: string; width: number; height: number; cla
   );
 };
 
+const AdsterraNativeSlot: React.FC<{ nativeKey: string; className?: string }> = ({
+  nativeKey,
+  className = "",
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
+
+  const titles: Record<string, string> = {
+    it: "Contenuti e Strumenti Consigliati",
+    en: "Recommended Resources & Tools",
+    es: "Herramientas y Recursos Recomendados",
+    fr: "Ressources et Outils Recommandés",
+    de: "Empfohlene Ressourcen und Tools",
+    pt: "Recursos e Ferramentas Recomendadas",
+  };
+
+  const labels: Record<string, string> = {
+    it: "sponsor",
+    en: "sponsored",
+    es: "patrocinado",
+    fr: "sponsorisé",
+    de: "gesponsert",
+    pt: "patrocinado",
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const containerId = `container-${nativeKey}`;
+    const targetDiv = document.getElementById(containerId);
+    if (targetDiv && targetDiv.childElementCount > 0) return;
+
+    if (container.querySelector(`script[src*="${nativeKey}"]`)) return;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src = `https://bauval.org/21/${nativeKey}`;
+
+    container.appendChild(script);
+  }, [nativeKey]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={`adsterra-native-banner my-6 w-full overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60 ${className}`}
+      aria-label="Sponsored Recommendations"
+    >
+      <div className="mb-3 flex items-center justify-between border-b border-zinc-100 pb-2.5 text-[11px] font-bold uppercase tracking-wider text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+        <span>{titles[language] || titles.en}</span>
+        <span className="rounded bg-zinc-100 px-2 py-0.5 text-[10px] font-semibold lowercase text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
+          {labels[language] || labels.en}
+        </span>
+      </div>
+      <div id={`container-${nativeKey}`} className="min-h-[140px] w-full" />
+    </div>
+  );
+};
+
 export const AdBanner: React.FC<AdBannerProps> = ({
   slot,
   className = "",
@@ -88,6 +149,8 @@ export const AdBanner: React.FC<AdBannerProps> = ({
           return "min-h-[250px] max-w-[336px] w-full mx-auto";
         case "sticky-footer":
           return "h-[60px] md:h-[90px] w-full max-w-[728px] mx-auto";
+        case "native":
+          return "min-h-[160px] max-w-4xl w-full mx-auto";
       }
     };
 
@@ -163,6 +226,16 @@ export const AdBanner: React.FC<AdBannerProps> = ({
           />
         </div>
       </div>
+    );
+  }
+
+  // Per "native": integrazione diretta Adsterra 3x1 Native Banner
+  if (slot === "native") {
+    return (
+      <AdsterraNativeSlot
+        nativeKey="e737c482eb73c706a425df6c74d51af5"
+        className={className}
+      />
     );
   }
 

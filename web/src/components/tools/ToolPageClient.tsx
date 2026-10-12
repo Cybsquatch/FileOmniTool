@@ -374,8 +374,13 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         </div>
       </section>
 
+      {/* Native Sponsored Recommendations (3x1) */}
+      <div className="mx-auto mt-6 max-w-4xl px-4 sm:px-6 lg:px-8">
+        <AdBanner slot="native" />
+      </div>
+
       {/* Related Tools Section for Topic Cluster Internal Linking */}
-      <section className="mx-auto mt-12 mb-16 max-w-4xl px-4 sm:px-6 lg:px-8">
+      <section className="mx-auto mt-6 mb-16 max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between pb-4">
           <h2 className="text-base font-bold text-zinc-900 dark:text-white">
             {t("tool.relatedTools")}

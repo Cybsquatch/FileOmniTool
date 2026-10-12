@@ -245,9 +245,9 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
           </div>
         </section>
 
-        {/* End-of-Article Sponsor Slot (Non-Invasive, High Viewability) */}
-        <div className="py-2">
-          <AdBanner slot="leaderboard" />
+        {/* End-of-Article Native Recommendations Slot (3x1) */}
+        <div>
+          <AdBanner slot="native" />
         </div>
 
         {/* Related Guides Section */}
