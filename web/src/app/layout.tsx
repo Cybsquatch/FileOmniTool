@@ -4,6 +4,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/context";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,10 +85,11 @@ export default function RootLayout({
           />
         )}
         {/* Adsterra Social Bar */}
-        <script
-          async
-          data-cfasync="false"
+        <Script
+          id="adsterra-social-bar"
+          strategy="afterInteractive"
           src="https://bauval.org/14/46a6710c86363dcadad3933eb0c19482"
+          data-cfasync="false"
         />
         {gaId && (
           <>

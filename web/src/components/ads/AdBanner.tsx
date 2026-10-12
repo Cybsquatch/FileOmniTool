@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { EyeOff } from "lucide-react";
 
 export type AdSlotType = "leaderboard" | "action-card" | "sticky-footer";
@@ -12,69 +12,50 @@ interface AdBannerProps {
   adSlotId?: string;
 }
 
-const ADSTERRA_728X90_SRCDOC = `<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-      }
-    </style>
-  </head>
-  <body>
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '69e9eb2774c9d994601bc2ed1fd01ecc',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="https://bauval.org/22/69e9eb2774c9d994601bc2ed1fd01ecc"></script>
-  </body>
-</html>`;
+const AdsterraSlot: React.FC<{ adKey: string; width: number; height: number; className?: string }> = ({
+  adKey,
+  width,
+  height,
+  className = "",
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-const ADSTERRA_300X250_SRCDOC = `<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-      }
-    </style>
-  </head>
-  <body>
-    <script type="text/javascript">
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    if (container.querySelector("iframe")) return;
+
+    container.innerHTML = "";
+
+    const confScript = document.createElement("script");
+    confScript.type = "text/javascript";
+    confScript.innerHTML = `
       atOptions = {
-        'key' : 'a3caadfd2e99bd611a9461f3be906117',
+        'key' : '${adKey}',
         'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
+        'height' : ${height},
+        'width' : ${width},
         'params' : {}
       };
-    </script>
-    <script type="text/javascript" src="https://bauval.org/22/a3caadfd2e99bd611a9461f3be906117"></script>
-  </body>
-</html>`;
+    `;
+
+    const loaderScript = document.createElement("script");
+    loaderScript.type = "text/javascript";
+    loaderScript.src = `https://bauval.org/22/${adKey}`;
+
+    container.appendChild(confScript);
+    container.appendChild(loaderScript);
+  }, [adKey, width, height]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={`adsterra-banner flex items-center justify-center overflow-hidden ${className}`}
+      style={{ minHeight: `${height}px`, minWidth: `${Math.min(width, 300)}px` }}
+    />
+  );
+};
 
 export const AdBanner: React.FC<AdBannerProps> = ({
   slot,
@@ -146,14 +127,10 @@ export const AdBanner: React.FC<AdBannerProps> = ({
       >
         <div className="flex h-[52px] sm:h-[72px] md:h-[90px] w-full max-w-[728px] items-center justify-center overflow-hidden">
           <div className="flex h-[90px] w-[728px] shrink-0 origin-center scale-[0.48] sm:scale-[0.75] md:scale-100 items-center justify-center transition-transform">
-            <iframe
-              title="Sponsor Advertisement"
-              srcDoc={ADSTERRA_728X90_SRCDOC}
+            <AdsterraSlot
+              adKey="69e9eb2774c9d994601bc2ed1fd01ecc"
               width={728}
               height={90}
-              scrolling="no"
-              className="border-0 overflow-hidden"
-              style={{ border: 0, overflow: "hidden" }}
             />
           </div>
         </div>
@@ -179,14 +156,10 @@ export const AdBanner: React.FC<AdBannerProps> = ({
         aria-label="Sponsor Advertisement"
       >
         <div className="flex h-[250px] w-[300px] items-center justify-center overflow-hidden rounded-xl bg-zinc-50/50 dark:bg-zinc-900/50">
-          <iframe
-            title="Sponsor Advertisement 300x250"
-            srcDoc={ADSTERRA_300X250_SRCDOC}
+          <AdsterraSlot
+            adKey="a3caadfd2e99bd611a9461f3be906117"
             width={300}
             height={250}
-            scrolling="no"
-            className="border-0 overflow-hidden"
-            style={{ border: 0, overflow: "hidden" }}
           />
         </div>
       </div>
