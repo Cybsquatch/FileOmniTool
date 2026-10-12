@@ -83,6 +83,12 @@ export default function RootLayout({
             crossOrigin="anonymous"
           />
         )}
+        {/* Adsterra Social Bar */}
+        <script
+          async
+          data-cfasync="false"
+          src="https://bauval.org/14/46a6710c86363dcadad3933eb0c19482"
+        />
         {gaId && (
           <>
             <script
