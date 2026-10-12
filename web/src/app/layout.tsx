@@ -27,19 +27,24 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  title: "FileOmniTool - Free, Private & 100% In-Browser File Tools",
-  description: "Merge PDFs, convert images (WebP/PNG/JPG), compress files, create & extract ZIPs directly in your browser. Zero cloud uploads, 100% private, free forever.",
+  title: "FileOmniTool - Strumenti per File Gratuiti, Privati e nel Browser | Free In-Browser File Tools",
+  description: "Unisci PDF, converti immagini (WebP/PNG/JPG), comprimi file ed estrai archivi ZIP al 100% nel tuo browser senza upload su server. 100% privato e gratuito. Merge PDFs, convert images & extract ZIPs client-side.",
   keywords: [
+    "unisci pdf", "converti immagini", "comprimi file", "estrai zip", "strumenti file gratis",
+    "convertire webp in png", "riduci pdf", "privacy", "zero upload", "nel browser",
     "merge pdf", "split pdf", "convert image", "compress photos", "create zip", 
-    "extract zip", "sha256 hash", "privacy", "client-side", "free file tools", "no upload"
+    "extract zip", "sha256 hash", "client-side", "free file tools", "no upload",
+    "unir pdf", "convertir imagenes", "fusionner pdf", "pdf zusammenfügen", "juntar pdf"
   ],
   authors: [{ name: "FileOmniTool Team" }],
   openGraph: {
-    title: "FileOmniTool - Free & 100% Client-Side File Tools",
-    description: "Merge PDFs, convert images, and unpack archives without uploading files to any server. 100% in-browser.",
+    title: "FileOmniTool - Strumenti per File Gratuiti e Privati nel Browser | Free Client-Side File Tools",
+    description: "Unisci PDF, converti immagini ed estrai archivi senza caricare file su alcun server. 100% in-browser.",
     type: "website",
     siteName: "FileOmniTool",
     url: "https://www.fileomnitool.com",
+    locale: "it_IT",
+    alternateLocale: ["en_US", "es_ES", "fr_FR", "de_DE", "pt_BR"],
   },
   robots: {
     index: true,
@@ -72,7 +77,7 @@ export default function RootLayout({
 
   return (
     <html
-      lang="en"
+      lang="it"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>

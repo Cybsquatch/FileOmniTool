@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
@@ -7,16 +7,38 @@ import { GUIDES_REGISTRY } from "@/lib/guides-registry";
 import { GuidesIndexClient } from "@/components/guides/GuidesIndexClient";
 
 export const metadata: Metadata = {
-  title: "Step-by-Step File Guides & Privacy Tutorials | FileOmniTool",
-  description: "Comprehensive step-by-step guides on merging PDFs, compressing images, extracting MP3 audio, and protecting digital privacy with 100% in-browser utilities.",
+  title: "Guide e Tutorial sui File nel Browser | Step-by-Step Guides | FileOmniTool",
+  description: "Guide complete passo-passo su come unire PDF, convertire immagini, estrarre audio MP3 e proteggere la privacy con strumenti 100% nel tuo browser senza upload. In-browser file tutorials.",
   alternates: {
     canonical: "https://www.fileomnitool.com/guides",
   },
+  keywords: [
+    "guide file",
+    "tutorial pdf",
+    "convertire immagini",
+    "estrarre audio",
+    "privacy online",
+    "file tutorials",
+    "how to merge pdf",
+    "in-browser tools",
+    "no upload guides",
+    "guías archivos",
+    "guides fichiers",
+    "datei anleitungen",
+    "tutoriais de arquivos"
+  ],
   openGraph: {
-    title: "Step-by-Step File Guides & Privacy Tutorials | FileOmniTool",
-    description: "Learn how to merge PDFs, compress photos, and clean metadata locally with zero server uploads.",
+    title: "Guide e Tutorial sui File nel Browser | FileOmniTool",
+    description: "Scopri come unire PDF, comprimere foto ed elaborare file localmente con zero caricamenti su server.",
     url: "https://www.fileomnitool.com/guides",
     type: "website",
+    locale: "it_IT",
+    alternateLocale: ["en_US", "es_ES", "fr_FR", "de_DE", "pt_BR"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Guide e Tutorial sui File nel Browser | FileOmniTool",
+    description: "Guide e tutorial completi per elaborare file in locale nel browser.",
   },
 };
 

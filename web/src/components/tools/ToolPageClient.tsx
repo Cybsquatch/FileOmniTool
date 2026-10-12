@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { ToolDefinition, TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { useLanguage } from "@/lib/i18n/context";
@@ -96,6 +96,13 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
   const description = tool.description[language] || tool.description.en;
   const instructions = tool.instructions[language] || tool.instructions.en;
   const faq = tool.faq[language] || tool.faq.en;
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      const currentTitle = tool.title[language] || tool.title.it || tool.title.en;
+      document.title = `${currentTitle} | FileOmniTool`;
+    }
+  }, [language, tool]);
 
   const renderToolComponent = () => {
     switch (tool.id) {

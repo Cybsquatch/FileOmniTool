@@ -29,33 +29,45 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   return {
     title: `${guide.title.it} | ${guide.title.en}`,
     description: `${guide.metaDescription.it} / ${guide.metaDescription.en}`,
-    keywords: [
-      guide.seoKeyword.it,
-      guide.seoKeyword.en,
-      "guida",
-      "tutorial",
-      "gratis",
-      "nel browser",
-      "senza caricamento",
-      "privacy",
-      "how to",
-      "online free",
-      "no upload"
-    ],
+    keywords: Array.from(
+      new Set(
+        [
+          guide.seoKeyword.it,
+          guide.seoKeyword.en,
+          guide.title.it,
+          guide.title.en,
+          guide.title.es,
+          guide.title.fr,
+          guide.title.de,
+          guide.title.pt,
+          "guida",
+          "tutorial",
+          "gratis",
+          "nel browser",
+          "senza caricamento",
+          "privacy",
+          "how to",
+          "online free",
+          "no upload",
+        ].filter(Boolean) as string[]
+      )
+    ),
     alternates: {
       canonical: `https://www.fileomnitool.com/guides/${guide.slug}`,
     },
     openGraph: {
-      title: `${guide.title.it} - FileOmniTool`,
-      description: guide.metaDescription.it,
+      title: `${guide.title.it} | ${guide.title.en}`,
+      description: `${guide.metaDescription.it} • ${guide.metaDescription.en}`,
       url: `https://www.fileomnitool.com/guides/${guide.slug}`,
       type: "article",
       publishedTime: guide.datePublished,
+      locale: "it_IT",
+      alternateLocale: ["en_US", "es_ES", "fr_FR", "de_DE", "pt_BR"],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${guide.title.it} - FileOmniTool`,
-      description: guide.metaDescription.it,
+      title: `${guide.title.it} | ${guide.title.en}`,
+      description: `${guide.metaDescription.it} • ${guide.metaDescription.en}`,
     },
   };
 }

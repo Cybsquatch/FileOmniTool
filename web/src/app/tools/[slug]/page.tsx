@@ -17,6 +17,10 @@ export async function generateStaticParams() {
   }));
 }
 
+function cleanBrandTitle(title: string): string {
+  return title.replace(/\s*\|\s*FileOmniTool.*$/i, "").replace(/\s*-\s*FileOmniTool.*$/i, "").trim();
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const tool = getToolById(slug);
@@ -25,20 +29,49 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Tool Not Found | FileOmniTool" };
   }
 
+  const itTitle = cleanBrandTitle(tool.metaTitle.it || tool.title.it);
+  const enTitle = cleanBrandTitle(tool.metaTitle.en || tool.title.en);
+  const combinedTitle = `${itTitle} | ${enTitle} - FileOmniTool`;
+
+  const itDesc = tool.metaDescription.it || tool.description.it;
+  const enDesc = tool.metaDescription.en || tool.description.en;
+  const combinedDesc = `${itDesc} • ${enDesc}`;
+
+  const localizedKeywords = [
+    tool.seoKeyword.it,
+    tool.seoKeyword.en,
+    tool.title.it,
+    tool.title.en,
+    tool.title.es,
+    tool.title.fr,
+    tool.title.de,
+    tool.title.pt,
+    "online gratis",
+    "nel browser",
+    "senza caricamento",
+    "privacy",
+    "free online",
+    "no upload",
+    "client-side",
+    "webassembly",
+  ].filter(Boolean) as string[];
+
   return {
-    title: tool.metaTitle.en,
-    description: tool.metaDescription.en,
-    keywords: [tool.seoKeyword.en, tool.seoKeyword.it, "online", "free", "no upload", "browser", "privacy"],
+    title: combinedTitle,
+    description: combinedDesc,
+    keywords: Array.from(new Set(localizedKeywords)),
     openGraph: {
-      title: tool.metaTitle.en,
-      description: tool.metaDescription.en,
+      title: `${itTitle} | FileOmniTool`,
+      description: combinedDesc,
       type: "website",
       url: `https://www.fileomnitool.com/tools/${tool.id}`,
+      locale: "it_IT",
+      alternateLocale: ["en_US", "es_ES", "fr_FR", "de_DE", "pt_BR"],
     },
     twitter: {
       card: "summary_large_image",
-      title: tool.metaTitle.en,
-      description: tool.metaDescription.en,
+      title: `${itTitle} | FileOmniTool`,
+      description: combinedDesc,
     },
     alternates: {
       canonical: `https://www.fileomnitool.com/tools/${tool.id}`,
@@ -63,23 +96,45 @@ export default async function ToolPage({ params }: PageProps) {
     archive: "Archive Utilities",
   };
 
-  // Schema JSON-LD per i motori di ricerca (internazionale in inglese + rich FAQ + Breadcrumbs)
+  // Aggrega tutte le FAQ localizzate (IT, EN, ES, FR, DE, PT) per Google Rich Snippets
+  const allFaqs: Array<{ question: string; answer: string }> = [];
+  (["it", "en", "es", "fr", "de", "pt"] as const).forEach((lang) => {
+    const list = tool.faq[lang];
+    if (Array.isArray(list)) {
+      allFaqs.push(...list);
+    }
+  });
+
+  const alternateNames = Array.from(
+    new Set(
+      [tool.title.it, tool.title.en, tool.title.es, tool.title.fr, tool.title.de, tool.title.pt].filter(
+        Boolean
+      ) as string[]
+    )
+  );
+
+  // Schema JSON-LD per i motori di ricerca (Bilingue + 6 lingue supportate + rich FAQ + Breadcrumbs)
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": tool.title.en,
+        "name": `${tool.title.it} | ${tool.title.en}`,
+        "alternateName": alternateNames,
         "url": `https://www.fileomnitool.com/tools/${tool.id}`,
-        "description": tool.metaDescription.en,
+        "description": `${tool.metaDescription.it || tool.description.it} • ${tool.metaDescription.en || tool.description.en}`,
+        "inLanguage": ["it", "en", "es", "fr", "de", "pt"],
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "All",
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "USD",
+          "priceCurrency": "EUR",
         },
         "featureList": [
+          "Elaborazione 100% Client-Side nel browser",
+          "Zero caricamenti di file su server cloud",
+          "Gratuito senza registrazione o limiti",
           "100% Client-Side Processing",
           "Zero file uploads to cloud servers",
           "Free without registration or limits",
@@ -89,7 +144,7 @@ export default async function ToolPage({ params }: PageProps) {
           "ratingValue": "4.9",
           "bestRating": "5",
           "worstRating": "1",
-          "ratingCount": "1280"
+          "ratingCount": "1280",
         },
       },
       {
@@ -99,25 +154,25 @@ export default async function ToolPage({ params }: PageProps) {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://www.fileomnitool.com"
+            "item": "https://www.fileomnitool.com",
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": categoryNames[tool.category] || tool.category.toUpperCase(),
-            "item": `https://www.fileomnitool.com/#${tool.category}`
+            "item": `https://www.fileomnitool.com/#${tool.category}`,
           },
           {
             "@type": "ListItem",
             "position": 3,
-            "name": tool.title.en,
-            "item": `https://www.fileomnitool.com/tools/${tool.id}`
-          }
-        ]
+            "name": tool.title.it || tool.title.en,
+            "item": `https://www.fileomnitool.com/tools/${tool.id}`,
+          },
+        ],
       },
       {
         "@type": "FAQPage",
-        "mainEntity": tool.faq.en.map((item) => ({
+        "mainEntity": allFaqs.map((item) => ({
           "@type": "Question",
           "name": item.question,
           "acceptedAnswer": {

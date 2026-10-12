@@ -37,27 +37,28 @@ export default function HomePage() {
         "@type": "WebSite",
         "name": "FileOmniTool",
         "url": "https://www.fileomnitool.com",
-        "description": "Free, Private & 100% In-Browser File Tools Suite. Zero cloud uploads.",
+        "description": "Strumenti per file gratuiti, privati e nel browser | Free, Private & 100% In-Browser File Tools Suite. Zero cloud uploads.",
+        "inLanguage": ["it", "en", "es", "fr", "de", "pt"],
         "potentialAction": {
           "@type": "SearchAction",
           "target": "https://www.fileomnitool.com/?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+          "query-input": "required name=search_term_string",
+        },
       },
       {
         "@type": "ItemList",
-        "name": "FileOmniTool Complete Client-Side Tools Directory",
-        "description": `${TOOLS_REGISTRY.length} privacy-focused in-browser file utilities`,
+        "name": "FileOmniTool Directory Completa Strumenti | In-Browser Tools Directory",
+        "description": `${TOOLS_REGISTRY.length} strumenti di elaborazione file client-side nel browser`,
         "numberOfItems": TOOLS_REGISTRY.length,
         "itemListElement": TOOLS_REGISTRY.map((tool, idx) => ({
           "@type": "ListItem",
           "position": idx + 1,
-          "name": tool.title.en,
-          "description": tool.description.en,
-          "url": `https://www.fileomnitool.com/tools/${tool.id}`
-        }))
-      }
-    ]
+          "name": `${tool.title.it || tool.title.en} | ${tool.title.en}`,
+          "description": `${tool.description.it || tool.description.en} • ${tool.description.en}`,
+          "url": `https://www.fileomnitool.com/tools/${tool.id}`,
+        })),
+      },
+    ],
   };
 
   return (

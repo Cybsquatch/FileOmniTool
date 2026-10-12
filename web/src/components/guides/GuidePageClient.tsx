@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { GuideArticle } from "@/lib/guides-registry";
 import { getToolById, TOOLS_REGISTRY } from "@/lib/tools-registry";
@@ -35,6 +35,13 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
   const deepDive = guide.deepDive[language] || guide.deepDive.en;
 
   const currentCategory = (t(`category.${guide.category}`) || guide.category).toUpperCase();
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      const currentTitle = guide.title[language] || guide.title.it || guide.title.en;
+      document.title = `${currentTitle} | FileOmniTool`;
+    }
+  }, [language, guide]);
 
   return (
     <>

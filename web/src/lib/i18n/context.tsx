@@ -857,13 +857,13 @@ export const AVAILABLE_LANGUAGES: { code: Language; label: string; flag: string 
 ];
 
 const LanguageContext = createContext<LanguageContextType>({
-  language: "en",
+  language: "it",
   setLanguage: () => {},
   t: (key: string) => key,
 });
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>("en");
+  const [language, setLanguageState] = useState<Language>("it");
 
   useEffect(() => {
     // 1. Controlla preferenza esplicita salvata in localStorage
