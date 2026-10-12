@@ -44,6 +44,38 @@ const ADSTERRA_728X90_SRCDOC = `<!DOCTYPE html>
   </body>
 </html>`;
 
+const ADSTERRA_300X250_SRCDOC = `<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'a3caadfd2e99bd611a9461f3be906117',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="https://bauval.org/22/a3caadfd2e99bd611a9461f3be906117"></script>
+  </body>
+</html>`;
+
 export const AdBanner: React.FC<AdBannerProps> = ({
   slot,
   className = "",
@@ -135,6 +167,28 @@ export const AdBanner: React.FC<AdBannerProps> = ({
             <EyeOff className="h-3.5 w-3.5" />
           </button>
         )}
+      </div>
+    );
+  }
+
+  // Per "action-card": integrazione diretta Adsterra 300x250 (Medium Rectangle)
+  if (slot === "action-card") {
+    return (
+      <div
+        className={`relative my-4 flex items-center justify-center overflow-hidden rounded-xl transition-all ${className}`}
+        aria-label="Sponsor Advertisement"
+      >
+        <div className="flex h-[250px] w-[300px] items-center justify-center overflow-hidden rounded-xl bg-zinc-50/50 dark:bg-zinc-900/50">
+          <iframe
+            title="Sponsor Advertisement 300x250"
+            srcDoc={ADSTERRA_300X250_SRCDOC}
+            width={300}
+            height={250}
+            scrolling="no"
+            className="border-0 overflow-hidden"
+            style={{ border: 0, overflow: "hidden" }}
+          />
+        </div>
       </div>
     );
   }
