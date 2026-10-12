@@ -1,44 +1,81 @@
 import { MetadataRoute } from "next";
 import { TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { GUIDES_REGISTRY } from "@/lib/guides-registry";
+import { ALL_LOCALES, getLocalizedUrl } from "@/lib/seo-helpers";
+import { Language } from "@/lib/i18n/context";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.fileomnitool.com";
+  const getAlternates = (path: string) => {
+    const languages: Record<string, string> = {};
+    for (const loc of ALL_LOCALES) {
+      languages[loc] = getLocalizedUrl(path, loc);
+    }
+    languages["x-default"] = getLocalizedUrl(path, "en");
+    return { languages };
+  };
 
-  const toolUrls: MetadataRoute.Sitemap = TOOLS_REGISTRY.map((tool) => ({
-    url: `${baseUrl}/tools/${tool.id}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: tool.popular ? 0.9 : 0.8,
-  }));
+  const entries: MetadataRoute.Sitemap = [];
+  const now = new Date();
 
-  const guideUrls: MetadataRoute.Sitemap = GUIDES_REGISTRY.map((guide) => ({
-    url: `${baseUrl}/guides/${guide.slug}`,
-    lastModified: new Date(guide.datePublished),
-    changeFrequency: "weekly" as const,
-    priority: 0.85,
-  }));
-
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
+  // 1. Static Core Pages (Home, Guides Index, Privacy) across all 6 locales
+  for (const locale of ALL_LOCALES) {
+    entries.push({
+      url: getLocalizedUrl("/", locale),
+      lastModified: now,
       changeFrequency: "daily" as const,
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/guides`,
-      lastModified: new Date(),
+      priority: locale === "it" || locale === "en" ? 1.0 : 0.9,
+      alternates: getAlternates("/"),
+    });
+
+    entries.push({
+      url: getLocalizedUrl("/guides", locale),
+      lastModified: now,
       changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
+      priority: 0.85,
+      alternates: getAlternates("/guides"),
+    });
+
+    entries.push({
+      url: getLocalizedUrl("/privacy", locale),
+      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.5,
-    },
-    ...toolUrls,
-    ...guideUrls,
-  ];
+      alternates: getAlternates("/privacy"),
+    });
+  }
+
+  // 2. 75 Tools across all 6 locales (450 tool URLs)
+  for (const tool of TOOLS_REGISTRY) {
+    const path = `/tools/${tool.id}`;
+    const alternates = getAlternates(path);
+
+    for (const locale of ALL_LOCALES) {
+      entries.push({
+        url: getLocalizedUrl(path, locale),
+        lastModified: now,
+        changeFrequency: "weekly" as const,
+        priority: tool.popular ? 0.9 : 0.8,
+        alternates,
+      });
+    }
+  }
+
+  // 3. 75 Guides across all 6 locales (450 guide URLs)
+  for (const guide of GUIDES_REGISTRY) {
+    const path = `/guides/${guide.slug}`;
+    const alternates = getAlternates(path);
+    const published = new Date(guide.datePublished);
+
+    for (const locale of ALL_LOCALES) {
+      entries.push({
+        url: getLocalizedUrl(path, locale),
+        lastModified: published,
+        changeFrequency: "weekly" as const,
+        priority: 0.85,
+        alternates,
+      });
+    }
+  }
+
+  return entries;
 }

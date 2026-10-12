@@ -3,13 +3,12 @@ import type { Metadata } from "next";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { PrivacyContent } from "@/components/privacy/PrivacyContent";
+import { getHreflangAlternates } from "@/lib/seo-helpers";
 
 export const metadata: Metadata = {
   title: "Garanzia di Privacy & Architettura Zero-Upload | Privacy Guarantee | FileOmniTool",
   description: "Scopri come FileOmniTool garantisce la privacy al 100% elaborando ogni file nel tuo browser tramite WebAssembly e Canvas. Zero cloud upload. Learn how FileOmniTool guarantees 100% in-browser privacy.",
-  alternates: {
-    canonical: "https://www.fileomnitool.com/privacy",
-  },
+  alternates: getHreflangAlternates("/privacy", "it"),
   keywords: [
     "garanzia privacy",
     "zero upload",

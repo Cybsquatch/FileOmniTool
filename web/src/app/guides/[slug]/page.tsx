@@ -7,6 +7,7 @@ import { AdBanner } from "@/components/ads/AdBanner";
 import { GUIDES_REGISTRY, getGuideBySlug } from "@/lib/guides-registry";
 import { getToolById } from "@/lib/tools-registry";
 import { GuidePageClient } from "@/components/guides/GuidePageClient";
+import { getHreflangAlternates } from "@/lib/seo-helpers";
 
 interface GuidePageProps {
   params: Promise<{ slug: string }>;
@@ -52,9 +53,7 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
         ].filter(Boolean) as string[]
       )
     ),
-    alternates: {
-      canonical: `https://www.fileomnitool.com/guides/${guide.slug}`,
-    },
+    alternates: getHreflangAlternates(`/guides/${guide.slug}`, "it"),
     openGraph: {
       title: `${guide.title.it} | ${guide.title.en}`,
       description: `${guide.metaDescription.it} • ${guide.metaDescription.en}`,

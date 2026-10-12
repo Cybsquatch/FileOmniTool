@@ -6,6 +6,7 @@ import { Footer } from "@/components/common/Footer";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { getToolById, TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { ToolPageClient } from "@/components/tools/ToolPageClient";
+import { getHreflangAlternates } from "@/lib/seo-helpers";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -73,9 +74,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${itTitle} | FileOmniTool`,
       description: combinedDesc,
     },
-    alternates: {
-      canonical: `https://www.fileomnitool.com/tools/${tool.id}`,
-    },
+    alternates: getHreflangAlternates(`/tools/${tool.id}`, "it"),
   };
 }
 

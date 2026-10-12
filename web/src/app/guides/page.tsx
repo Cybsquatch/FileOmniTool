@@ -5,13 +5,12 @@ import { Footer } from "@/components/common/Footer";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { GUIDES_REGISTRY } from "@/lib/guides-registry";
 import { GuidesIndexClient } from "@/components/guides/GuidesIndexClient";
+import { getHreflangAlternates } from "@/lib/seo-helpers";
 
 export const metadata: Metadata = {
   title: "Guide e Tutorial sui File nel Browser | Step-by-Step Guides | FileOmniTool",
   description: "Guide complete passo-passo su come unire PDF, convertire immagini, estrarre audio MP3 e proteggere la privacy con strumenti 100% nel tuo browser senza upload. In-browser file tutorials.",
-  alternates: {
-    canonical: "https://www.fileomnitool.com/guides",
-  },
+  alternates: getHreflangAlternates("/guides", "it"),
   keywords: [
     "guide file",
     "tutorial pdf",

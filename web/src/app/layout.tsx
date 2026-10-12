@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/lib/i18n/context";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
+import { getHreflangAlternates } from "@/lib/seo-helpers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +25,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.fileomnitool.com"),
-  alternates: {
-    canonical: "/",
-  },
+  alternates: getHreflangAlternates("/", "it"),
   title: "FileOmniTool - Strumenti per File Gratuiti, Privati e nel Browser | Free In-Browser File Tools",
   description: "Unisci PDF, converti immagini (WebP/PNG/JPG), comprimi file ed estrai archivi ZIP al 100% nel tuo browser senza upload su server. 100% privato e gratuito. Merge PDFs, convert images & extract ZIPs client-side.",
   keywords: [

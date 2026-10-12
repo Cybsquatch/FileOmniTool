@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { ShieldCheck, Layers, Menu, X, FileText, Image as ImageIcon, Archive, FileCode, Globe, BookOpen, ChevronDown } from "lucide-react";
 import { useLanguage, AVAILABLE_LANGUAGES, Language } from "@/lib/i18n/context";
 
@@ -10,6 +11,36 @@ export const Header: React.FC = () => {
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLanguageChange = (newLocale: Language) => {
+    setLanguage(newLocale);
+    setLangDropdownOpen(false);
+    setMobileMenuOpen(false);
+
+    let cleanPath = pathname || "/";
+    for (const loc of ["en", "es", "fr", "de", "pt"] as const) {
+      if (cleanPath === `/${loc}`) {
+        cleanPath = "/";
+        break;
+      } else if (cleanPath.startsWith(`/${loc}/`)) {
+        cleanPath = cleanPath.slice(loc.length + 1);
+        break;
+      }
+    }
+
+    const targetUrl = newLocale === "it"
+      ? cleanPath
+      : `/${newLocale}${cleanPath === "/" ? "" : cleanPath}`;
+
+    router.push(targetUrl);
+  };
+
+  const getLocalizedHref = (path: string) => {
+    if (language === "it") return path;
+    return `/${language}${path === "/" ? "" : path}`;
+  };
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -28,7 +59,7 @@ export const Header: React.FC = () => {
     <header className="sticky top-0 z-50 w-full border-b border-zinc-200/80 bg-white/80 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/80">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2.5 transition-transform hover:scale-[1.02]">
+        <Link href={getLocalizedHref("/")} className="flex items-center gap-2.5 transition-transform hover:scale-[1.02]">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white shadow-md shadow-emerald-500/20">
             <Layers className="h-5 w-5" />
           </div>
@@ -48,55 +79,55 @@ export const Header: React.FC = () => {
         {/* Desktop Navigation Links */}
         <nav className="hidden items-center gap-6 md:flex">
           <Link
-            href="/"
+            href={getLocalizedHref("/")}
             className="text-sm font-medium text-zinc-700 transition hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400"
           >
             {t("nav.allTools")}
           </Link>
           <Link
-            href="/tools/pdf-merge"
+            href={getLocalizedHref("/tools/pdf-merge")}
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400"
           >
             <FileText className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             {t("nav.pdf")}
           </Link>
           <Link
-            href="/tools/image-convert"
+            href={getLocalizedHref("/tools/image-convert")}
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400"
           >
             <ImageIcon className="h-4 w-4 text-teal-600 dark:text-teal-400" />
             {t("nav.images")}
           </Link>
           <Link
-            href="/tools/audio-convert"
+            href={getLocalizedHref("/tools/audio-convert")}
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400"
           >
             <FileCode className="h-4 w-4 text-purple-600 dark:text-purple-400" />
             {t("nav.audio")}
           </Link>
           <Link
-            href="/tools/zip-create"
+            href={getLocalizedHref("/tools/zip-create")}
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400"
           >
             <Archive className="h-4 w-4 text-amber-600 dark:text-amber-400" />
             {t("nav.zip")}
           </Link>
           <Link
-            href="/tools/json-csv"
+            href={getLocalizedHref("/tools/json-csv")}
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400"
           >
             <FileCode className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             {t("nav.data")}
           </Link>
           <Link
-            href="/guides"
+            href={getLocalizedHref("/guides")}
             className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400"
           >
             <BookOpen className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
             <span>{t("nav.guides")}</span>
           </Link>
           <Link
-            href="/privacy"
+            href={getLocalizedHref("/privacy")}
             className="flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50/60 px-3 py-1 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300"
           >
             <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
@@ -121,10 +152,7 @@ export const Header: React.FC = () => {
                 {AVAILABLE_LANGUAGES.map((l) => (
                   <button
                     key={l.code}
-                    onClick={() => {
-                      setLanguage(l.code);
-                      setLangDropdownOpen(false);
-                    }}
+                    onClick={() => handleLanguageChange(l.code)}
                     className={`flex w-full items-center justify-between px-3 py-1.5 text-left text-xs transition ${
                       language === l.code
                         ? "bg-emerald-50 font-bold text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300"
@@ -166,10 +194,7 @@ export const Header: React.FC = () => {
                 {AVAILABLE_LANGUAGES.map((l) => (
                   <button
                     key={l.code}
-                    onClick={() => {
-                      setLanguage(l.code);
-                      setMobileMenuOpen(false);
-                    }}
+                    onClick={() => handleLanguageChange(l.code)}
                     className={`flex items-center justify-center gap-1.5 rounded-lg border px-2 py-1.5 text-xs font-semibold ${
                       language === l.code
                         ? "border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300"
@@ -184,42 +209,42 @@ export const Header: React.FC = () => {
             </div>
 
             <Link
-              href="/"
+              href={getLocalizedHref("/")}
               onClick={() => setMobileMenuOpen(false)}
               className="text-base font-medium text-zinc-800 dark:text-zinc-200"
             >
               {t("nav.allTools")}
             </Link>
             <Link
-              href="/tools/pdf-merge"
+              href={getLocalizedHref("/tools/pdf-merge")}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2 text-base font-medium text-zinc-800 dark:text-zinc-200"
             >
               <FileText className="h-4 w-4 text-emerald-600" /> {t("nav.pdf")} Tools
             </Link>
             <Link
-              href="/tools/image-convert"
+              href={getLocalizedHref("/tools/image-convert")}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2 text-base font-medium text-zinc-800 dark:text-zinc-200"
             >
               <ImageIcon className="h-4 w-4 text-teal-600" /> {t("nav.images")}
             </Link>
             <Link
-              href="/tools/zip-create"
+              href={getLocalizedHref("/tools/zip-create")}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2 text-base font-medium text-zinc-800 dark:text-zinc-200"
             >
               <Archive className="h-4 w-4 text-amber-600" /> {t("nav.zip")}
             </Link>
             <Link
-              href="/guides"
+              href={getLocalizedHref("/guides")}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2 text-base font-medium text-zinc-800 dark:text-zinc-200"
             >
               <BookOpen className="h-4 w-4 text-emerald-600" /> {t("nav.guides")}
             </Link>
             <Link
-              href="/privacy"
+              href={getLocalizedHref("/privacy")}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center gap-2 text-base font-semibold text-emerald-600 dark:text-emerald-400"
             >

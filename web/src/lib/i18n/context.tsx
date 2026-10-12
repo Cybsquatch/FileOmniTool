@@ -862,10 +862,16 @@ const LanguageContext = createContext<LanguageContextType>({
   t: (key: string) => key,
 });
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>("it");
+export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLanguage?: Language }> = ({ children, initialLanguage }) => {
+  const [language, setLanguageState] = useState<Language>(initialLanguage || "it");
 
   useEffect(() => {
+    if (initialLanguage) {
+      setLanguageState(initialLanguage);
+      document.documentElement.lang = initialLanguage;
+      return;
+    }
+
     // 1. Controlla preferenza esplicita salvata in localStorage
     const saved = localStorage.getItem("fileomnitool_lang") as Language | null;
     const validCodes: Language[] = ["en", "it", "es", "fr", "de", "pt"];
@@ -898,7 +904,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         document.documentElement.lang = "en";
       }
     }
-  }, []);
+  }, [initialLanguage]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
