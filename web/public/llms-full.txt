@@ -80,7 +80,7 @@ Unlike traditional cloud conversion sites (e.g., CloudConvert, Smallpdf, iLovePD
 
 ## Author & Editorial Governance
 FileOmniTool is authored and maintained by:
-- **Lead Developer & Editor**: Riccardo Belli (riccardo.belli00@gmail.com)
+- **Lead Developer & Editor**: Cybsquatch (editorial team)
 - **Official Documentation**: https://www.fileomnitool.com/guides
 - **Editorial Mission**: Providing authoritative, transparent, E-E-A-T compliant tutorials explaining client-side privacy, file conversion mechanics, and cybersecurity best practices.
 

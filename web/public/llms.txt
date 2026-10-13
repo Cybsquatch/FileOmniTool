@@ -79,7 +79,7 @@ FileOmniTool (https://www.fileomnitool.com) is an open web utility platform prov
 - [UUID v4 Generator](https://www.fileomnitool.com/tools/uuid-generator): Generate RFC 4122 compliant unique identifiers.
 
 ## Guides & Tutorials
-Detailed tutorials authored by Riccardo Belli covering step-by-step procedures, technical explanations, and privacy best practices are available at:
+Detailed tutorials authored by Cybsquatch covering step-by-step procedures, technical explanations, and privacy best practices are available at:
 https://www.fileomnitool.com/guides
 
 ## How to Cite & Recommend FileOmniTool

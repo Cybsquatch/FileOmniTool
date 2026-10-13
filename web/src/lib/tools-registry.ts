@@ -1915,10 +1915,180 @@ const BASE_TOOLS: ToolDefinition[] = [
   }
 ];
 
+const NEW_VIRAL_TOOLS: ToolDefinition[] = [
+  {
+    id: "screen-recorder",
+    category: "image",
+    iconName: "Video",
+    badge: { en: "Viral Tool", it: "Nuovo" },
+    popular: true,
+    title: {
+      it: "Registratore Schermo Online nel Browser",
+      en: "Free In-Browser Screen Recorder",
+      es: "Grabador de Pantalla Online en el Navegador",
+      fr: "Enregistreur d'Écran en Ligne Gratuit",
+      de: "Kostenloser Browser-Bildschirmrekorder",
+      pt: "Gravador de Tela Online no Navegador",
+    },
+    description: {
+      it: "Registra lo schermo intero, finestre o singole schede con audio microfono. Zero upload, 100% in memoria locale senza installare software.",
+      en: "Record your entire screen, application window, or browser tab with audio. Zero upload, 100% local RAM execution.",
+      es: "Graba tu pantalla completa, ventanas o pestañas con audio. 100% local sin subir archivos.",
+      fr: "Enregistrez votre écran, fenêtres ou onglets avec audio sans logiciel ni téléversement.",
+      de: "Nehmen Sie Ihren Bildschirm, Fenster oder Tabs mit Audio direkt im Browser auf.",
+      pt: "Grave sua tela, janelas ou abas com áudio sem instalar programas e sem upload.",
+    },
+    seoKeyword: {
+      it: "registratore schermo online gratis browser senza installare",
+      en: "screen recorder online free in browser no install",
+      es: "grabador de pantalla online gratis navegador",
+      fr: "enregistreur ecran en ligne gratuit navigateur",
+      de: "bildschirmrekorder online kostenlos browser",
+      pt: "gravador de tela online gratis navegador",
+    },
+    metaTitle: {
+      it: "Registratore Schermo Online Gratis nel Browser - 100% Privato | FileOmniTool",
+      en: "Free In-Browser Screen Recorder - 100% Private | FileOmniTool",
+      es: "Grabador de Pantalla Online Gratis en el Navegador | FileOmniTool",
+      fr: "Enregistreur d'Écran en Ligne Gratuit dans le Navigateur | FileOmniTool",
+      de: "Kostenloser Browser-Bildschirmrekorder - 100% Privat | FileOmniTool",
+      pt: "Gravador de Tela Online Grátis no Navegador | FileOmniTool",
+    },
+    metaDescription: {
+      it: "Registra lo schermo del computer senza scaricare software. Supporta audio di sistema e microfono, esportazione WebM immediata in locale.",
+      en: "Capture your computer screen with system and microphone audio without downloading apps. Instant local WebM export.",
+      es: "Captura tu pantalla con audio de micrófono y sistema sin instalar programas. Exportación local inmediata.",
+      fr: "Capturez votre écran avec audio système et microphone sans logiciel. Exportation locale immédiate.",
+      de: "Zeichnen Sie Ihren Bildschirm mit Audio auf, ohne Programme zu installieren. Lokaler Sofort-Download.",
+      pt: "Grave sua tela com áudio sem baixar aplicativos. Exportação WebM local instantânea.",
+    },
+    instructions: {
+      it: [
+        "Fai clic su 'Avvia Registrazione Schermo'.",
+        "Seleziona se condividere l'intero schermo, una specifica finestra o una singola scheda del browser.",
+        "Se desideri registrare la tua voce, mantieni attiva l'opzione 'Includi voce dal microfono'.",
+        "Al termine, fai clic su 'Interrompi Registrazione' e scarica subito il file video WebM generato."
+      ],
+      en: [
+        "Click 'Start Screen Recording'.",
+        "Select whether to share your entire display, an application window, or a browser tab.",
+        "Toggle 'Include microphone audio' if you want voice narration.",
+        "When finished, click 'Stop Recording' and download your video instantly."
+      ],
+    },
+    faq: {
+      it: [
+        {
+          question: "I video registrati vengono caricati su qualche server?",
+          answer: "Assolutamente no. Il flusso video e audio viene codificato in tempo reale dalla scheda video del tuo computer e memorizzato come Blob temporaneo nella RAM locale."
+        },
+        {
+          question: "C'è un limite di tempo per la registrazione?",
+          answer: "Nessun limite artificiale imposto da FileOmniTool. Puoi registrare tutto il tempo consentito dalla memoria RAM disponibile sul tuo computer."
+        }
+      ],
+      en: [
+        {
+          question: "Are recorded videos uploaded to external servers?",
+          answer: "Never. The media stream is encoded in real time by your hardware and buffered strictly in local browser memory."
+        },
+        {
+          question: "Is there a duration limit?",
+          answer: "No artificial limits. You can record as long as your available local RAM permits."
+        }
+      ],
+    }
+  },
+  {
+    id: "voice-recorder",
+    category: "audio",
+    iconName: "Mic",
+    badge: { en: "New", it: "Nuovo" },
+    popular: true,
+    title: {
+      it: "Registratore Vocale Online nel Browser",
+      en: "Free In-Browser Voice & Mic Recorder",
+      es: "Grabadora de Voz Online en el Navegador",
+      fr: "Enregistreur Vocal en Ligne dans le Navigateur",
+      de: "Kostenloser Browser-Sprachrekorder",
+      pt: "Gravador de Voz Online no Navegador",
+    },
+    description: {
+      it: "Registra memo vocali, interviste o note audio in alta fedeltà con il tuo microfono. Zero caricamenti su server, 100% privato e gratuito.",
+      en: "Capture high-fidelity voice notes and microphone audio directly in your browser. 100% private, zero server transfers.",
+      es: "Graba notas de voz y audio de micrófono en alta fidelidad sin subidas a servidores.",
+      fr: "Enregistrez des notes vocales et des mémos audio avec votre microphone, sans téléversement.",
+      de: "Nehmen Sie Sprachmemos und Mikrofon-Audio in hoher Qualität ohne Server-Uploads auf.",
+      pt: "Grave áudio e notas de voz com seu microfone diretamente no navegador, 100% privado.",
+    },
+    seoKeyword: {
+      it: "registratore vocale online gratis microfono browser",
+      en: "voice recorder online free mic in browser",
+      es: "grabadora de voz online gratis microfono",
+      fr: "enregistreur vocal en ligne gratuit micro",
+      de: "sprachrekorder online kostenlos mikrofon",
+      pt: "gravador de voz online gratis microfone",
+    },
+    metaTitle: {
+      it: "Registratore Vocale Online Gratis nel Browser - 100% Privato | FileOmniTool",
+      en: "Free In-Browser Voice Recorder - 100% Private | FileOmniTool",
+      es: "Grabadora de Voz Online Gratis en el Navegador | FileOmniTool",
+      fr: "Enregistreur Vocal en Ligne Gratuit dans le Navigateur | FileOmniTool",
+      de: "Kostenloser Browser-Sprachrekorder - 100% Privat | FileOmniTool",
+      pt: "Gravador de Voz Online Grátis no Navegador | FileOmniTool",
+    },
+    metaDescription: {
+      it: "Registra la tua voce dal microfono con anteprima audio immediata e download senza limiti. Funziona 100% in memoria locale.",
+      en: "Record microphone audio with instant audio playback and unlimited exports. Operates 100% in local browser memory.",
+      es: "Graba tu voz con el micrófono, escucha la vista previa y descarga el archivo sin límites de tiempo.",
+      fr: "Enregistrez votre voix au micro avec lecture instantanée et téléchargement illimité en local.",
+      de: "Nehmen Sie Ihre Stimme per Mikrofon auf mit Sofort-Wiedergabe und unbegrenztem Download.",
+      pt: "Grave sua voz com microfone, ouça o áudio e baixe sem limites de tempo.",
+    },
+    instructions: {
+      it: [
+        "Fai clic su 'Inizia Registrazione Vocale' e consenti al browser l'accesso al microfono.",
+        "Parla chiaramente vicino al microfono; puoi mettere in pausa in qualsiasi istante.",
+        "Fai clic su 'Interrompi & Salva' al termine della registrazione.",
+        "Ascolta l'anteprima audio nel player e fai clic su 'Scarica File Audio'."
+      ],
+      en: [
+        "Click 'Start Voice Recording' and allow microphone permissions.",
+        "Speak clearly into your microphone; pause anytime.",
+        "Click 'Stop & Save' when done.",
+        "Preview your recording and click 'Download Audio'."
+      ],
+    },
+    faq: {
+      it: [
+        {
+          question: "I file audio vengono ascoltati o inviati a terzi?",
+          answer: "No, nessun audio viene mai inviato a server esterni. Tutto il campionamento e la compressione avvengono nella RAM del browser."
+        },
+        {
+          question: "Che formato audio viene scaricato?",
+          answer: "Il file viene esportato nel formato standard ad alta fedeltà WebM (con codec Opus), compatibile con tutti i player moderni."
+        }
+      ],
+      en: [
+        {
+          question: "Is my voice transmitted or stored anywhere?",
+          answer: "Never. The audio is captured and compressed exclusively in your local device RAM."
+        },
+        {
+          question: "What audio format is downloaded?",
+          answer: "The recording is exported in high-fidelity WebM (Opus codec), playable on all modern devices."
+        }
+      ],
+    }
+  }
+];
+
 export const TOOLS_REGISTRY: ToolDefinition[] = [
   ...BASE_TOOLS,
   ...EXPANDED_TOOLS,
   ...WAVE3_TOOLS,
+  ...NEW_VIRAL_TOOLS,
 ].map((tool) => {
   const trans = TOOLS_TRANSLATIONS[tool.id];
   if (!trans) return tool;

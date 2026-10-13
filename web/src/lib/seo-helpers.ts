@@ -258,3 +258,41 @@ export function getPrivacyMetadata(locale: Language): Metadata {
     },
   };
 }
+
+const ARTICLES_INDEX_TITLES: Record<Language, string> = {
+  it: "Articoli, Progetti Open-Source & Privacy Digitale | FileOmniTool",
+  en: "Articles, Open-Source Projects & Digital Privacy | FileOmniTool",
+  es: "Artículos, Proyectos de Código Abierto y Privacidad Digital | FileOmniTool",
+  fr: "Articles, Projets Open-Source et Confidentialité Numérique | FileOmniTool",
+  de: "Artikel, Open-Source-Projekte & Digitale Privatsphäre | FileOmniTool",
+  pt: "Artigos, Projetos de Código Aberto e Privacidade Digital | FileOmniTool",
+};
+
+const ARTICLES_INDEX_DESCRIPTIONS: Record<Language, string> = {
+  it: "Approfondimenti su software open source, sicurezza informatica, alternative gratuite ad Adobe e analisi sui rischi dei convertitori cloud.",
+  en: "In-depth insights into open-source software, cybersecurity, free alternatives to Adobe, and cloud converter privacy risks.",
+  es: "Análisis sobre software de código abierto, ciberseguridad, alternativas libres a Adobe y riesgos de convertidores en la nube.",
+  fr: "Analyses approfondies sur les logiciels open source, la cybersécurité, les alternatives à Adobe et les risques du cloud.",
+  de: "Tiefgründige Analysen zu Open-Source-Software, Cybersicherheit, kostenlosen Adobe-Alternativen und Cloud-Risiken.",
+  pt: "Análises aprofundadas sobre softwares livres, segurança digital, alternativas gratuitas à Adobe e riscos na nuvem.",
+};
+
+export function getArticlesIndexMetadata(locale: Language): Metadata {
+  const hreflang = getHreflangAlternates("/articles", locale);
+  const ogConfig = LOCALE_OG_MAP[locale];
+
+  return {
+    title: ARTICLES_INDEX_TITLES[locale],
+    description: ARTICLES_INDEX_DESCRIPTIONS[locale],
+    alternates: hreflang,
+    openGraph: {
+      title: ARTICLES_INDEX_TITLES[locale],
+      description: ARTICLES_INDEX_DESCRIPTIONS[locale],
+      url: hreflang.canonical,
+      type: "website",
+      locale: ogConfig.locale,
+      alternateLocale: ogConfig.alternates,
+    },
+  };
+}
+

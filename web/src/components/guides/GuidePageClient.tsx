@@ -212,12 +212,12 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
         <section className="rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-50/60 via-white to-zinc-50 p-6 shadow-sm dark:border-emerald-600/30 dark:from-emerald-950/20 dark:via-zinc-900 dark:to-zinc-900">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white font-extrabold text-xl shadow-md">
-              RB
+              CS
             </div>
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <h3 className="font-bold text-zinc-900 dark:text-white">
-                  Riccardo Belli
+                  Cybsquatch
                 </h3>
                 <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">
                   <BadgeCheck className="h-3 w-3" />

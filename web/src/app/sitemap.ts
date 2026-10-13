@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { GUIDES_REGISTRY } from "@/lib/guides-registry";
+import { ARTICLES_REGISTRY } from "@/lib/articles-registry";
 import { ALL_LOCALES, getLocalizedUrl } from "@/lib/seo-helpers";
 import { Language } from "@/lib/i18n/context";
 
@@ -33,6 +34,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily" as const,
       priority: 0.85,
       alternates: getAlternates("/guides"),
+    });
+
+    entries.push({
+      url: getLocalizedUrl("/articles", locale),
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.88,
+      alternates: getAlternates("/articles"),
     });
 
     entries.push({
@@ -72,6 +81,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: published,
         changeFrequency: "weekly" as const,
         priority: 0.85,
+        alternates,
+      });
+    }
+  }
+
+  // 4. Articles across all 6 locales (30 article URLs)
+  for (const article of ARTICLES_REGISTRY) {
+    const path = `/articles/${article.slug}`;
+    const alternates = getAlternates(path);
+    const published = new Date(article.datePublished);
+
+    for (const locale of ALL_LOCALES) {
+      entries.push({
+        url: getLocalizedUrl(path, locale),
+        lastModified: published,
+        changeFrequency: "monthly" as const,
+        priority: 0.9,
         alternates,
       });
     }

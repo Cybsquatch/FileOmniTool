@@ -85,7 +85,7 @@ export default async function LocalizedGuidePage({ params }: LocalizedGuidePageP
         "inLanguage": validLocale,
         "author": {
           "@type": "Person",
-          "name": "Riccardo Belli",
+          "name": "Cybsquatch",
           "jobTitle": "Software Developer & Digital Privacy Advocate",
           "url": "https://www.fileomnitool.com",
         },

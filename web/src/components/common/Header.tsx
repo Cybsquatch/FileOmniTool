@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ShieldCheck, Layers, Menu, X, FileText, Image as ImageIcon, Archive, FileCode, Globe, BookOpen, ChevronDown } from "lucide-react";
+import { ShieldCheck, Layers, Menu, X, FileText, Image as ImageIcon, Archive, FileCode, Globe, BookOpen, ChevronDown, Sparkles } from "lucide-react";
 import { useLanguage, AVAILABLE_LANGUAGES, Language } from "@/lib/i18n/context";
 
 export const Header: React.FC = () => {
@@ -127,6 +127,13 @@ export const Header: React.FC = () => {
             <span>{t("nav.guides")}</span>
           </Link>
           <Link
+            href={getLocalizedHref("/articles")}
+            className="flex items-center gap-1.5 text-sm font-medium text-zinc-700 transition hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400"
+          >
+            <Sparkles className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <span>{language === "it" ? "Articoli" : "Articles"}</span>
+          </Link>
+          <Link
             href={getLocalizedHref("/privacy")}
             className="flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50/60 px-3 py-1 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300"
           >
@@ -242,6 +249,13 @@ export const Header: React.FC = () => {
               className="flex items-center gap-2 text-base font-medium text-zinc-800 dark:text-zinc-200"
             >
               <BookOpen className="h-4 w-4 text-emerald-600" /> {t("nav.guides")}
+            </Link>
+            <Link
+              href={getLocalizedHref("/articles")}
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 text-base font-medium text-zinc-800 dark:text-zinc-200"
+            >
+              <Sparkles className="h-4 w-4 text-emerald-600" /> {language === "it" ? "Articoli" : "Articles"}
             </Link>
             <Link
               href={getLocalizedHref("/privacy")}

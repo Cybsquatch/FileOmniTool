@@ -79,6 +79,8 @@ import { CssMinifierTool } from "@/components/tools/CssMinifierTool";
 import { EpochConverterTool } from "@/components/tools/EpochConverterTool";
 import { FileToBase64Tool } from "@/components/tools/FileToBase64Tool";
 import { FileMagicDetectorTool } from "@/components/tools/FileMagicDetectorTool";
+import { ScreenRecorderTool } from "@/components/tools/ScreenRecorderTool";
+import { VoiceRecorderTool } from "@/components/tools/VoiceRecorderTool";
 import { ComparisonTable } from "@/components/tools/ComparisonTable";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { EmbedWidgetModal } from "@/components/tools/EmbedWidgetModal";
@@ -256,6 +258,10 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         return <FileToBase64Tool />;
       case "file-magic-detector":
         return <FileMagicDetectorTool />;
+      case "screen-recorder":
+        return <ScreenRecorderTool />;
+      case "voice-recorder":
+        return <VoiceRecorderTool />;
       default:
         return <div>Tool in development.</div>;
     }

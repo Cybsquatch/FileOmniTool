@@ -117,7 +117,7 @@ export default async function SingleGuidePage({ params }: GuidePageProps) {
         "inLanguage": ["it", "en", "es", "fr", "de", "pt"],
         "author": {
           "@type": "Person",
-          "name": "Riccardo Belli",
+          "name": "Cybsquatch",
           "jobTitle": "Software Developer & Digital Privacy Advocate",
           "url": "https://www.fileomnitool.com",
         },
