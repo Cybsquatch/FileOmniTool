@@ -76,8 +76,13 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
           </nav>
         </div>
 
+        {/* Top AdSlot Leaderboard */}
+        <section className="mx-auto max-w-4xl px-4 pt-4 sm:px-6 lg:px-8">
+          <AdBanner slot="leaderboard" />
+        </section>
+
         {/* Article Header */}
-        <header className="mx-auto max-w-4xl px-4 pt-8 sm:px-6 lg:px-8">
+        <header className="mx-auto max-w-4xl px-4 pt-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400">
             <span className="text-xl">{article.coverEmoji}</span>
             <span className="rounded-full bg-emerald-50 px-3 py-1 font-semibold uppercase tracking-wider text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">
@@ -162,33 +167,41 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
             const content = section.content[language] || section.content.it || section.content.en;
 
             return (
-              <div
-                key={idx}
-                className="rounded-2xl border border-zinc-200/80 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70"
-              >
-                <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white leading-snug">
-                  {heading}
-                </h2>
-                <div className="mt-5 space-y-4 text-sm sm:text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-                  {content.split("\n\n").map((paragraph, pIdx) => {
-                    // Check if paragraph is a table or list
-                    if (paragraph.startsWith("|")) {
+              <React.Fragment key={idx}>
+                <div
+                  className="rounded-2xl border border-zinc-200/80 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70"
+                >
+                  <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white leading-snug">
+                    {heading}
+                  </h2>
+                  <div className="mt-5 space-y-4 text-sm sm:text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+                    {content.split("\n\n").map((paragraph, pIdx) => {
+                      // Check if paragraph is a table or list
+                      if (paragraph.startsWith("|")) {
+                        return (
+                          <div key={pIdx} className="overflow-x-auto py-2">
+                            <pre className="text-xs font-mono bg-zinc-50 dark:bg-zinc-950 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-x-auto whitespace-pre-wrap">
+                              {paragraph}
+                            </pre>
+                          </div>
+                        );
+                      }
                       return (
-                        <div key={pIdx} className="overflow-x-auto py-2">
-                          <pre className="text-xs font-mono bg-zinc-50 dark:bg-zinc-950 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-x-auto whitespace-pre-wrap">
-                            {paragraph}
-                          </pre>
-                        </div>
+                        <p key={pIdx} className="leading-relaxed">
+                          {paragraph}
+                        </p>
                       );
-                    }
-                    return (
-                      <p key={pIdx} className="leading-relaxed">
-                        {paragraph}
-                      </p>
-                    );
-                  })}
+                    })}
+                  </div>
                 </div>
-              </div>
+
+                {/* Mid-Article Sponsor Break after Section 2 */}
+                {idx === 1 && (
+                  <div className="my-8 flex justify-center">
+                    <AdBanner slot="action-card" />
+                  </div>
+                )}
+              </React.Fragment>
             );
           })}
 
@@ -312,6 +325,11 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
             </section>
           )}
         </article>
+
+        {/* Bottom Leaderboard Banner */}
+        <section className="mx-auto mt-10 max-w-4xl px-4 sm:px-6 lg:px-8">
+          <AdBanner slot="leaderboard" />
+        </section>
       </main>
 
       <Footer />
