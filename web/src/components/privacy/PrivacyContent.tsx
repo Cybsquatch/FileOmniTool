@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ShieldCheck, Lock, Terminal, Cpu, CheckCircle2, ArrowLeft } from "lucide-react";
+import { ShieldCheck, Lock, Terminal, Cpu, CheckCircle2, ArrowLeft, UserCheck, Cookie, Sliders, Mail } from "lucide-react";
 import { useLanguage, Language } from "@/lib/i18n/context";
 import { AdBanner } from "@/components/ads/AdBanner";
 
@@ -27,39 +27,24 @@ interface PrivacyCopy {
   sec3Bullet4: string;
   sec4Title: string;
   sec4P1: string;
+  sec5Title: string;
+  sec5P1: string;
+  sec5P2: string;
+  sec5Rights: string;
+  sec6Title: string;
+  sec6P1: string;
+  manageCookiesBtn: string;
 }
 
 const PRIVACY_TEXTS: Record<Language, PrivacyCopy> = {
-  en: {
-    backBtn: "Back to all tools",
-    badge: "100% In-Browser Privacy Guarantee",
-    title: "Privacy Guarantee & Zero-Upload Architecture",
-    subtitle: "Cybersecurity and total data confidentiality as our highest priority",
-    sec1Title: "1. Why your files never leave your device",
-    sec1P1: "Traditional online converters (like ILovePDF or Smallpdf) work by uploading your documents to remote cloud servers, processing them on external workers, and sending back a download link. This exposes sensitive contracts, tax records, and personal photos to potential leaks.",
-    sec1P2: "FileOmniTool follows a completely opposite philosophy: every single operation (PDF merge, image conversion, compression, ZIP extraction) runs directly inside your browser memory using WebAssembly and HTML5 Canvas. Zero bytes ever leave your device.",
-    sec2Title: "2. How to verify it yourself with Browser DevTools",
-    sec2P1: "Don't just take our word for it: you can independently inspect the absence of network uploads at any moment:",
-    sec2Step1: "Press F12 (or right-click -> Inspect) to open your browser's Developer Tools.",
-    sec2Step2: "Navigate to the Network tab.",
-    sec2Step3: "Drag a file into any tool and start conversion or merging.",
-    sec2Step4: "You will see that zero POST or PUT requests containing binary data are sent over the network. The file is handled exclusively as an in-memory local Blob.",
-    sec3Title: "3. Technical Engines Used",
-    sec3Bullet1: "pdf-lib: PDF manipulation and rendering executed entirely client-side in WebAssembly/JavaScript.",
-    sec3Bullet2: "HTML5 Canvas API: High-performance raster image conversion (PNG, JPEG, WebP) with GPU acceleration.",
-    sec3Bullet3: "JSZip: Local client-side DEFLATE compression and decompression with zip-bomb protection.",
-    sec3Bullet4: "Web Cryptography API: Hardware-accelerated cryptographic SHA-256 and AES calculations.",
-    sec4Title: "4. Ethical Monetization & Ad Transparency",
-    sec4P1: "To maintain all tools 100% free with unlimited usage and no paywalls, we display non-intrusive advertisements. Ads run in isolated containers (Zero CLS) and have zero access to files processed in your browser.",
-  },
   it: {
     backBtn: "Torna a tutti gli strumenti",
     badge: "Garanzia Privacy 100% In-Browser",
-    title: "Garanzia di Privacy & Architettura Zero-Upload",
-    subtitle: "La sicurezza informatica e la riservatezza dei tuoi dati al primo posto",
+    title: "Informativa Privacy & Architettura Zero-Upload",
+    subtitle: "Conformità al Regolamento Generale sulla Protezione dei Dati (GDPR UE 2016/679)",
     sec1Title: "1. Perché i tuoi file non lasciano mai il tuo dispositivo",
     sec1P1: "I tradizionali convertitori online funzionano caricando il tuo file sui loro server cloud, eseguendo la modifica e rimandandoti il link di download. Questo espone contratti riservati, dati personali o documenti aziendali a potenziali violazioni o data leak.",
-    sec1P2: "FileOmniTool adotta una filosofia completamente diversa: ogni singola operazione (unione PDF, conversione immagini, compressione, estrazione ZIP) è scritta in JavaScript e WebAssembly per essere eseguita direttamente all'interno del motore del tuo browser.",
+    sec1P2: "FileOmniTool adotta una filosofia completamente diversa: ogni singola operazione (unione PDF, conversione immagini, compressione, estrazione ZIP) è scritta in JavaScript e WebAssembly per essere eseguita direttamente all'interno del motore del tuo browser. Zero byte vengono caricati su server remoti.",
     sec2Title: "2. Come verificare tu stesso con gli Strumenti per Sviluppatori",
     sec2P1: "Non fidarti solo delle nostre parole: puoi certificare l'assenza di upload in qualsiasi istante:",
     sec2Step1: "Premi il tasto F12 (oppure tasto destro -> Ispeziona) per aprire i DevTools del tuo browser.",
@@ -71,102 +56,172 @@ const PRIVACY_TEXTS: Record<Language, PrivacyCopy> = {
     sec3Bullet2: "HTML5 Canvas API: Conversione formati raster (PNG, JPEG, WebP) con accelerazione hardware della tua GPU.",
     sec3Bullet3: "JSZip: Compressione e decompressione con algoritmo DEFLATE locale con guardrail anti zip-bomb.",
     sec3Bullet4: "Web Crypto API: Generazione crittografica di hash SHA-256/512 eseguita dal processore nativo del dispositivo.",
-    sec4Title: "4. Come finanziamo il sito: Pubblicità Etica",
+    sec4Title: "4. Come finanziamo il sito: Pubblicità Etica & Sponsor",
     sec4P1: "Per mantenere tutti i nostri tool gratuiti, illimitati e senza canoni di abbonamento, ospitiamo annunci pubblicitari certificati. Gli annunci sono integrati in contenitori a dimensione fissa (zero CLS) e non hanno mai accesso ai file che manipoli nel browser.",
+    sec5Title: "5. Informativa Privacy GDPR (Artt. 13 e 14 Reg. UE 2016/679)",
+    sec5P1: "Titolare del trattamento: FileOmniTool Team / Cybsquatch (email: privacy@fileomnitool.com). Trattamento file: ZERO dati vengono salvati o caricati. Dati di navigazione: per la sicurezza dell'infrastruttura vengono registrati log tecnici con IP anonimizzati. Servizi di terze parti: previo consenso esplicito, utilizziamo Google Analytics per analisi aggregate e Google AdSense / Adsterra per l'erogazione di banner pubblicitari.",
+    sec5P2: "Base giuridica: Esecuzione del servizio e legittimo interesse per la sicurezza tecnica; Consenso esplicito dell'interessato (Art. 6.1.a GDPR) per cookie di tracciamento e marketing.",
+    sec5Rights: "Diritti dell'Interessato (Artt. 15-22 GDPR): Hai diritto di accesso, cancellazione, limitazione, opposizione al trattamento e revoca del consenso in qualsiasi momento. Hai inoltre il diritto di proporre reclamo all'Autorità Garante per la Protezione dei Dati Personali (www.garanteprivacy.it).",
+    sec6Title: "6. Gestione dei Cookie & Consenso Informato",
+    sec6P1: "Utilizziamo cookie tecnici essenziali per garantire la lingua e la sicurezza. I cookie analitici e pubblicitari vengono attivati solo se hai prestato il tuo consenso informato tramite il nostro banner conforme alla direttiva ePrivacy e alle linee guida EDPB.",
+    manageCookiesBtn: "Modifica le tue Preferenze Cookie",
+  },
+  en: {
+    backBtn: "Back to all tools",
+    badge: "100% In-Browser Privacy Guarantee",
+    title: "Privacy Policy & Zero-Upload Architecture",
+    subtitle: "Full compliance with the EU General Data Protection Regulation (GDPR 2016/679)",
+    sec1Title: "1. Why your files never leave your device",
+    sec1P1: "Traditional online converters work by uploading your documents to remote cloud servers, processing them externally, and returning a download link. This exposes sensitive contracts, tax records, and personal photos to potential leaks.",
+    sec1P2: "FileOmniTool follows an opposite philosophy: every single operation (PDF merge, image conversion, compression, ZIP extraction) runs directly inside your browser memory using WebAssembly and HTML5 Canvas. Zero bytes ever leave your device.",
+    sec2Title: "2. How to verify it yourself with Browser DevTools",
+    sec2P1: "Don't just take our word for it: you can independently inspect the absence of network uploads at any moment:",
+    sec2Step1: "Press F12 (or right-click -> Inspect) to open your browser's Developer Tools.",
+    sec2Step2: "Navigate to the Network tab.",
+    sec2Step3: "Drag a file into any tool and start conversion or merging.",
+    sec2Step4: "You will see that zero POST or PUT requests containing binary data are sent over the network. The file is handled exclusively as an in-memory local Blob.",
+    sec3Title: "3. Technical Engines Used",
+    sec3Bullet1: "pdf-lib: PDF manipulation and rendering executed entirely client-side in JavaScript.",
+    sec3Bullet2: "HTML5 Canvas API: High-performance raster image conversion (PNG, JPEG, WebP) with GPU acceleration.",
+    sec3Bullet3: "JSZip: Local client-side DEFLATE compression and decompression with zip-bomb protection.",
+    sec3Bullet4: "Web Cryptography API: Hardware-accelerated cryptographic SHA-256 and AES calculations.",
+    sec4Title: "4. Ethical Monetization & Ad Transparency",
+    sec4P1: "To maintain all tools 100% free with unlimited usage and no paywalls, we display non-intrusive advertisements. Ads run in isolated containers (Zero CLS) and have zero access to files processed in your browser.",
+    sec5Title: "5. GDPR Privacy Disclosure (Articles 13 & 14 EU 2016/679)",
+    sec5P1: "Data Controller: FileOmniTool Team / Cybsquatch (email: privacy@fileomnitool.com). User Files: ZERO data is uploaded, retained, or stored. Server Logs: minimal technical server logs with anonymized IPs are retained for security purposes. Third parties: with explicit prior consent, Google Analytics and ad networks (Google AdSense, Adsterra) may process technical identifiers.",
+    sec5P2: "Legal Basis: Legitimate interest for site security; Explicit consent (GDPR Art. 6.1.a) for analytics and advertising cookies.",
+    sec5Rights: "User Rights (GDPR Arts. 15-22): You have the right to access, rectify, erase, restrict, and revoke consent at any time. You may also lodge a complaint with your national Data Protection Authority.",
+    sec6Title: "6. Cookie Management & Informed Consent",
+    sec6P1: "We use essential technical cookies to remember language and security settings. Analytical and marketing cookies are strictly held until you grant affirmative opt-in consent via our banner.",
+    manageCookiesBtn: "Manage Your Cookie Preferences",
   },
   es: {
     backBtn: "Volver a todas las herramientas",
     badge: "Garantía de Privacidad 100% en el Navegador",
-    title: "Garantía de Privacidad y Arquitectura Zero-Upload",
-    subtitle: "La ciberseguridad y la confidencialidad de tus datos como máxima prioridad",
+    title: "Política de Privacidad y Arquitectura Zero-Upload",
+    subtitle: "Cumplimiento integral con el Reglamento General de Protección de Datos (RGPD UE 2016/679)",
     sec1Title: "1. Por qué tus archivos nunca salen de tu dispositivo",
-    sec1P1: "Los convertidores tradicionales en línea suben tus documentos confidenciales a servidores en la nube externos. Esto expone contratos, declaraciones y fotos privadas a filtraciones o riesgos de seguridad.",
-    sec1P2: "FileOmniTool adopta una arquitectura radicalmente distinta: cada operación (unir PDF, convertir imágenes, comprimir, extraer ZIP) se ejecuta directamente en la memoria RAM de tu navegador mediante WebAssembly y Canvas. Cero bytes salen de tu dispositivo.",
-    sec2Title: "2. Cómo comprobarlo tú mismo con las herramientas de desarrollador",
-    sec2P1: "No te fíes solo de nuestras palabras: puedes verificar la ausencia total de subidas en cualquier momento:",
-    sec2Step1: "Pulsa F12 (o clic derecho -> Inspeccionar) para abrir las DevTools de tu navegador.",
-    sec2Step2: "Ve a la pestaña Network (Red).",
-    sec2Step3: "Arrastra un archivo a cualquiera de nuestras herramientas y ejecuta la conversión.",
-    sec2Step4: "Comprobarás que no se envía ninguna petición POST o PUT con datos binarios a ningún servidor. El archivo se procesa estrictamente en la memoria RAM local.",
-    sec3Title: "3. Motores Tecnológicos Utilizados",
-    sec3Bullet1: "pdf-lib: Manipulación y renderizado de documentos PDF ejecutados enteramente en JavaScript client-side.",
-    sec3Bullet2: "HTML5 Canvas API: Conversión ultrarrápida de imágenes rasterizadas (PNG, JPEG, WebP) con aceleración por GPU.",
-    sec3Bullet3: "JSZip: Compresión y descompresión con algoritmo DEFLATE local y protección anti zip-bomb.",
-    sec3Bullet4: "Web Crypto API: Cálculo criptográfico nativo de hashes SHA-256 y cifrado AES.",
-    sec4Title: "4. Publicidad Ética y Sostenibilidad",
-    sec4P1: "Para mantener todas las herramientas 100% gratuitas y sin suscripciones, mostramos publicidad no invasiva. Los anuncios se cargan en contenedores aislados (Zero CLS) y no tienen ningún acceso a tus archivos.",
+    sec1P1: "Los convertidores tradicionales en línea suben tus documentos a servidores remotos. FileOmniTool procesa todo localmente.",
+    sec1P2: "Cada operación se ejecuta directamente en la memoria RAM de tu navegador mediante WebAssembly y Canvas. Cero bytes salen de tu dispositivo.",
+    sec2Title: "2. Cómo comprobarlo tú mismo",
+    sec2P1: "Verifica con F12 en la pestaña Network que no se envía ninguna petición POST con datos binarios.",
+    sec2Step1: "Pulsa F12 en tu navegador.",
+    sec2Step2: "Abre la pestaña Red (Network).",
+    sec2Step3: "Procesa un archivo en cualquier herramienta.",
+    sec2Step4: "Verás cero subidas a servidores en la red.",
+    sec3Title: "3. Motores Tecnológicos",
+    sec3Bullet1: "pdf-lib: Procesamiento PDF local en JavaScript.",
+    sec3Bullet2: "Canvas API: Conversión acelerada por GPU.",
+    sec3Bullet3: "JSZip: Compresión DEFLATE en el cliente.",
+    sec3Bullet4: "Web Crypto: Cálculo nativo de hashes SHA-256.",
+    sec4Title: "4. Publicidad Ética",
+    sec4P1: "Nos financiamos con publicidad aislada sin acceso a tus archivos.",
+    sec5Title: "5. Declaración RGPD (Arts. 13 y 14)",
+    sec5P1: "Responsable: FileOmniTool Team (privacy@fileomnitool.com). Archivos: CERO datos almacenados. Terceros: solo con consentimiento previo.",
+    sec5P2: "Base jurídica: Ejecución y consentimiento (Art. 6.1.a RGPD).",
+    sec5Rights: "Derechos: Acceso, supresión y revocación de consentimiento en cualquier momento.",
+    sec6Title: "6. Gestión de Cookies",
+    sec6P1: "Puedes cambiar o revocar tu consentimiento de cookies cuando lo desees.",
+    manageCookiesBtn: "Gestionar Preferencias de Cookies",
   },
   fr: {
-    backBtn: "Retour à tous les outils",
-    badge: "Garantie de Confidentialité 100% dans le Navigateur",
-    title: "Garantie de Confidentialité & Architecture Zéro-Téléversement",
-    subtitle: "La cybersécurité et la confidentialité de vos données comme priorité absolue",
+    backBtn: "Retour aux outils",
+    badge: "Garantie Confidentialité 100% dans le Navigateur",
+    title: "Politique de Confidentialité & Architecture Zéro-Upload",
+    subtitle: "Conformité avec le Règlement Général sur la Protection des Données (RGPD UE 2016/679)",
     sec1Title: "1. Pourquoi vos fichiers ne quittent jamais votre appareil",
-    sec1P1: "Les convertisseurs classiques en ligne envoient vos documents sensibles sur des serveurs distants pour traitement. Cela expose contrats, déclarations fiscales et photos personnelles à des risques de fuite de données.",
-    sec1P2: "FileOmniTool applique une approche fondamentalement différente : chaque traitement (fusion PDF, conversion d'image, compression, extraction ZIP) s'exécute directement dans la mémoire vive de votre navigateur via WebAssembly et Canvas.",
-    sec2Title: "2. Comment vérifier par vous-même avec les Outils Développeur",
-    sec2P1: "Ne nous croyez pas sur parole : vous pouvez vérifier l'absence de transfert réseau à tout instant :",
-    sec2Step1: "Appuyez sur F12 (ou clic droit -> Inspecter) pour ouvrir les Outils Développeur.",
-    sec2Step2: "Rendez-vous sur l'onglet Réseau (Network).",
-    sec2Step3: "Déposez un fichier dans un outil et lancez l'opération.",
-    sec2Step4: "Vous constaterez qu'aucune requête POST ou PUT avec des données binaires n'est transmise sur internet. Le fichier reste un Blob local en RAM.",
-    sec3Title: "3. Moteurs Technologiques Utilisés",
-    sec3Bullet1: "pdf-lib : Manipulation et rendu de PDF exécutés intégralement côté client en JavaScript.",
-    sec3Bullet2: "HTML5 Canvas API : Conversion d'images (PNG, JPEG, WebP) avec accélération matérielle GPU.",
-    sec3Bullet3: "JSZip : Compression et décompression DEFLATE locale avec protection anti-bombe ZIP.",
-    sec3Bullet4: "Web Crypto API : Calcul cryptographique sécurisé de hachages SHA-256 et chiffrement AES.",
-    sec4Title: "4. Publicité Éthique & Financement",
-    sec4P1: "Pour conserver nos outils gratuits et illimités sans aucun abonnement payant, nous diffusons des annonces publicitaires certifiées. Ces annonces sont isolées et n'ont aucun accès à vos documents.",
+    sec1P1: "Les convertisseurs classiques envoient vos données sur des serveurs distants. FileOmniTool fonctionne 100% localement.",
+    sec1P2: "Tous les calculs s'exécutent en RAM via WebAssembly et Canvas. Zéro fichier téléversé.",
+    sec2Title: "2. Comment vérifier par vous-même",
+    sec2P1: "Inspectez l'onglet Réseau avec F12 :",
+    sec2Step1: "Ouvrez les Outils Développeur avec F12.",
+    sec2Step2: "Allez sur l'onglet Réseau (Network).",
+    sec2Step3: "Traitez un fichier dans un outil.",
+    sec2Step4: "Aucune requête POST contenant vos fichiers n'est envoyée.",
+    sec3Title: "3. Moteurs Technologiques",
+    sec3Bullet1: "pdf-lib : Manipulation de PDF locale.",
+    sec3Bullet2: "Canvas API : Conversion d'images haute vitesse.",
+    sec3Bullet3: "JSZip : Décompression et compression DEFLATE.",
+    sec3Bullet4: "Web Crypto API : Hachages cryptographiques matériels.",
+    sec4Title: "4. Publicité Éthique",
+    sec4P1: "Financement par bannières isolées sans accès à vos fichiers.",
+    sec5Title: "5. Déclaration RGPD (Art. 13 & 14)",
+    sec5P1: "Responsable du traitement : FileOmniTool Team (privacy@fileomnitool.com). Fichiers : ZÉRO stockage.",
+    sec5P2: "Base légale : Consentement préalable pour les cookies tiers.",
+    sec5Rights: "Droits : Accès, effacement, et retrait du consentement à tout instant.",
+    sec6Title: "6. Gestion des Cookies",
+    sec6P1: "Configurez vos choix de cookies à tout moment.",
+    manageCookiesBtn: "Gérer vos Préférences de Cookies",
   },
   de: {
     backBtn: "Zurück zu allen Werkzeugen",
-    badge: "100% Browserbasierte Datenschutzgarantie",
-    title: "Datenschutzgarantie & Zero-Upload Architektur",
-    subtitle: "IT-Sicherheit und uneingeschränkte Vertraulichkeit an erster Stelle",
+    badge: "100% Lokale Datenschutzgarantie",
+    title: "Datenschutzerklärung & Zero-Upload Architektur",
+    subtitle: "Vollständige Einhaltung der EU-Datenschutz-Grundverordnung (DSGVO 2016/679)",
     sec1Title: "1. Warum Ihre Dateien niemals Ihr Gerät verlassen",
-    sec1P1: "Herkömmliche Online-Konverter laden Ihre vertraulichen Dokumente auf Cloud-Server hoch. Dies setzt Verträge, Steuerdaten und Fotos dem Risiko von Sicherheitsverletzungen und Datenlecks aus.",
-    sec1P2: "FileOmniTool setzt auf eine völlig andere Architektur: Jede einzelne Operation (PDF-Zusammenführung, Bildkonvertierung, Komprimierung) läuft direkt im Arbeitsspeicher Ihres Browsers über WebAssembly und Canvas ab.",
-    sec2Title: "2. So prüfen Sie es selbst mit den Entwicklertools",
-    sec2P1: "Verlassen Sie sich nicht nur auf unser Wort: Sie können das Fehlen von Server-Uploads jederzeit selbst überprüfen:",
-    sec2Step1: "Drücken Sie F12 (oder Rechtsklick -> Untersuchen), um die Browser-Entwicklertools zu öffnen.",
-    sec2Step2: "Öffnen Sie den Reiter Netzwerk (Network).",
-    sec2Step3: "Ziehen Sie eine Datei in eines unserer Tools und starten Sie die Verarbeitung.",
-    sec2Step4: "Sie werden sehen, dass keine POST- oder PUT-Anfragen mit Binärdaten gesendet werden. Die Datei verbleibt als lokales Blob im RAM.",
+    sec1P1: "Klassische Online-Tools laden Dokumente auf Server hoch. FileOmniTool verarbeitet alles lokal im Browser.",
+    sec1P2: "Verarbeitung im RAM über WebAssembly und Canvas. Keine Datenübertragung an Server.",
+    sec2Title: "2. Selbstständige Überprüfung",
+    sec2P1: "Überprüfen Sie den Netzwerkverkehr mit F12:",
+    sec2Step1: "Drücken Sie F12 für die Entwicklertools.",
+    sec2Step2: "Wählen Sie den Reiter Netzwerk (Network).",
+    sec2Step3: "Verarbeiten Sie eine Datei.",
+    sec2Step4: "Es werden keine POST-Anfragen mit Ihren Dateien gesendet.",
     sec3Title: "3. Eingesetzte Technologien",
-    sec3Bullet1: "pdf-lib: PDF-Bearbeitung und Rendering vollständig clientseitig in JavaScript.",
-    sec3Bullet2: "HTML5 Canvas API: Schnelle Rasterbild-Konvertierung (PNG, JPEG, WebP) mit GPU-Beschleunigung.",
-    sec3Bullet3: "JSZip: Lokale DEFLATE-Kompression mit integriertem Schutz vor ZIP-Bomben.",
-    sec3Bullet4: "Web Crypto API: Hardwarebeschleunigte SHA-256- und AES-Kryptographie.",
-    sec4Title: "4. Ethische Werbefinanzierung",
-    sec4P1: "Um alle Werkzeuge dauerhaft kostenlos ohne Abonnements anzubieten, finanzieren wir uns durch unaufdringliche Werbung. Anzeigen laufen isoliert (Zero CLS) und haben keinerlei Zugriff auf Ihre Daten.",
+    sec3Bullet1: "pdf-lib: Lokale PDF-Verarbeitung in JavaScript.",
+    sec3Bullet2: "Canvas API: GPU-beschleunigte Bildkonvertierung.",
+    sec3Bullet3: "JSZip: Lokale DEFLATE-Kompression.",
+    sec3Bullet4: "Web Crypto API: Hardwarebeschleunigte SHA-256 Hashes.",
+    sec4Title: "4. Werbefinanzierung",
+    sec4P1: "Isolierte Anzeigen ohne Datenzugriff.",
+    sec5Title: "5. DSGVO-Erklärung (Art. 13 & 14)",
+    sec5P1: "Verantwortlicher: FileOmniTool Team (privacy@fileomnitool.com). Dateien: NULL Speicherungen.",
+    sec5P2: "Rechtsgrundlage: Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO.",
+    sec5Rights: "Rechte: Auskunft, Löschung und jederzeitiger Widerruf der Einwilligung.",
+    sec6Title: "6. Cookie-Einstellungen",
+    sec6P1: "Sie können Ihre Cookie-Einstellungen jederzeit anpassen.",
+    manageCookiesBtn: "Cookie-Einstellungen Verwalten",
   },
   pt: {
-    backBtn: "Voltar para todas as ferramentas",
+    backBtn: "Voltar para as ferramentas",
     badge: "Garantia de Privacidade 100% no Navegador",
-    title: "Garantia de Privacidade e Arquitetura Zero-Upload",
-    subtitle: "Segurança cibernética e confidencialidade total como prioridade máxima",
+    title: "Política de Privacidade & Arquitetura Zero-Upload",
+    subtitle: "Em total conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD UE 2016/679)",
     sec1Title: "1. Por que seus arquivos nunca saem do seu dispositivo",
-    sec1P1: "Conversores online convencionais enviam seus documentos confidenciais para servidores em nuvem. Isso expõe contratos, dados fiscais e fotos privadas a potenciais vazamentos de dados.",
-    sec1P2: "O FileOmniTool adota uma filosofia oposta: cada operação (juntar PDF, converter imagens, comprimir, extrair ZIP) executa diretamente na memória RAM do seu navegador via WebAssembly e Canvas.",
-    sec2Title: "2. Como verificar você mesmo com as Ferramentas do Desenvolvedor",
-    sec2P1: "Não confie apenas na nossa palavra: você pode comprovar a ausência de uploads a qualquer momento:",
-    sec2Step1: "Pressione F12 (ou clique com o botão direito -> Inspecionar) para abrir as DevTools do navegador.",
+    sec1P1: "Conversores comuns enviam arquivos para servidores externos. O FileOmniTool processa 100% no seu navegador.",
+    sec1P2: "Execução na RAM via WebAssembly e Canvas. Zero bytes enviados para servidores.",
+    sec2Title: "2. Como comprovar você mesmo",
+    sec2P1: "Inspecione a aba Network com F12:",
+    sec2Step1: "Abra as DevTools com F12.",
     sec2Step2: "Acesse a aba Network (Rede).",
-    sec2Step3: "Arraste um arquivo para qualquer ferramenta e inicie o processamento.",
-    sec2Step4: "Você verá que nenhuma requisição POST ou PUT com dados binários é enviada para qualquer servidor. O arquivo é manipulado estritamente como Blob na memória RAM local.",
-    sec3Title: "3. Motores Tecnológicos Utilizados",
-    sec3Bullet1: "pdf-lib: Manipulação e renderização de PDFs executadas integralmente no navegador via JavaScript.",
-    sec3Bullet2: "HTML5 Canvas API: Conversão de formatos de imagem (PNG, JPEG, WebP) com aceleração gráfica local.",
-    sec3Bullet3: "JSZip: Compressão e descompressão DEFLATE local com proteção contra bombas ZIP.",
-    sec3Bullet4: "Web Crypto API: Geração criptográfica de hashes SHA-256 e criptografia AES pelo processador local.",
-    sec4Title: "4. Publicidade Ética e Sustentabilidade",
-    sec4P1: "Para manter todas as ferramentas gratuitas e sem limites de uso, exibimos anúncios certificados e não invasivos. Os anúncios ficam isolados (Zero CLS) e não possuem nenhum acesso aos seus arquivos.",
-  }
+    sec2Step3: "Processe um arquivo.",
+    sec2Step4: "Nenhuma requisição POST com arquivos é enviada.",
+    sec3Title: "3. Motores Tecnológicos",
+    sec3Bullet1: "pdf-lib: Manipulação local de PDFs.",
+    sec3Bullet2: "Canvas API: Conversão gráfica veloz.",
+    sec3Bullet3: "JSZip: Compressão local DEFLATE.",
+    sec3Bullet4: "Web Crypto: Cálculo nativo de SHA-256.",
+    sec4Title: "4. Publicidade Ética",
+    sec4P1: "Anúncios isolados sem acesso aos seus dados.",
+    sec5Title: "5. Declaração RGPD (Arts. 13 e 14)",
+    sec5P1: "Controlador: FileOmniTool Team (privacy@fileomnitool.com). Arquivos: ZERO armazenamento.",
+    sec5P2: "Base jurídica: Consentimento prévio para cookies de terceiros.",
+    sec5Rights: "Direitos: Acesso, eliminação e revogação de consentimento a qualquer momento.",
+    sec6Title: "6. Gestão de Cookies",
+    sec6P1: "Gerencie suas preferências de privacidade quando desejar.",
+    manageCookiesBtn: "Gerenciar Preferências de Cookies",
+  },
 };
 
 export const PrivacyContent: React.FC = () => {
   const { language } = useLanguage();
   const t = PRIVACY_TEXTS[language] || PRIVACY_TEXTS.en;
+
+  const openCookiePreferences = () => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("open_cookie_preferences"));
+    }
+  };
 
   return (
     <main className="flex-1 py-12">
@@ -194,7 +249,7 @@ export const PrivacyContent: React.FC = () => {
         </div>
 
         <div className="mt-10 space-y-8 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
-          {/* Sezione 1 */}
+          {/* Sezione 1 - Architettura Locale */}
           <section className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
             <h2 className="flex items-center gap-2 text-base font-bold text-zinc-900 dark:text-white">
               <Lock className="h-5 w-5 text-emerald-600" />
@@ -255,7 +310,41 @@ export const PrivacyContent: React.FC = () => {
             <p className="mt-3">{t.sec4P1}</p>
           </section>
 
-          {/* Sponsor Banner (Non-Invasive, Ethical Ad Slot) */}
+          {/* Sezione 5 - Conformità GDPR UE 2016/679 */}
+          <section className="rounded-2xl border border-emerald-200/80 bg-emerald-50/30 p-6 shadow-sm dark:border-emerald-900/40 dark:bg-emerald-950/20">
+            <h2 className="flex items-center gap-2 text-base font-bold text-emerald-900 dark:text-emerald-300">
+              <UserCheck className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+              {t.sec5Title}
+            </h2>
+            <p className="mt-3 text-zinc-800 dark:text-zinc-200">{t.sec5P1}</p>
+            <p className="mt-3 text-zinc-800 dark:text-zinc-200">{t.sec5P2}</p>
+            <div className="mt-4 rounded-xl border border-emerald-200/70 bg-white p-4 text-xs dark:border-emerald-800 dark:bg-zinc-900">
+              <p className="font-semibold text-emerald-800 dark:text-emerald-300 mb-1">
+                Diritti Garantiti:
+              </p>
+              <p className="text-zinc-600 dark:text-zinc-400">{t.sec5Rights}</p>
+            </div>
+          </section>
+
+          {/* Sezione 6 - Cookie Policy & Tasto Preferenze */}
+          <section className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+            <h2 className="flex items-center gap-2 text-base font-bold text-zinc-900 dark:text-white">
+              <Cookie className="h-5 w-5 text-amber-500" />
+              {t.sec6Title}
+            </h2>
+            <p className="mt-3">{t.sec6P1}</p>
+            <div className="mt-5">
+              <button
+                onClick={openCookiePreferences}
+                className="inline-flex items-center gap-2 rounded-xl border border-emerald-500 bg-emerald-50 px-4 py-2.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 dark:bg-emerald-950/60 dark:text-emerald-300"
+              >
+                <Sliders className="h-4 w-4" />
+                <span>{t.manageCookiesBtn}</span>
+              </button>
+            </div>
+          </section>
+
+          {/* Sponsor Banner */}
           <div className="pt-2">
             <AdBanner slot="leaderboard" />
           </div>

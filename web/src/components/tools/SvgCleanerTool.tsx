@@ -23,18 +23,24 @@ export const SvgCleanerTool: React.FC = () => {
     // 2. Remove comments
     svg = svg.replace(/<!--[\s\S]*?-->/g, "");
 
-    // 3. Remove metadata, desc, and empty title tags
+    // 3. Security Sanitization: Remove script tags and embedded JavaScript (XSS Prevention)
+    svg = svg.replace(/<script[\s\S]*?<\/script>/gi, "");
+    svg = svg.replace(/\s*on[a-z]+="[^"]*"/gi, "");
+    svg = svg.replace(/\s*on[a-z]+='[^']*'/gi, "");
+    svg = svg.replace(/(href|xlink:href)\s*=\s*["']\s*javascript:[^"']*["']/gi, "");
+
+    // 4. Remove metadata, desc, and empty title tags
     svg = svg.replace(/<metadata[\s\S]*?<\/metadata>/gi, "");
     svg = svg.replace(/<desc[\s\S]*?<\/desc>/gi, "");
 
-    // 4. Remove proprietary editor namespaces and attributes (Illustrator, Inkscape, Sketch)
+    // 5. Remove proprietary editor namespaces and attributes (Illustrator, Inkscape, Sketch)
     svg = svg.replace(/\s*(xmlns:inkscape|xmlns:sodipodi|xmlns:adobe|xmlns:i|xmlns:graph|xmlns:sketch|inkscape:[a-z0-9_-]+|sodipodi:[a-z0-9_-]+|adobe:[a-z0-9_-]+|sketch:[a-z0-9_-]+)="[^"]*"/gi, "");
 
-    // 5. Remove unused data- attributes and generator comments
+    // 6. Remove unused data- attributes and generator comments
     svg = svg.replace(/\s*data-name="[^"]*"/gi, "");
     svg = svg.replace(/\s*id="Svgjs[a-z0-9_-]+"/gi, "");
 
-    // 6. Normalize whitespace
+    // 7. Normalize whitespace
     svg = svg.replace(/\s{2,}/g, " ").replace(/>\s+</g, "><").trim();
 
     return svg;

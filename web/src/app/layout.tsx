@@ -4,8 +4,9 @@ import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/context";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Script from "next/script";
 import { getHreflangAlternates } from "@/lib/seo-helpers";
+import { CookieConsent } from "@/components/common/CookieConsent";
+import { ThirdPartyScripts } from "@/components/common/ThirdPartyScripts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,43 +82,12 @@ export default function RootLayout({
     >
       <head>
         {gscId && <meta name="google-site-verification" content={gscId} />}
-        {adsenseId && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
-            crossOrigin="anonymous"
-          />
-        )}
-        {/* Adsterra Social Bar */}
-        <Script
-          id="adsterra-social-bar"
-          strategy="afterInteractive"
-          src="https://bauval.org/14/46a6710c86363dcadad3933eb0c19482"
-          data-cfasync="false"
-        />
-        {gaId && (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            />
-            <script
-              id="google-analytics"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${gaId}', { page_path: window.location.pathname });
-                `,
-              }}
-            />
-          </>
-        )}
       </head>
       <body className="min-h-full flex flex-col">
         <LanguageProvider>
           {children}
+          <CookieConsent />
+          <ThirdPartyScripts gaId={gaId} adsenseId={adsenseId} />
         </LanguageProvider>
         <Analytics />
         <SpeedInsights />

@@ -51,9 +51,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
       alternates: getAlternates("/privacy"),
     });
+
+    entries.push({
+      url: getLocalizedUrl("/terms", locale),
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+      alternates: getAlternates("/terms"),
+    });
   }
 
-  // 2. 75 Tools across all 6 locales (450 tool URLs)
+  // 2. All 77 Tools across all 6 locales
   for (const tool of TOOLS_REGISTRY) {
     const path = `/tools/${tool.id}`;
     const alternates = getAlternates(path);

@@ -296,3 +296,40 @@ export function getArticlesIndexMetadata(locale: Language): Metadata {
   };
 }
 
+const TERMS_TITLES: Record<Language, string> = {
+  it: "Termini e Condizioni di Servizio | FileOmniTool",
+  en: "Terms of Service & Conditions | FileOmniTool",
+  es: "Términos y Condiciones de Servicio | FileOmniTool",
+  fr: "Conditions Générales d'Utilisation | FileOmniTool",
+  de: "Nutzungsbedingungen & Allgemeine Geschäftsbedingungen | FileOmniTool",
+  pt: "Termos e Condições de Serviço | FileOmniTool",
+};
+
+const TERMS_DESCRIPTIONS: Record<Language, string> = {
+  it: "Termini e condizioni generali d'uso per FileOmniTool: esclusione di garanzie, limitazione di responsabilità e regolamento del servizio gratuito.",
+  en: "General terms and conditions of use for FileOmniTool: disclaimer of warranties, limitation of liability, and service regulations.",
+  es: "Términos y condiciones generales de uso para FileOmniTool: exención de garantías y limitación de responsabilidad.",
+  fr: "Conditions générales d'utilisation de FileOmniTool : exclusion de garanties et limitation de responsabilité.",
+  de: "Allgemeine Nutzungsbedingungen für FileOmniTool: Gewährleistungsausschluss und Haftungsbeschränkung.",
+  pt: "Termos e condições gerais de uso do FileOmniTool: isenção de garantias e limitação de responsabilidade.",
+};
+
+export function getTermsMetadata(locale: Language): Metadata {
+  const hreflang = getHreflangAlternates("/terms", locale);
+  const ogConfig = LOCALE_OG_MAP[locale];
+
+  return {
+    title: TERMS_TITLES[locale],
+    description: TERMS_DESCRIPTIONS[locale],
+    alternates: hreflang,
+    openGraph: {
+      title: TERMS_TITLES[locale],
+      description: TERMS_DESCRIPTIONS[locale],
+      url: hreflang.canonical,
+      type: "website",
+      locale: ogConfig.locale,
+      alternateLocale: ogConfig.alternates,
+    },
+  };
+}
+

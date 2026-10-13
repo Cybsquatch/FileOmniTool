@@ -206,13 +206,28 @@ export const Footer: React.FC = () => {
           <p className="text-xs text-zinc-500 dark:text-zinc-500">
             &copy; {new Date().getFullYear()} FileOmniTool.com — {t("footer.rights")}
           </p>
-          <div className="mt-4 flex items-center gap-4 text-xs text-zinc-400 sm:mt-0">
-            <Link href="/privacy" className="hover:text-emerald-600">
-              Privacy Policy
+          <div className="mt-4 flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-zinc-500 dark:text-zinc-400 sm:mt-0">
+            <Link href={language === "it" ? "/privacy" : `/${language}/privacy`} className="hover:text-emerald-600 transition">
+              {language === "it" ? "Informativa Privacy" : "Privacy Policy"}
             </Link>
             <span>•</span>
-            <span className="flex items-center gap-1">
-              Zero Server Uploads <Heart className="h-3.5 w-3.5 text-rose-500 fill-current" />
+            <Link href={language === "it" ? "/terms" : `/${language}/terms`} className="hover:text-emerald-600 transition">
+              {language === "it" ? "Termini di Servizio" : "Terms of Service"}
+            </Link>
+            <span>•</span>
+            <button
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("open_cookie_preferences"));
+                }
+              }}
+              className="hover:text-emerald-600 transition text-left cursor-pointer"
+            >
+              {language === "it" ? "Preferenze Cookie" : "Cookie Preferences"}
+            </button>
+            <span>•</span>
+            <span className="flex items-center gap-1 text-zinc-400">
+              100% In-Browser <Heart className="h-3.5 w-3.5 text-rose-500 fill-current" />
             </span>
           </div>
         </div>
