@@ -1,5 +1,5 @@
 # FileOmniTool 🛠️🔒
-
+🌐 Live Web App: [FileOmniTool.com](https://www.fileomnitool.com) - 100% In-Browser & Private File Tools.
 Piattaforma web moderna, reattiva ed elegante per la manipolazione di file **100% Client-Side** (zero upload su server, totale rispetto della privacy), progettata per la monetizzazione pubblicitaria e governata da un **motore multi-agente autonomo** in Python.
 
 ---
