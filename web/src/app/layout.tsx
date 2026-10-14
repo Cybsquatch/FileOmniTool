@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getHreflangAlternates } from "@/lib/seo-helpers";
 import { CookieConsent } from "@/components/common/CookieConsent";
 import { ThirdPartyScripts } from "@/components/common/ThirdPartyScripts";
+import { SupportPromptModal } from "@/components/common/SupportPromptModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -89,6 +90,7 @@ export default function RootLayout({
         <LanguageProvider>
           {children}
           <CookieConsent />
+          <SupportPromptModal />
           <ThirdPartyScripts gaId={gaId} adsenseId={adsenseId} />
         </LanguageProvider>
         <Analytics />
