@@ -6,6 +6,7 @@ import { GuideArticle } from "@/lib/guides-registry";
 import { getToolById, TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { useLanguage } from "@/lib/i18n/context";
 import { AdBanner } from "@/components/ads/AdBanner";
+import { SocialLinks } from "@/components/common/SocialLinks";
 import { 
   Clock, 
   ChevronRight, 
@@ -223,6 +224,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
                   <BadgeCheck className="h-3 w-3" />
                   {t("guides.authorRole")}
                 </span>
+                <SocialLinks size="sm" className="ml-1" />
               </div>
               <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 {t("guides.authorBio")}

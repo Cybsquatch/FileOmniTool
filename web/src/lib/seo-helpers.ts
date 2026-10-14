@@ -5,6 +5,18 @@ import { Language } from "./i18n/context";
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.fileomnitool.com";
 
+export const SOCIAL_LINKS = {
+  twitter: "https://x.com/cybsquatch",
+  github: "https://github.com/Cybsquatch",
+  youtube: "https://www.youtube.com/@riccardobelli447",
+} as const;
+
+export const SAME_AS_LINKS: string[] = [
+  "https://x.com/cybsquatch",
+  "https://github.com/Cybsquatch",
+  "https://www.youtube.com/@riccardobelli447",
+];
+
 export const ALL_LOCALES: Language[] = ["it", "en", "es", "fr", "de", "pt"];
 export const NON_DEFAULT_LOCALES: Array<"en" | "es" | "fr" | "de" | "pt"> = ["en", "es", "fr", "de", "pt"];
 

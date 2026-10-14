@@ -7,7 +7,7 @@ import { AdBanner } from "@/components/ads/AdBanner";
 import { GUIDES_REGISTRY, getGuideBySlug } from "@/lib/guides-registry";
 import { getToolById } from "@/lib/tools-registry";
 import { GuidePageClient } from "@/components/guides/GuidePageClient";
-import { NON_DEFAULT_LOCALES, getGuideMetadata, getLocalizedUrl } from "@/lib/seo-helpers";
+import { NON_DEFAULT_LOCALES, getGuideMetadata, getLocalizedUrl, SAME_AS_LINKS } from "@/lib/seo-helpers";
 import { Language } from "@/lib/i18n/context";
 
 interface LocalizedGuidePageProps {
@@ -87,12 +87,15 @@ export default async function LocalizedGuidePage({ params }: LocalizedGuidePageP
           "@type": "Person",
           "name": "Cybsquatch",
           "jobTitle": "Software Developer & Digital Privacy Advocate",
-          "url": "https://www.fileomnitool.com",
+          "url": "https://github.com/Cybsquatch",
+          "sameAs": SAME_AS_LINKS,
         },
         "publisher": {
           "@type": "Organization",
           "name": "FileOmniTool",
           "url": "https://www.fileomnitool.com",
+          "logo": "https://www.fileomnitool.com/icon-192.png",
+          "sameAs": SAME_AS_LINKS,
         },
       },
       {

@@ -6,6 +6,7 @@ import { ShieldCheck, Heart, Lock, FileText, Image as ImageIcon, Music, Archive,
 import { useLanguage } from "@/lib/i18n/context";
 import { TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { GUIDES_REGISTRY } from "@/lib/guides-registry";
+import { SocialLinks } from "@/components/common/SocialLinks";
 
 export const Footer: React.FC = () => {
   const { language, t } = useLanguage();
@@ -34,6 +35,12 @@ export const Footer: React.FC = () => {
             <p className="max-w-xl text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
               {t("footer.desc")}
             </p>
+            <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-zinc-500 dark:text-zinc-400">
+              <span className="font-semibold text-zinc-700 dark:text-zinc-300">
+                {language === "it" ? "Sviluppato da" : "Developed by"} <span className="font-bold text-emerald-600 dark:text-emerald-400">Cybsquatch</span>:
+              </span>
+              <SocialLinks size="sm" />
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">

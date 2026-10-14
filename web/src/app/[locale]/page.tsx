@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { HomePageClient } from "@/components/home/HomePageClient";
-import { NON_DEFAULT_LOCALES, getHomeMetadata, getLocalizedUrl } from "@/lib/seo-helpers";
+import { NON_DEFAULT_LOCALES, getHomeMetadata, getLocalizedUrl, SAME_AS_LINKS } from "@/lib/seo-helpers";
 import { Language } from "@/lib/i18n/context";
 import { TOOLS_REGISTRY } from "@/lib/tools-registry";
 
@@ -28,14 +28,37 @@ export default async function LocalizedHomePage({ params }: LocalizedHomePagePro
     "@graph": [
       {
         "@type": "WebSite",
+        "@id": `${getLocalizedUrl("/", validLocale)}#website`,
         "name": "FileOmniTool",
         "url": getLocalizedUrl("/", validLocale),
         "inLanguage": validLocale,
+        "publisher": {
+          "@id": "https://www.fileomnitool.com/#organization",
+        },
+        "creator": {
+          "@id": "https://www.fileomnitool.com/#author",
+        },
         "potentialAction": {
           "@type": "SearchAction",
           "target": `${getLocalizedUrl("/", validLocale)}?q={search_term_string}`,
           "query-input": "required name=search_term_string",
         },
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.fileomnitool.com/#organization",
+        "name": "FileOmniTool",
+        "url": "https://www.fileomnitool.com",
+        "logo": "https://www.fileomnitool.com/icon-192.png",
+        "sameAs": SAME_AS_LINKS,
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.fileomnitool.com/#author",
+        "name": "Cybsquatch",
+        "jobTitle": "Lead Developer & Privacy Researcher",
+        "url": "https://github.com/Cybsquatch",
+        "sameAs": SAME_AS_LINKS,
       },
       {
         "@type": "ItemList",

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ARTICLES_REGISTRY, getArticleBySlug } from "@/lib/articles-registry";
 import { ArticlePageClient } from "@/components/articles/ArticlePageClient";
-import { NON_DEFAULT_LOCALES, getHreflangAlternates } from "@/lib/seo-helpers";
+import { NON_DEFAULT_LOCALES, getHreflangAlternates, SAME_AS_LINKS } from "@/lib/seo-helpers";
 import { Language } from "@/lib/i18n/context";
 
 interface LocalizedArticlePageProps {
@@ -91,12 +91,15 @@ export default async function LocalizedArticlePage({ params }: LocalizedArticleP
       "@type": "Person",
       "name": "Cybsquatch",
       "jobTitle": "Software Developer & Digital Privacy Advocate",
-      "url": "https://www.fileomnitool.com",
+      "url": "https://github.com/Cybsquatch",
+      "sameAs": SAME_AS_LINKS,
     },
     "publisher": {
       "@type": "Organization",
       "name": "FileOmniTool",
       "url": "https://www.fileomnitool.com",
+      "logo": "https://www.fileomnitool.com/icon-192.png",
+      "sameAs": SAME_AS_LINKS,
     },
   };
 

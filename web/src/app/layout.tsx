@@ -36,7 +36,9 @@ export const metadata: Metadata = {
     "extract zip", "sha256 hash", "client-side", "free file tools", "no upload",
     "unir pdf", "convertir imagenes", "fusionner pdf", "pdf zusammenfügen", "juntar pdf"
   ],
-  authors: [{ name: "FileOmniTool Team" }],
+  authors: [{ name: "Cybsquatch", url: "https://github.com/Cybsquatch" }],
+  creator: "Cybsquatch",
+  publisher: "FileOmniTool",
   openGraph: {
     title: "FileOmniTool - Strumenti per File Gratuiti e Privati nel Browser | Free Client-Side File Tools",
     description: "Unisci PDF, converti immagini ed estrai archivi senza caricare file su alcun server. 100% in-browser.",

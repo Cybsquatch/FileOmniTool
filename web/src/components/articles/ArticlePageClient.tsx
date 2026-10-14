@@ -8,6 +8,7 @@ import { AdBanner } from "@/components/ads/AdBanner";
 import { ArticleItem } from "@/lib/articles-registry";
 import { getToolById, ToolDefinition } from "@/lib/tools-registry";
 import { useLanguage } from "@/lib/i18n/context";
+import { SocialLinks } from "@/components/common/SocialLinks";
 import { 
   Clock, 
   ChevronRight, 
@@ -125,6 +126,7 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
                     {article.author}
                   </span>
                   <BadgeCheck className="h-4 w-4 text-emerald-600" />
+                  <SocialLinks size="sm" className="ml-1" />
                 </div>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400">
                   {authorRole}
@@ -258,6 +260,7 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
                     <BadgeCheck className="h-3 w-3" />
                     {authorRole}
                   </span>
+                  <SocialLinks size="sm" className="ml-1" />
                 </div>
                 <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
                   {language === "it"
