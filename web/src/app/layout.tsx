@@ -85,6 +85,7 @@ export default function RootLayout({
     >
       <head>
         {gscId && <meta name="google-site-verification" content={gscId} />}
+        <meta name="msvalidate.01" content="767372D3B80CE4ED1441F700CDB39759" />
       </head>
       <body className="min-h-full flex flex-col">
         <LanguageProvider>
