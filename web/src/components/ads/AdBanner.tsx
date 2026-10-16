@@ -13,56 +13,52 @@ interface AdBannerProps {
   adSlotId?: string;
 }
 
-const AdsterraSlot: React.FC<{ adKey: string; width: number; height: number; className?: string }> = ({
-  adKey,
-  width,
-  height,
-  className = "",
-}) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    if (container.querySelector("iframe")) return;
-
-    container.innerHTML = "";
-
-    const confScript = document.createElement("script");
-    confScript.type = "text/javascript";
-    confScript.innerHTML = `
-      atOptions = {
-        'key' : '${adKey}',
-        'format' : 'iframe',
-        'height' : ${height},
-        'width' : ${width},
-        'params' : {}
-      };
-    `;
-
-    const loaderScript = document.createElement("script");
-    loaderScript.type = "text/javascript";
-    loaderScript.src = `https://bauval.org/22/${adKey}`;
-
-    container.appendChild(confScript);
-    container.appendChild(loaderScript);
-  }, [adKey, width, height]);
+const SandboxedAdSlot: React.FC<{
+  adKey: string;
+  width: number;
+  height: number;
+  className?: string;
+}> = ({ adKey, width, height, className = "" }) => {
+  const iframeHtml = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: transparent; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+    atOptions = {
+      'key' : '${adKey}',
+      'format' : 'iframe',
+      'height' : ${height},
+      'width' : ${width},
+      'params' : {}
+    };
+  </script>
+  <script type="text/javascript" src="https://bauval.org/22/${adKey}"></script>
+</body>
+</html>`;
 
   return (
-    <div
-      ref={containerRef}
-      className={`adsterra-banner flex items-center justify-center overflow-hidden ${className}`}
-      style={{ minHeight: `${height}px`, minWidth: `${Math.min(width, 300)}px` }}
+    <iframe
+      srcDoc={iframeHtml}
+      width={width}
+      height={height}
+      sandbox="allow-scripts allow-same-origin allow-popups"
+      scrolling="no"
+      className={`border-0 overflow-hidden ${className}`}
+      title="Advertisement"
     />
   );
 };
 
-const AdsterraNativeSlot: React.FC<{ nativeKey: string; className?: string }> = ({
-  nativeKey,
-  className = "",
-}) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+const SandboxedNativeSlot: React.FC<{
+  nativeKey: string;
+  className?: string;
+}> = ({ nativeKey, className = "" }) => {
   const { language } = useLanguage();
 
   const titles: Record<string, string> = {
@@ -83,37 +79,41 @@ const AdsterraNativeSlot: React.FC<{ nativeKey: string; className?: string }> = 
     pt: "patrocinado",
   };
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const containerId = `container-${nativeKey}`;
-    const targetDiv = document.getElementById(containerId);
-    if (targetDiv && targetDiv.childElementCount > 0) return;
-
-    if (container.querySelector(`script[src*="${nativeKey}"]`)) return;
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.setAttribute("data-cfasync", "false");
-    script.src = `https://bauval.org/21/${nativeKey}`;
-
-    container.appendChild(script);
-  }, [nativeKey]);
+  const iframeHtml = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: transparent; overflow: hidden; padding: 4px; }
+  </style>
+</head>
+<body>
+  <div id="container-${nativeKey}"></div>
+  <script async="async" data-cfasync="false" src="https://bauval.org/21/${nativeKey}"></script>
+</body>
+</html>`;
 
   return (
     <div
-      ref={containerRef}
-      className={`adsterra-native-banner my-6 w-full overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60 ${className}`}
+      className={`adsterra-native-banner my-6 w-full overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60 ${className}`}
       aria-label="Sponsored Recommendations"
     >
-      <div className="mb-3 flex items-center justify-between border-b border-zinc-100 pb-2.5 text-[11px] font-bold uppercase tracking-wider text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+      <div className="mb-2 flex items-center justify-between border-b border-zinc-100 pb-2 text-[11px] font-bold uppercase tracking-wider text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
         <span>{titles[language] || titles.en}</span>
         <span className="rounded bg-zinc-100 px-2 py-0.5 text-[10px] font-semibold lowercase text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
           {labels[language] || labels.en}
         </span>
       </div>
-      <div id={`container-${nativeKey}`} className="min-h-[140px] w-full" />
+      <iframe
+        srcDoc={iframeHtml}
+        width="100%"
+        height="150"
+        sandbox="allow-scripts allow-same-origin allow-popups"
+        scrolling="no"
+        className="w-full border-0 overflow-hidden"
+        title="Sponsored Recommendations"
+      />
     </div>
   );
 };
@@ -190,7 +190,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
       >
         <div className="flex h-[52px] sm:h-[72px] md:h-[90px] w-full max-w-[728px] items-center justify-center overflow-hidden">
           <div className="flex h-[90px] w-[728px] shrink-0 origin-center scale-[0.48] sm:scale-[0.75] md:scale-100 items-center justify-center transition-transform">
-            <AdsterraSlot
+            <SandboxedAdSlot
               adKey="69e9eb2774c9d994601bc2ed1fd01ecc"
               width={728}
               height={90}
@@ -219,7 +219,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
         aria-label="Sponsor Advertisement"
       >
         <div className="flex h-[250px] w-[300px] items-center justify-center overflow-hidden rounded-xl bg-zinc-50/50 dark:bg-zinc-900/50">
-          <AdsterraSlot
+          <SandboxedAdSlot
             adKey="a3caadfd2e99bd611a9461f3be906117"
             width={300}
             height={250}
@@ -232,7 +232,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
   // Per "native": integrazione diretta Adsterra 3x1 Native Banner
   if (slot === "native") {
     return (
-      <AdsterraNativeSlot
+      <SandboxedNativeSlot
         nativeKey="e737c482eb73c706a425df6c74d51af5"
         className={className}
       />

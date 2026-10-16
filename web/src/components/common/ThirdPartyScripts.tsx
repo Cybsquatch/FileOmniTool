@@ -81,16 +81,6 @@ export const ThirdPartyScripts: React.FC<ThirdPartyScriptsProps> = ({
           crossOrigin="anonymous"
         />
       )}
-
-      {/* Adsterra Social Bar (Only loaded with affirmative Marketing/Ads consent) */}
-      {marketingConsent && (
-        <Script
-          id="adsterra-social-bar"
-          strategy="lazyOnload"
-          src="https://bauval.org/14/46a6710c86363dcadad3933eb0c19482"
-          data-cfasync="false"
-        />
-      )}
     </>
   );
 };
