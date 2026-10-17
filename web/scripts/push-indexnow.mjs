@@ -1,5 +1,5 @@
 // Script to notify IndexNow (Bing, DuckDuckGo, Yandex, etc.) of all FileOmniTool URLs
-const KEY = "fc4211383da04f53b80287af5babf11f";
+const KEY = "50abff68058d4d59bec68c1fdfabbfcf";
 const HOST = "www.fileomnitool.com";
 const BASE_URL = `https://${HOST}`;
 const KEY_LOCATION = `${BASE_URL}/${KEY}.txt`;
