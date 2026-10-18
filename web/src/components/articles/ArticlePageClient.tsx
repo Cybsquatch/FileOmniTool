@@ -99,6 +99,15 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
               <Calendar className="h-3.5 w-3.5 text-zinc-400" />
               {article.datePublished}
             </span>
+            {article.dateModified && article.dateModified !== article.datePublished && (
+              <>
+                <span>•</span>
+                <span className="flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
+                  <Sparkles className="h-3 w-3 text-emerald-500" />
+                  {language === "it" ? `Aggiornato: ${article.dateModified}` : `Updated: ${article.dateModified}`}
+                </span>
+              </>
+            )}
             <span>•</span>
             <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
               <ShieldCheck className="h-3.5 w-3.5" />

@@ -55,6 +55,7 @@ export async function generateMetadata({ params }: LocalizedArticlePageProps): P
       url: `https://www.fileomnitool.com/${validLocale}/articles/${slug}`,
       type: "article",
       publishedTime: article.datePublished,
+      modifiedTime: article.dateModified || article.datePublished,
       authors: ["Cybsquatch"],
       locale: validLocale,
     },
@@ -86,6 +87,7 @@ export default async function LocalizedArticlePage({ params }: LocalizedArticleP
     "headline": articleTitle,
     "description": articleExcerpt,
     "datePublished": article.datePublished,
+    "dateModified": article.dateModified || article.datePublished,
     "inLanguage": validLocale,
     "author": {
       "@type": "Person",

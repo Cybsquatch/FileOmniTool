@@ -45,6 +45,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       url: `https://www.fileomnitool.com/articles/${slug}`,
       type: "article",
       publishedTime: article.datePublished,
+      modifiedTime: article.dateModified || article.datePublished,
       authors: ["Cybsquatch"],
       locale: "it_IT",
       alternateLocale: ["en_US", "es_ES", "fr_FR", "de_DE", "pt_BR"],
@@ -74,6 +75,7 @@ export default async function SingleArticlePage({ params }: ArticlePageProps) {
     "headline": article.title.it,
     "description": article.excerpt.it,
     "datePublished": article.datePublished,
+    "dateModified": article.dateModified || article.datePublished,
     "inLanguage": ["it", "en", "es", "fr", "de", "pt"],
     "author": {
       "@type": "Person",

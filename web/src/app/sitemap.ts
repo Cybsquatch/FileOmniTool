@@ -98,13 +98,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const article of ARTICLES_REGISTRY) {
     const path = `/articles/${article.slug}`;
     const alternates = getAlternates(path);
-    const published = new Date(article.datePublished);
+    const lastMod = new Date(article.dateModified || article.datePublished);
 
     for (const locale of ALL_LOCALES) {
       entries.push({
         url: getLocalizedUrl(path, locale),
-        lastModified: published,
-        changeFrequency: "monthly" as const,
+        lastModified: lastMod,
+        changeFrequency: "weekly" as const,
         priority: 0.9,
         alternates,
       });

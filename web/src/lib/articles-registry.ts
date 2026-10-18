@@ -1,4 +1,5 @@
 import { LocalizedText } from "./guides-registry";
+import { WAVE2_ARTICLES } from "./articles-wave2";
 
 export interface ArticleSection {
   heading: LocalizedText;
@@ -9,6 +10,7 @@ export interface ArticleItem {
   slug: string;
   category: "open-source" | "privacy" | "comparisons" | "tutorials";
   datePublished: string;
+  dateModified?: string;
   readTime: string;
   author: string;
   authorRole: LocalizedText;
@@ -25,12 +27,13 @@ export interface ArticleItem {
   relatedToolIds: string[];
 }
 
-export const ARTICLES_REGISTRY: ArticleItem[] = [
+const BASE_ARTICLES: ArticleItem[] = [
   // 1. ARTCRAFT & LA RIVOLUZIONE OPEN-SOURCE
   {
     slug: "artcraft-adobe-open-source-revolution",
     category: "open-source",
     datePublished: "2026-10-13",
+    dateModified: "2026-10-18",
     readTime: "7 min",
     author: "Cybsquatch",
     authorRole: {
@@ -187,6 +190,7 @@ Open-source, browser-native tools eliminate this hazard completely. The code run
     slug: "best-github-privacy-tools-replace-saas",
     category: "open-source",
     datePublished: "2026-10-13",
+    dateModified: "2026-10-18",
     readTime: "8 min",
     author: "Cybsquatch",
     authorRole: {
@@ -333,6 +337,7 @@ Within days, you'll slash recurring costs, protect your confidentiality, and reg
     slug: "fileomnitool-vs-smallpdf-ilovepdf-privacy-gdpr",
     category: "comparisons",
     datePublished: "2026-10-13",
+    dateModified: "2026-10-18",
     readTime: "9 min",
     author: "Cybsquatch",
     authorRole: {
@@ -513,6 +518,7 @@ How our platform operates:
     slug: "free-adobe-acrobat-pro-alternatives",
     category: "tutorials",
     datePublished: "2026-10-13",
+    dateModified: "2026-10-18",
     readTime: "7 min",
     author: "Cybsquatch",
     authorRole: {
@@ -643,6 +649,7 @@ Paying hundreds of dollars every year just to merge two pages or rotate an upsid
     slug: "exif-metadata-privacy-guide",
     category: "privacy",
     datePublished: "2026-10-13",
+    dateModified: "2026-10-18",
     readTime: "6 min",
     author: "Cybsquatch",
     authorRole: {
@@ -790,6 +797,8 @@ Everything executes locally in your browser's RAM with zero server transfers.`,
     ],
   },
 ];
+
+export const ARTICLES_REGISTRY: ArticleItem[] = [...BASE_ARTICLES, ...WAVE2_ARTICLES];
 
 export function getArticleBySlug(slug: string): ArticleItem | undefined {
   return ARTICLES_REGISTRY.find((a) => a.slug === slug);
