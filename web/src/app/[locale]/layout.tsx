@@ -1,5 +1,5 @@
 import React from "react";
-import { NON_DEFAULT_LOCALES } from "@/lib/seo-helpers";
+import { NON_DEFAULT_LOCALES, LOCALE_CONTENT_LANG_MAP } from "@/lib/seo-helpers";
 import { LanguageProvider, Language } from "@/lib/i18n/context";
 
 export async function generateStaticParams() {
@@ -16,9 +16,13 @@ interface LocaleLayoutProps {
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
   const validLocale = (NON_DEFAULT_LOCALES.includes(locale as any) ? locale : "en") as Language;
+  const contentLang = LOCALE_CONTENT_LANG_MAP[validLocale] || validLocale;
 
   return (
     <LanguageProvider initialLanguage={validLocale}>
+      <head>
+        <meta httpEquiv="content-language" content={contentLang} />
+      </head>
       {children}
     </LanguageProvider>
   );

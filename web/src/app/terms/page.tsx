@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Termini e Condizioni di Servizio | Terms of Service | FileOmniTool",
   description: "Termini e condizioni generali d'uso per FileOmniTool: esclusione di garanzie, limitazione di responsabilità e regolamento del servizio gratuito 100% in-browser.",
   alternates: getHreflangAlternates("/terms", "it"),
+  other: {
+    "content-language": "it-IT",
+  },
   keywords: [
     "termini di servizio",
     "condizioni d'uso",

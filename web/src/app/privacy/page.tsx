@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Garanzia di Privacy & Architettura Zero-Upload | Privacy Guarantee | FileOmniTool",
   description: "Scopri come FileOmniTool garantisce la privacy al 100% elaborando ogni file nel tuo browser tramite WebAssembly e Canvas. Zero cloud upload. Learn how FileOmniTool guarantees 100% in-browser privacy.",
   alternates: getHreflangAlternates("/privacy", "it"),
+  other: {
+    "content-language": "it-IT",
+  },
   keywords: [
     "garanzia privacy",
     "zero upload",

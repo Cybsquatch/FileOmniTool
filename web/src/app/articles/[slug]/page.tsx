@@ -39,6 +39,9 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       "fileomnitool",
     ],
     alternates: getHreflangAlternates(`/articles/${slug}`, "it"),
+    other: {
+      "content-language": "it-IT",
+    },
     openGraph: {
       title,
       description,

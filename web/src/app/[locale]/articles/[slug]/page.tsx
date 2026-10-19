@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ARTICLES_REGISTRY, getArticleBySlug } from "@/lib/articles-registry";
 import { ArticlePageClient } from "@/components/articles/ArticlePageClient";
-import { NON_DEFAULT_LOCALES, getHreflangAlternates, SAME_AS_LINKS } from "@/lib/seo-helpers";
+import { NON_DEFAULT_LOCALES, getHreflangAlternates, SAME_AS_LINKS, LOCALE_CONTENT_LANG_MAP } from "@/lib/seo-helpers";
 import { Language } from "@/lib/i18n/context";
 
 interface LocalizedArticlePageProps {
@@ -49,6 +49,9 @@ export async function generateMetadata({ params }: LocalizedArticlePageProps): P
       "fileomnitool",
     ],
     alternates: getHreflangAlternates(`/articles/${slug}`, validLocale),
+    other: {
+      "content-language": LOCALE_CONTENT_LANG_MAP[validLocale],
+    },
     openGraph: {
       title,
       description,

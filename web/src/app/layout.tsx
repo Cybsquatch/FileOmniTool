@@ -28,6 +28,9 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.fileomnitool.com"),
   alternates: getHreflangAlternates("/", "it"),
+  other: {
+    "content-language": "it-IT",
+  },
   title: "FileOmniTool - Strumenti per File Gratuiti, Privati e nel Browser | Free In-Browser File Tools",
   description: "Unisci PDF, converti immagini (WebP/PNG/JPG), comprimi file ed estrai archivi ZIP al 100% nel tuo browser senza upload su server. 100% privato e gratuito. Merge PDFs, convert images & extract ZIPs client-side.",
   keywords: [

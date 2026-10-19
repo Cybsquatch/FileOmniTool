@@ -75,6 +75,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: combinedDesc,
     },
     alternates: getHreflangAlternates(`/tools/${tool.id}`, "it"),
+    other: {
+      "content-language": "it-IT",
+    },
   };
 }
 

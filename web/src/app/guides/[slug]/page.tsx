@@ -54,6 +54,9 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
       )
     ),
     alternates: getHreflangAlternates(`/guides/${guide.slug}`, "it"),
+    other: {
+      "content-language": "it-IT",
+    },
     openGraph: {
       title: `${guide.title.it} | ${guide.title.en}`,
       description: `${guide.metaDescription.it} • ${guide.metaDescription.en}`,

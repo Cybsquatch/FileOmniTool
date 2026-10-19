@@ -20,20 +20,31 @@ export const SAME_AS_LINKS: string[] = [
 export const ALL_LOCALES: Language[] = ["it", "en", "es", "fr", "de", "pt"];
 export const NON_DEFAULT_LOCALES: Array<"en" | "es" | "fr" | "de" | "pt"> = ["en", "es", "fr", "de", "pt"];
 
+export const LOCALE_CONTENT_LANG_MAP: Record<Language, string> = {
+  it: "it-IT",
+  en: "en-US",
+  es: "es-ES",
+  fr: "fr-FR",
+  de: "de-DE",
+  pt: "pt-BR",
+};
+
 export function getLocalizedUrl(path: string, locale: Language): string {
-  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  const isRoot = path === "" || path === "/";
+  const cleanPath = isRoot ? "" : (path.startsWith("/") ? path : `/${path}`);
   if (locale === "it") {
-    return `${SITE_URL}${cleanPath}`;
+    return isRoot ? SITE_URL : `${SITE_URL}${cleanPath}`;
   }
   return `${SITE_URL}/${locale}${cleanPath}`;
 }
 
 export function getHreflangAlternates(path: string, currentLocale: Language) {
-  const cleanPath = path.startsWith("/") ? path : `/${path}`;
-  const canonical = getLocalizedUrl(cleanPath, currentLocale);
+  const isRoot = path === "" || path === "/";
+  const cleanPath = isRoot ? "" : (path.startsWith("/") ? path : `/${path}`);
+  const canonical = getLocalizedUrl(path, currentLocale);
 
   const languages: Record<string, string> = {
-    "it": `${SITE_URL}${cleanPath}`,
+    "it": isRoot ? SITE_URL : `${SITE_URL}${cleanPath}`,
     "en": `${SITE_URL}/en${cleanPath}`,
     "es": `${SITE_URL}/es${cleanPath}`,
     "fr": `${SITE_URL}/fr${cleanPath}`,
@@ -95,6 +106,9 @@ export function getToolMetadata(tool: ToolDefinition, locale: Language): Metadat
       "FileOmniTool"
     ].filter(Boolean),
     alternates: hreflang,
+    other: {
+      "content-language": LOCALE_CONTENT_LANG_MAP[locale],
+    },
     openGraph: {
       title: `${titleText} | FileOmniTool`,
       description: descText,
@@ -133,6 +147,9 @@ export function getGuideMetadata(guide: GuideArticle, locale: Language): Metadat
       "FileOmniTool"
     ].filter(Boolean),
     alternates: hreflang,
+    other: {
+      "content-language": LOCALE_CONTENT_LANG_MAP[locale],
+    },
     openGraph: {
       title: fullTitle,
       description: excerptText,
@@ -180,6 +197,9 @@ export function getHomeMetadata(locale: Language): Metadata {
       "merge pdf", "split pdf", "convert image", "compress photos", "create zip", "extract zip"
     ],
     alternates: hreflang,
+    other: {
+      "content-language": LOCALE_CONTENT_LANG_MAP[locale],
+    },
     openGraph: {
       title: HOME_TITLES[locale],
       description: HOME_DESCRIPTIONS[locale],
@@ -223,6 +243,9 @@ export function getGuidesIndexMetadata(locale: Language): Metadata {
     title: GUIDES_INDEX_TITLES[locale],
     description: GUIDES_INDEX_DESCRIPTIONS[locale],
     alternates: hreflang,
+    other: {
+      "content-language": LOCALE_CONTENT_LANG_MAP[locale],
+    },
     openGraph: {
       title: GUIDES_INDEX_TITLES[locale],
       description: GUIDES_INDEX_DESCRIPTIONS[locale],
@@ -260,6 +283,9 @@ export function getPrivacyMetadata(locale: Language): Metadata {
     title: PRIVACY_TITLES[locale],
     description: PRIVACY_DESCRIPTIONS[locale],
     alternates: hreflang,
+    other: {
+      "content-language": LOCALE_CONTENT_LANG_MAP[locale],
+    },
     openGraph: {
       title: PRIVACY_TITLES[locale],
       description: PRIVACY_DESCRIPTIONS[locale],
@@ -297,6 +323,9 @@ export function getArticlesIndexMetadata(locale: Language): Metadata {
     title: ARTICLES_INDEX_TITLES[locale],
     description: ARTICLES_INDEX_DESCRIPTIONS[locale],
     alternates: hreflang,
+    other: {
+      "content-language": LOCALE_CONTENT_LANG_MAP[locale],
+    },
     openGraph: {
       title: ARTICLES_INDEX_TITLES[locale],
       description: ARTICLES_INDEX_DESCRIPTIONS[locale],
@@ -334,6 +363,9 @@ export function getTermsMetadata(locale: Language): Metadata {
     title: TERMS_TITLES[locale],
     description: TERMS_DESCRIPTIONS[locale],
     alternates: hreflang,
+    other: {
+      "content-language": LOCALE_CONTENT_LANG_MAP[locale],
+    },
     openGraph: {
       title: TERMS_TITLES[locale],
       description: TERMS_DESCRIPTIONS[locale],
