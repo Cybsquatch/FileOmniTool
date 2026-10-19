@@ -84,6 +84,7 @@ import { VoiceRecorderTool } from "@/components/tools/VoiceRecorderTool";
 import { ComparisonTable } from "@/components/tools/ComparisonTable";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { EmbedWidgetModal } from "@/components/tools/EmbedWidgetModal";
+import { ShareButtons } from "@/components/common/ShareButtons";
 import { getGuideByToolId } from "@/lib/guides-registry";
 import { ShieldCheck, ChevronRight, HelpCircle, BookOpen } from "lucide-react";
 
@@ -315,12 +316,18 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
             </Link>
           )}
           <EmbedWidgetModal toolId={tool.id} toolTitle={title} />
+          <ShareButtons title={title} description={description} variant="pill" />
         </div>
       </div>
 
       {/* Interactive Tool Area */}
       <div className="mx-auto mt-8 max-w-3xl px-4 sm:px-6 lg:px-8">
         {renderToolComponent()}
+      </div>
+
+      {/* Word-of-Mouth Share Banner */}
+      <div className="mx-auto mt-6 max-w-3xl px-4 sm:px-6 lg:px-8">
+        <ShareButtons title={title} description={description} variant="banner" />
       </div>
 
       {/* Post-Tool Sponsor Slot (High Viewability, Non-Invasive) */}

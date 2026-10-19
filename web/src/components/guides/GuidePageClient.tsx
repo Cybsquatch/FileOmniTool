@@ -7,6 +7,7 @@ import { getToolById, TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { useLanguage } from "@/lib/i18n/context";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { SocialLinks } from "@/components/common/SocialLinks";
+import { ShareButtons } from "@/components/common/ShareButtons";
 import { 
   Clock, 
   ChevronRight, 
@@ -78,6 +79,9 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
           <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
             <ShieldCheck className="h-3.5 w-3.5" />
             <span>{t("badge.clientSide")}</span>
+          </div>
+          <div className="ml-auto">
+            <ShareButtons title={title} description={excerpt} variant="pill" />
           </div>
         </div>
 
@@ -246,6 +250,11 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
             </div>
           </div>
         </section>
+
+        {/* Share Guide Banner */}
+        <div className="py-4">
+          <ShareButtons title={title} description={excerpt} variant="banner" />
+        </div>
 
         {/* End-of-Article Native Recommendations Slot (3x1) */}
         <div>

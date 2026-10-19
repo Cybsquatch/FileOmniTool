@@ -9,6 +9,7 @@ import { ArticleItem } from "@/lib/articles-registry";
 import { getToolById, ToolDefinition } from "@/lib/tools-registry";
 import { useLanguage } from "@/lib/i18n/context";
 import { SocialLinks } from "@/components/common/SocialLinks";
+import { ShareButtons } from "@/components/common/ShareButtons";
 import { 
   Clock, 
   ChevronRight, 
@@ -143,10 +144,8 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
               </div>
             </div>
 
-            <div className="hidden sm:flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
-              <span className="rounded-full bg-zinc-100 px-3 py-1 font-medium dark:bg-zinc-800">
-                100% In-Browser Privacy
-              </span>
+            <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+              <ShareButtons title={title} description={subtitle} variant="pill" />
             </div>
           </div>
         </header>
@@ -293,6 +292,11 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
               </div>
             </div>
           </section>
+
+          {/* Share Article Banner */}
+          <div className="pt-6">
+            <ShareButtons title={title} description={subtitle} variant="banner" />
+          </div>
 
           {/* Related Articles Navigation */}
           {otherArticles.length > 0 && (
