@@ -8,6 +8,7 @@ import { getHreflangAlternates } from "@/lib/seo-helpers";
 import { CookieConsent } from "@/components/common/CookieConsent";
 import { ThirdPartyScripts } from "@/components/common/ThirdPartyScripts";
 import { SupportPromptModal } from "@/components/common/SupportPromptModal";
+import { ServiceWorkerRegister } from "@/components/common/ServiceWorkerRegister";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -92,6 +93,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <LanguageProvider>
+          <ServiceWorkerRegister />
           {children}
           <CookieConsent />
           <SupportPromptModal />
