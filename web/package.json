@@ -9,7 +9,8 @@
     "lint": "eslint",
     "stats": "node scripts/analytics-report.mjs",
     "indexnow": "node scripts/push-indexnow.mjs",
-    "ping": "node scripts/ping-bots.mjs"
+    "ping": "node scripts/ping-bots.mjs",
+    "freshness": "node scripts/weekly-freshness.mjs"
   },
   "dependencies": {
     "@breezystack/lamejs": "^1.2.7",

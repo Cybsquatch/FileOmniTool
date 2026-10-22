@@ -1,0 +1,50 @@
+name: Weekly Editorial Freshness & Bot Pinger
+
+on:
+  schedule:
+    # Runs every Monday at 03:00 UTC (05:00 CEST)
+    - cron: '0 3 * * 1'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions UI
+
+permissions:
+  contents: write
+
+jobs:
+  freshness-bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run Editorial Freshness Rotation
+        run: |
+          cd web
+          node scripts/weekly-freshness.mjs
+
+      - name: Dispatch Bot Pings (IndexNow & Sitemaps)
+        run: |
+          cd web
+          node scripts/ping-bots.mjs
+
+      - name: Commit & Push Freshness to Main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          if [[ -n $(git status -s web/src/lib/) ]]; then
+            echo "Changes detected in articles registry, committing..."
+            git add web/src/lib/
+            git commit -m "chore(seo): automated weekly editorial freshness bump [skip ci]"
+            git push origin main
+            echo "Weekly freshness successfully pushed to main branch!"
+          else
+            echo "No file changes needed today."
+          fi
