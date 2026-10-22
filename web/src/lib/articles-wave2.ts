@@ -6,7 +6,7 @@ export const WAVE2_ARTICLES: ArticleItem[] = [
     slug: "compress-pdf-under-2mb-pec-public-portals",
     category: "tutorials",
     datePublished: "2026-10-18",
-    dateModified: "2026-10-18",
+    dateModified: "2026-10-22",
     readTime: "7 min",
     author: "Cybsquatch",
     authorRole: {
@@ -109,14 +109,14 @@ Panicking, people often search *"free PDF compressor"* and upload sensitive file
         content: {
           it: `Per la consultazione a video e la stampa documentale da ufficio, una densità di pixel di **150 DPI (punti per pollice)** è ampiamente sufficiente per garantire che ogni carattere, timbro a inchiostro e firma autografa resti perfettamente nitido e leggibile. 
 
-Le scansioni a 300 o 600 DPI quadruplicano o decuplicano il numero di pixel per pagina, ma l'occhio umano su schermo non percepisce alcuna differenza. Utilizzando il tool [Comprimi PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfCompressTool.tsx) di FileOmniTool, l'algoritmo ri-campiona le immagini incorporate portandole al livello ottimale di compressione JPEG/WebP senza sfocare i bordi del testo.
+Le scansioni a 300 o 600 DPI quadruplicano o decuplicano il numero di pixel per pagina, ma l'occhio umano su schermo non percepisce alcuna differenza. Utilizzando il tool [Comprimi PDF](/tools/pdf-flatten) di FileOmniTool, l'algoritmo ri-campiona le immagini incorporate portandole al livello ottimale di compressione JPEG/WebP senza sfocare i bordi del testo.
 
-Se il tuo documento include pagine vuote o pagine di copertina inutili, usa prima [Dividi PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfSplitTool.tsx) per estrarre solo le pagine strettamente necessarie: ogni pagina risparmiata sono circa 300-500 KB in meno!`,
+Se il tuo documento include pagine vuote o pagine di copertina inutili, usa prima [Dividi PDF](/tools/pdf-split) per estrarre solo le pagine strettamente necessarie: ogni pagina risparmiata sono circa 300-500 KB in meno!`,
           en: `For on-screen review and office printing, a resolution of **150 DPI (dots per inch)** is more than sufficient to keep letters, ink stamps, and signatures razor-sharp.
 
-Scans at 300 or 600 DPI multiply pixel counts exponentially without noticeable benefits on modern monitors. Using FileOmniTool's [Compress PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfCompressTool.tsx), the engine resamples embedded image streams to an optimal compression ratio without blurring letter outlines.
+Scans at 300 or 600 DPI multiply pixel counts exponentially without noticeable benefits on modern monitors. Using FileOmniTool's [Compress PDF](/tools/pdf-flatten), the engine resamples embedded image streams to an optimal compression ratio without blurring letter outlines.
 
-If your document has blank or redundant separator pages, use [Split PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfSplitTool.tsx) to discard unnecessary sheets first: eliminating two extra pages can save up to 1 MB instantly!`,
+If your document has blank or redundant separator pages, use [Split PDF](/tools/pdf-split) to discard unnecessary sheets first: eliminating two extra pages can save up to 1 MB instantly!`,
         },
       },
       {
@@ -145,7 +145,7 @@ With FileOmniTool's client-side WebAssembly engine, compression happens entirely
     slug: "why-never-upload-confidential-pdf-free-converters",
     category: "privacy",
     datePublished: "2026-10-18",
-    dateModified: "2026-10-18",
+    dateModified: "2026-10-22",
     readTime: "8 min",
     author: "Cybsquatch",
     authorRole: {
@@ -266,12 +266,12 @@ Regulatory fines can reach up to €20 million or 4% of annual global turnover. 
 
 FileOmniTool non possiede server di elaborazione file: l'applicazione scarica i componenti software (librerie crittografiche compilate in WebAssembly) una sola volta nel browser e poi esegue tutto in locale sulla tua macchina.
 
-Puoi usare [Cifra PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfEncryptTool.tsx) per impostare una password AES a 256-bit, oppure [Sanifica Metadati](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfMetadataEditorTool.tsx) per cancellare il nome dell'autore, il software usato e la data di creazione prima di condividere il file con clienti o controparti. Zero server, zero rischi, massima conformità.`,
+Puoi usare [Cifra PDF](/tools/pdf-encrypt) per impostare una password AES a 256-bit, oppure [Sanifica Metadati](/tools/pdf-metadata) per cancellare il nome dell'autore, il software usato e la data di creazione prima di condividere il file con clienti o controparti. Zero server, zero rischi, massima conformità.`,
           en: `You don't have to give up browser-based convenience: you simply need tools designed with a **Zero-Upload** philosophy.
 
 FileOmniTool has no backend processing servers: the web app delivers open-source WebAssembly libraries once to your browser, which then executes the mathematical operations locally on your own CPU.
 
-You can use [Encrypt PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfEncryptTool.tsx) to set robust AES-256 password protection, or [Clean Metadata](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfMetadataEditorTool.tsx) to erase author names, editing software traces, and creation timestamps before sharing documents. Zero cloud servers, zero risk, full compliance.`,
+You can use [Encrypt PDF](/tools/pdf-encrypt) to set robust AES-256 password protection, or [Clean Metadata](/tools/pdf-metadata) to erase author names, editing software traces, and creation timestamps before sharing documents. Zero cloud servers, zero risk, full compliance.`,
         },
       },
     ],
@@ -282,7 +282,7 @@ You can use [Encrypt PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/com
     slug: "convert-heic-to-jpg-iphone-windows-free",
     category: "tutorials",
     datePublished: "2026-10-18",
-    dateModified: "2026-10-18",
+    dateModified: "2026-10-22",
     readTime: "6 min",
     author: "Cybsquatch",
     authorRole: {
@@ -384,7 +384,7 @@ The friction begins outside the Apple walled garden: public web forms, Windows a
         content: {
           it: `Non serve acquistare licenze né scaricare programmi pieni di pubblicità sul computer. Con il convertitore di FileOmniTool, la procedura è immediata:
 
-1. Apri lo strumento [Converti Immagini](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/ImageConvertTool.tsx).
+1. Apri lo strumento [Converti Immagini](/tools/image-convert).
 2. Trascina i tuoi file .HEIC (puoi trascinare anche decine di foto contemporaneamente).
 3. Seleziona **JPG** o **WebP** come formato di destinazione.
 4. Clicca su scarica: i file convertiti sono immediatamente pronti all'uso sul tuo PC, compatibili al 100% con qualsiasi programma.
@@ -392,7 +392,7 @@ The friction begins outside the Apple walled garden: public web forms, Windows a
 L'operazione avviene interamente nella memoria locale del tuo browser grazie ai motori WebAssembly: le tue foto non vengono caricate su nessun server remoto, garantendo la totale riservatezza delle tue foto private e di famiglia.`,
           en: `You don't need paid store licenses or ad-infested desktop converters. With FileOmniTool, conversion is seamless:
 
-1. Open the [Convert Image](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/ImageConvertTool.tsx) tool.
+1. Open the [Convert Image](/tools/image-convert) tool.
 2. Drag and drop your .HEIC files (you can batch upload dozens of photos at once).
 3. Select **JPG** or **WebP** as your target format.
 4. Click download: your photos are instantly ready and universally compatible with every Windows application.
@@ -426,7 +426,7 @@ Our client-side processing engine can re-render image pixels to produce clean JP
     slug: "extract-audio-from-video-mp4-webm-offline",
     category: "tutorials",
     datePublished: "2026-10-18",
-    dateModified: "2026-10-18",
+    dateModified: "2026-10-22",
     readTime: "6 min",
     author: "Cybsquatch",
     authorRole: {
@@ -528,14 +528,14 @@ The voice track inside that same file usually accounts for less than 80 Megabyte
         content: {
           it: `I formati video come **MP4** o **WebM** non sono singoli blocchi monolitici, ma veri e propri "scatoloni" digitali (chiamati *container*) che contengono al loro interno due flussi paralleli: una traccia video (ad esempio H.264 o AV1) e una traccia audio (come AAC, MP3 o Opus).
 
-Con il nostro strumento [Estrai Audio da Video](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/VideoExtractAudioTool.tsx), il browser legge la struttura binaria del file direttamente dal tuo disco fisso, estrae i pacchetti audio e genera istantaneamente il file sonoro senza dover decodificare e ricodificare i fotogrammi video.
+Con il nostro strumento [Estrai Audio da Video](/tools/video-to-audio), il browser legge la struttura binaria del file direttamente dal tuo disco fisso, estrae i pacchetti audio e genera istantaneamente il file sonoro senza dover decodificare e ricodificare i fotogrammi video.
 
-Il risultato? Un processo che richiedeva minuti su server remoti si completa in meno di 5 secondi sul tuo computer. E subito dopo, puoi usare lo strumento [Taglia Audio](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/AudioTrimTool.tsx) per isolare la parte che ti interessa.`,
+Il risultato? Un processo che richiedeva minuti su server remoti si completa in meno di 5 secondi sul tuo computer. E subito dopo, puoi usare lo strumento [Taglia Audio](/tools/audio-trim) per isolare la parte che ti interessa.`,
           en: `Video formats like **MP4** or **WebM** are containers hosting parallel data streams: video frames (H.264, VP9, AV1) alongside audio packets (AAC, MP3, Opus).
 
-Using our [Extract Audio from Video](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/VideoExtractAudioTool.tsx) tool, the browser reads container metadata straight off your SSD, demuxes audio streams, and outputs standalone sound files without touching the heavy video frames.
+Using our [Extract Audio from Video](/tools/video-to-audio) tool, the browser reads container metadata straight off your SSD, demuxes audio streams, and outputs standalone sound files without touching the heavy video frames.
 
-What once took minutes of network uploads now completes in 5 seconds flat on your machine. You can then trim key excerpts directly with our [Audio Trim](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/AudioTrimTool.tsx) utility.`,
+What once took minutes of network uploads now completes in 5 seconds flat on your machine. You can then trim key excerpts directly with our [Audio Trim](/tools/audio-trim) utility.`,
         },
       },
       {
@@ -560,7 +560,7 @@ Local client-side execution guarantees audio streams never touch public networks
     slug: "open-source-software-guide-replace-expensive-saas",
     category: "open-source",
     datePublished: "2026-10-18",
-    dateModified: "2026-10-18",
+    dateModified: "2026-10-22",
     readTime: "9 min",
     author: "Cybsquatch",
     authorRole: {
@@ -662,16 +662,16 @@ The SaaS explosion triggered widespread subscription fatigue. In 2026, paying re
         content: {
           it: `Ecco come puoi ripensare il tuo kit di strumenti digitali azzerando i costi:
 
-* **Invece di SmallPDF / iLovePDF**: usa la suite PDF di FileOmniTool ([Unisci PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfMergeTool.tsx), [Comprimi PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfCompressTool.tsx), [Dividi PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfSplitTool.tsx)). Zero upload, nessun limite di file giornalieri.
-* **Invece di CloudConvert / Zamzar**: usa il nostro [Converti Immagini](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/ImageConvertTool.tsx) con supporto ultra-rapido per WebP, PNG, JPG e SVG.
-* **Invece di WinZip / WinRAR a pagamento**: usa [Estrai Archivio](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/ArchiveExtractTool.tsx) per decomprimere archivi ZIP e TAR istantaneamente nel browser.
-* **Invece di strumenti di diff proprietari**: usa [Confronta Testo (Diff)](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/TextDiffTool.tsx) per evidenziare modifiche contrattuali e righe di codice.`,
+* **Invece di SmallPDF / iLovePDF**: usa la suite PDF di FileOmniTool ([Unisci PDF](/tools/pdf-merge), [Comprimi PDF](/tools/pdf-flatten), [Dividi PDF](/tools/pdf-split)). Zero upload, nessun limite di file giornalieri.
+* **Invece di CloudConvert / Zamzar**: usa il nostro [Converti Immagini](/tools/image-convert) con supporto ultra-rapido per WebP, PNG, JPG e SVG.
+* **Invece di WinZip / WinRAR a pagamento**: usa [Estrai Archivio](/tools/zip-extract) per decomprimere archivi ZIP e TAR istantaneamente nel browser.
+* **Invece di strumenti di diff proprietari**: usa [Confronta Testo (Diff)](/tools/text-diff) per evidenziare modifiche contrattuali e righe di codice.`,
           en: `Here is your blueprint to eliminate recurring overhead:
 
-* **Replace SmallPDF & iLovePDF**: with FileOmniTool's PDF suite ([Merge PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfMergeTool.tsx), [Compress PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfCompressTool.tsx), [Split PDF](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/PdfSplitTool.tsx)). Zero uploads, zero daily usage caps.
-* **Replace CloudConvert & Zamzar**: with [Convert Image](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/ImageConvertTool.tsx), supporting instant WebP, PNG, JPG, and SVG workflows.
-* **Replace paid desktop unzippers**: with [Extract Archive](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/ArchiveExtractTool.tsx) to unpack ZIP and TAR files inside the browser.
-* **Replace paid diff checkers**: with [Compare Text (Diff)](file:///c:/Users/Riccardo/Desktop/OmniTool/web/src/components/tools/TextDiffTool.tsx) for tracking revisions and contract clause changes.`,
+* **Replace SmallPDF & iLovePDF**: with FileOmniTool's PDF suite ([Merge PDF](/tools/pdf-merge), [Compress PDF](/tools/pdf-flatten), [Split PDF](/tools/pdf-split)). Zero uploads, zero daily usage caps.
+* **Replace CloudConvert & Zamzar**: with [Convert Image](/tools/image-convert), supporting instant WebP, PNG, JPG, and SVG workflows.
+* **Replace paid desktop unzippers**: with [Extract Archive](/tools/zip-extract) to unpack ZIP and TAR files inside the browser.
+* **Replace paid diff checkers**: with [Compare Text (Diff)](/tools/text-diff) for tracking revisions and contract clause changes.`,
         },
       },
       {

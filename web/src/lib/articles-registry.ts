@@ -1,5 +1,6 @@
 import { LocalizedText } from "./guides-registry";
 import { WAVE2_ARTICLES } from "./articles-wave2";
+import { WAVE3_ARTICLES } from "./articles-wave3";
 
 export interface ArticleSection {
   heading: LocalizedText;
@@ -33,7 +34,7 @@ const BASE_ARTICLES: ArticleItem[] = [
     slug: "artcraft-adobe-open-source-revolution",
     category: "open-source",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-18",
+    dateModified: "2026-10-22",
     readTime: "7 min",
     author: "Cybsquatch",
     authorRole: {
@@ -190,7 +191,7 @@ Open-source, browser-native tools eliminate this hazard completely. The code run
     slug: "best-github-privacy-tools-replace-saas",
     category: "open-source",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-18",
+    dateModified: "2026-10-22",
     readTime: "8 min",
     author: "Cybsquatch",
     authorRole: {
@@ -337,7 +338,7 @@ Within days, you'll slash recurring costs, protect your confidentiality, and reg
     slug: "fileomnitool-vs-smallpdf-ilovepdf-privacy-gdpr",
     category: "comparisons",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-18",
+    dateModified: "2026-10-22",
     readTime: "9 min",
     author: "Cybsquatch",
     authorRole: {
@@ -452,12 +453,16 @@ Secondo il Regolamento Generale sulla Protezione dei Dati (GDPR, Regolamento UE 
 - Un documento contenente nomi, codici fiscali, IBAN, cartelle cliniche o bilanci costituisce un insieme di **dati personali e sensibili**.
 - Spedire tali dati a un fornitore terzo senza aver sottoscritto un contratto formale di nomina a Responsabile del Trattamento (DPA, Data Processing Agreement) costituisce un **trattamento illecito di dati**.
 
-In caso di ispezione del Garante della Privacy o di una violazione, l'azienda rischia sanzioni fino al 4% del fatturato globale annuo. Dire al controllore: *"L'ho unito con un sito trovato su Google che cancellava i file dopo un'ora"* non è una scusa accettabile.`,
+In caso di ispezione del Garante della Privacy o di una violazione, l'azienda rischia sanzioni fino al 4% del fatturato globale annuo. Dire al controllore: *"L'ho unito con un sito trovato su Google che cancellava i file dopo un'ora"* non è una scusa accettabile.
+
+*Nota di aggiornamento (Ottobre 2026):* Alla luce dei recenti richiami dell'EDPB sull'uso di file caricati sui convertitori cloud per l'addestramento non supervisionato di algoritmi predittivi, la scelta di eseguire manipolazioni PDF a livello puramente client-side in memoria RAM è ormai considerata l'unica architettura "Privacy by Design" pienamente conforme all'Art. 25 del GDPR.`,
           en: `For casual files, the danger may seem negligible. But for legal, healthcare, accounting, and corporate workflows, regulatory exposure is severe.
 
 Under European GDPR regulations (and international equivalents):
 - Uploading client contracts, medical summaries, bank credentials, or tax declarations to third-party endpoints without a formal Data Processing Agreement (DPA) constitutes an unauthorized transfer of personal data.
-- Saying *"the site stated it deletes files after an hour"* does not protect you from regulatory fines or corporate liabilities in case of audits.`,
+- Saying *"the site stated it deletes files after an hour"* does not protect you from regulatory fines or corporate liabilities in case of audits.
+
+*Editorial Update (October 2026):* Following renewed EDPB scrutiny over undocumented automated scanning and AI training on cloud conversion pipelines, zero-upload local RAM processing is recognized as the leading standard for Article 25 ("Data protection by design and by default").`,
         },
       },
       {
@@ -518,7 +523,7 @@ How our platform operates:
     slug: "free-adobe-acrobat-pro-alternatives",
     category: "tutorials",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-18",
+    dateModified: "2026-10-22",
     readTime: "7 min",
     author: "Cybsquatch",
     authorRole: {
@@ -649,7 +654,7 @@ Paying hundreds of dollars every year just to merge two pages or rotate an upsid
     slug: "exif-metadata-privacy-guide",
     category: "privacy",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-18",
+    dateModified: "2026-10-22",
     readTime: "6 min",
     author: "Cybsquatch",
     authorRole: {
@@ -798,7 +803,7 @@ Everything executes locally in your browser's RAM with zero server transfers.`,
   },
 ];
 
-export const ARTICLES_REGISTRY: ArticleItem[] = [...BASE_ARTICLES, ...WAVE2_ARTICLES];
+export const ARTICLES_REGISTRY: ArticleItem[] = [...BASE_ARTICLES, ...WAVE2_ARTICLES, ...WAVE3_ARTICLES];
 
 export function getArticleBySlug(slug: string): ArticleItem | undefined {
   return ARTICLES_REGISTRY.find((a) => a.slug === slug);
