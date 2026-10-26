@@ -34,7 +34,7 @@ const BASE_ARTICLES: ArticleItem[] = [
     slug: "artcraft-adobe-open-source-revolution",
     category: "open-source",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-22",
+    dateModified: "2026-10-26",
     readTime: "7 min",
     author: "Cybsquatch",
     authorRole: {
@@ -191,7 +191,7 @@ Open-source, browser-native tools eliminate this hazard completely. The code run
     slug: "best-github-privacy-tools-replace-saas",
     category: "open-source",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-22",
+    dateModified: "2026-10-26",
     readTime: "8 min",
     author: "Cybsquatch",
     authorRole: {
@@ -338,7 +338,7 @@ Within days, you'll slash recurring costs, protect your confidentiality, and reg
     slug: "fileomnitool-vs-smallpdf-ilovepdf-privacy-gdpr",
     category: "comparisons",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-22",
+    dateModified: "2026-10-26",
     readTime: "9 min",
     author: "Cybsquatch",
     authorRole: {
