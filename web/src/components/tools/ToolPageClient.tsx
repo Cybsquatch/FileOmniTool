@@ -81,6 +81,11 @@ import { FileToBase64Tool } from "@/components/tools/FileToBase64Tool";
 import { FileMagicDetectorTool } from "@/components/tools/FileMagicDetectorTool";
 import { ScreenRecorderTool } from "@/components/tools/ScreenRecorderTool";
 import { VoiceRecorderTool } from "@/components/tools/VoiceRecorderTool";
+import { PdfSignTool } from "@/components/tools/PdfSignTool";
+import { QrScannerTool } from "@/components/tools/QrScannerTool";
+import { BarcodeGeneratorTool } from "@/components/tools/BarcodeGeneratorTool";
+import { MicTestTool } from "@/components/tools/MicTestTool";
+import { WebcamTestTool } from "@/components/tools/WebcamTestTool";
 import { ComparisonTable } from "@/components/tools/ComparisonTable";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { EmbedWidgetModal } from "@/components/tools/EmbedWidgetModal";
@@ -263,6 +268,16 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         return <ScreenRecorderTool />;
       case "voice-recorder":
         return <VoiceRecorderTool />;
+      case "pdf-sign":
+        return <PdfSignTool />;
+      case "qr-scanner":
+        return <QrScannerTool />;
+      case "barcode-generator":
+        return <BarcodeGeneratorTool />;
+      case "mic-test":
+        return <MicTestTool />;
+      case "webcam-test":
+        return <WebcamTestTool />;
       default:
         return <div>Tool in development.</div>;
     }

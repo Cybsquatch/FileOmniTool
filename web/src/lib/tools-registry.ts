@@ -1,5 +1,6 @@
 import { EXPANDED_TOOLS } from "./tools-registry-expanded";
 import { WAVE3_TOOLS } from "./tools-registry-wave3";
+import { WAVE4_TOOLS } from "./tools-registry-wave4";
 import { TOOLS_TRANSLATIONS } from "./i18n/tools-translations";
 
 export interface ToolFaq {
@@ -2089,6 +2090,7 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
   ...EXPANDED_TOOLS,
   ...WAVE3_TOOLS,
   ...NEW_VIRAL_TOOLS,
+  ...WAVE4_TOOLS,
 ].map((tool) => {
   const trans = TOOLS_TRANSLATIONS[tool.id];
   if (!trans) return tool;
