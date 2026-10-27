@@ -91,7 +91,7 @@ export function getToolMetadata(tool: ToolDefinition, locale: Language): Metadat
   const descText = tool.metaDescription[locale] || tool.description[locale] || tool.metaDescription.en || tool.description.en;
   const keywordText = tool.seoKeyword[locale] || tool.seoKeyword.en || titleText;
 
-  const fullTitle = `${titleText} ${TITLE_SUFFIXES[locale]}`;
+  const fullTitle = tool.metaTitle[locale] || `${titleText} ${TITLE_SUFFIXES[locale]}`;
   const path = `/tools/${tool.id}`;
   const hreflang = getHreflangAlternates(path, locale);
   const ogConfig = LOCALE_OG_MAP[locale];

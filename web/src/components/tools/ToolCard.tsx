@@ -124,10 +124,11 @@ export const ToolCard: React.FC<ToolCardProps> = ({ tool }) => {
   const titleText = tool.title[language] || tool.title.en;
   const descText = tool.description[language] || tool.description.en;
   const badgeText = tool.badge ? (tool.badge[language] || tool.badge.en) : null;
+  const toolHref = language === "it" ? `/tools/${tool.id}` : `/${language}/tools/${tool.id}`;
 
   return (
     <Link
-      href={`/tools/${tool.id}`}
+      href={toolHref}
       className={`group relative flex flex-col justify-between rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/70 ${theme.border}`}
     >
       <div>

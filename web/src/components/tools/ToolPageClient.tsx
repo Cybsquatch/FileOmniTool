@@ -105,12 +105,10 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
   const instructions = tool.instructions[language] || tool.instructions.en;
   const faq = tool.faq[language] || tool.faq.en;
 
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      const currentTitle = tool.title[language] || tool.title.it || tool.title.en;
-      document.title = `${currentTitle} | FileOmniTool`;
-    }
-  }, [language, tool]);
+  const getLocalizedHref = (path: string) => {
+    if (language === "it") return path;
+    return `/${language}${path === "/" ? "" : path}`;
+  };
 
   const renderToolComponent = () => {
     switch (tool.id) {
@@ -283,9 +281,13 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
     }
   };
 
-  const relatedTools = TOOLS_REGISTRY.filter(
-    (t) => t.id !== tool.id && (t.category === tool.category || t.popular)
-  ).slice(0, 4);
+  const categoryPeers = TOOLS_REGISTRY.filter((t) => t.category === tool.category);
+  const currentCatIdx = Math.max(0, categoryPeers.findIndex((t) => t.id === tool.id));
+  const rotatedCategoryTools = [
+    ...categoryPeers.slice(currentCatIdx + 1),
+    ...categoryPeers.slice(0, currentCatIdx),
+  ];
+  const relatedTools = rotatedCategoryTools.slice(0, 6);
 
   const guide = getGuideByToolId(tool.id);
 
@@ -294,7 +296,7 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
       {/* Breadcrumb Navigation */}
       <div className="mx-auto max-w-5xl px-4 pt-6 sm:px-6 lg:px-8">
         <nav className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
-          <Link href="/" className="hover:text-emerald-600 dark:hover:text-emerald-400">
+          <Link href={getLocalizedHref("/")} className="hover:text-emerald-600 dark:hover:text-emerald-400">
             Home
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-zinc-400" />
@@ -321,7 +323,7 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
           {guide && (
             <Link
-              href={`/guides/${guide.slug}`}
+              href={getLocalizedHref(`/guides/${guide.slug}`)}
               className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50/70 px-3.5 py-1 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-100 hover:shadow-sm dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300"
             >
               <BookOpen className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
@@ -369,6 +371,30 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         </div>
       </section>
 
+      {/* Rich Semantic Technical & Privacy Deep-Dive (Boosts On-Page SEO Authority) */}
+      {guide && (
+        <section className="mx-auto mt-8 max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70 space-y-6">
+            <div>
+              <h2 className="text-lg font-bold text-zinc-900 dark:text-white">
+                {t("guides.whyLocal")} — {title}
+              </h2>
+              <p className="mt-3 text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                {guide.intro[language] || guide.intro.en}
+              </p>
+            </div>
+            <div className="border-t border-zinc-100 pt-5 dark:border-zinc-800">
+              <h3 className="text-sm font-bold text-zinc-900 dark:text-white">
+                {t("guides.techArch")}
+              </h3>
+              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                {guide.deepDive[language] || guide.deepDive.en}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Comparison Table: FileOmniTool vs Traditional Cloud Converters */}
       <ComparisonTable />
 
@@ -414,7 +440,7 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
             {t("tool.relatedTools")}
           </h2>
           <Link
-            href="/"
+            href={getLocalizedHref("/")}
             className="text-xs font-semibold text-emerald-600 hover:underline dark:text-emerald-400"
           >
             {t("tool.viewAllTools")}
@@ -425,7 +451,7 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
           {relatedTools.map((relTool) => (
             <Link
               key={relTool.id}
-              href={`/tools/${relTool.id}`}
+              href={getLocalizedHref(`/tools/${relTool.id}`)}
               className="flex items-center justify-between rounded-xl border border-zinc-200/80 bg-white p-4 shadow-sm transition hover:border-emerald-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:border-emerald-700"
             >
               <div>

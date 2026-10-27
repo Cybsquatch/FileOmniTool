@@ -862,48 +862,12 @@ const LanguageContext = createContext<LanguageContextType>({
   t: (key: string) => key,
 });
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLanguage?: Language }> = ({ children, initialLanguage }) => {
-  const [language, setLanguageState] = useState<Language>(initialLanguage || "it");
+export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLanguage?: Language }> = ({ children, initialLanguage = "it" }) => {
+  const [language, setLanguageState] = useState<Language>(initialLanguage);
 
   useEffect(() => {
-    if (initialLanguage) {
-      setLanguageState(initialLanguage);
-      document.documentElement.lang = initialLanguage;
-      return;
-    }
-
-    // 1. Controlla preferenza esplicita salvata in localStorage
-    const saved = localStorage.getItem("fileomnitool_lang") as Language | null;
-    const validCodes: Language[] = ["en", "it", "es", "fr", "de", "pt"];
-    if (saved && validCodes.includes(saved)) {
-      setLanguageState(saved);
-      document.documentElement.lang = saved;
-      return;
-    }
-
-    // 2. Altrimenti rileva dalla lingua di sistema/browser dell'utente
-    if (typeof window !== "undefined" && window.navigator) {
-      const browserLang = (window.navigator.language || "").toLowerCase();
-      if (browserLang.startsWith("it")) {
-        setLanguageState("it");
-        document.documentElement.lang = "it";
-      } else if (browserLang.startsWith("es")) {
-        setLanguageState("es");
-        document.documentElement.lang = "es";
-      } else if (browserLang.startsWith("fr")) {
-        setLanguageState("fr");
-        document.documentElement.lang = "fr";
-      } else if (browserLang.startsWith("de")) {
-        setLanguageState("de");
-        document.documentElement.lang = "de";
-      } else if (browserLang.startsWith("pt")) {
-        setLanguageState("pt");
-        document.documentElement.lang = "pt";
-      } else {
-        setLanguageState("en");
-        document.documentElement.lang = "en";
-      }
-    }
+    setLanguageState(initialLanguage);
+    document.documentElement.lang = initialLanguage;
   }, [initialLanguage]);
 
   const setLanguage = (lang: Language) => {

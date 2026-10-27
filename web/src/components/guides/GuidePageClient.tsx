@@ -38,23 +38,21 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
 
   const currentCategory = (t(`category.${guide.category}`) || guide.category).toUpperCase();
 
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      const currentTitle = guide.title[language] || guide.title.it || guide.title.en;
-      document.title = `${currentTitle} | FileOmniTool`;
-    }
-  }, [language, guide]);
+  const getLocalizedHref = (path: string) => {
+    if (language === "it") return path;
+    return `/${language}${path === "/" ? "" : path}`;
+  };
 
   return (
     <>
       {/* Breadcrumb Navigation */}
       <div className="mx-auto max-w-4xl px-4 pt-6 sm:px-6 lg:px-8">
         <nav className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
-          <Link href="/" className="hover:text-emerald-600 dark:hover:text-emerald-400">
+          <Link href={getLocalizedHref("/")} className="hover:text-emerald-600 dark:hover:text-emerald-400">
             Home
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-zinc-400" />
-          <Link href="/guides" className="hover:text-emerald-600 dark:hover:text-emerald-400">
+          <Link href={getLocalizedHref("/guides")} className="hover:text-emerald-600 dark:hover:text-emerald-400">
             {t("nav.guides")}
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-zinc-400" />
@@ -113,7 +111,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
               </div>
 
               <Link
-                href={`/tools/${tool.id}`}
+                href={getLocalizedHref(`/tools/${tool.id}`)}
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-emerald-500 hover:shadow-lg"
               >
                 <Sparkles className="h-4 w-4" />
@@ -268,7 +266,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
               {t("guides.moreGuides")}
             </h2>
             <Link
-              href="/guides"
+              href={getLocalizedHref("/guides")}
               className="text-xs font-semibold text-emerald-600 hover:underline dark:text-emerald-400"
             >
               {t("guides.viewAllGuides")}
@@ -279,7 +277,7 @@ export const GuidePageClient: React.FC<GuidePageClientProps> = ({ guide, otherGu
             {otherGuides.map((other) => (
               <Link
                 key={other.slug}
-                href={`/guides/${other.slug}`}
+                href={getLocalizedHref(`/guides/${other.slug}`)}
                 className="group flex flex-col justify-between rounded-xl border border-zinc-200/80 bg-white p-5 shadow-sm transition hover:border-emerald-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:border-emerald-800"
               >
                 <div>

@@ -20,9 +20,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <LanguageProvider initialLanguage={validLocale}>
-      <head>
-        <meta httpEquiv="content-language" content={contentLang} />
-      </head>
       {children}
     </LanguageProvider>
   );

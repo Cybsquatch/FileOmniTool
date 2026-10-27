@@ -14,12 +14,17 @@ interface GuidesIndexClientProps {
 export const GuidesIndexClient: React.FC<GuidesIndexClientProps> = ({ guides }) => {
   const { language, t } = useLanguage();
 
+  const getLocalizedHref = (path: string) => {
+    if (language === "it") return path;
+    return `/${language}${path === "/" ? "" : path}`;
+  };
+
   return (
     <>
       {/* Breadcrumb Navigation */}
       <div className="mx-auto max-w-5xl px-4 pt-6 sm:px-6 lg:px-8">
         <nav className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
-          <Link href="/" className="hover:text-emerald-600 dark:hover:text-emerald-400">
+          <Link href={getLocalizedHref("/")} className="hover:text-emerald-600 dark:hover:text-emerald-400">
             Home
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-zinc-400" />
@@ -55,6 +60,7 @@ export const GuidesIndexClient: React.FC<GuidesIndexClientProps> = ({ guides }) 
             const title = guide.title[language] || guide.title.en;
             const excerpt = guide.excerpt[language] || guide.excerpt.en;
             const categoryName = t(`category.${guide.category}`) || guide.category;
+            const guideHref = getLocalizedHref(`/guides/${guide.slug}`);
 
             return (
               <article
@@ -73,7 +79,7 @@ export const GuidesIndexClient: React.FC<GuidesIndexClientProps> = ({ guides }) 
                   </div>
 
                   <h2 className="mt-4 text-lg font-bold text-zinc-900 group-hover:text-emerald-600 transition dark:text-white dark:group-hover:text-emerald-400">
-                    <Link href={`/guides/${guide.slug}`}>{title}</Link>
+                    <Link href={guideHref}>{title}</Link>
                   </h2>
 
                   <p className="mt-2 text-xs leading-relaxed text-zinc-600 line-clamp-3 dark:text-zinc-400">
@@ -88,7 +94,7 @@ export const GuidesIndexClient: React.FC<GuidesIndexClientProps> = ({ guides }) 
                   </div>
 
                   <Link
-                    href={`/guides/${guide.slug}`}
+                    href={guideHref}
                     className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 group-hover:translate-x-1 transition-transform dark:text-emerald-400"
                   >
                     <span>{t("guides.readGuide")}</span>
@@ -117,7 +123,7 @@ export const GuidesIndexClient: React.FC<GuidesIndexClientProps> = ({ guides }) 
           </p>
           <div className="mt-6">
             <Link
-              href="/"
+              href={getLocalizedHref("/")}
               className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-emerald-500"
             >
               <span>{t("guides.readyBtn")}</span>
