@@ -8,8 +8,8 @@ import { GuidesIndexClient } from "@/components/guides/GuidesIndexClient";
 import { getHreflangAlternates } from "@/lib/seo-helpers";
 
 export const metadata: Metadata = {
-  title: "Guide e Tutorial sui File nel Browser | Step-by-Step Guides | FileOmniTool",
-  description: "Guide complete passo-passo su come unire PDF, convertire immagini, estrarre audio MP3 e proteggere la privacy con strumenti 100% nel tuo browser senza upload. In-browser file tutorials.",
+  title: "Guide e Tutorial sui File nel Browser | FileOmniTool",
+  description: "Guide passo-passo per unire PDF, convertire immagini, estrarre audio MP3 e proteggere la privacy con strumenti 100% nel browser senza upload.",
   alternates: getHreflangAlternates("/guides", "it"),
   keywords: [
     "guide file",

@@ -69,12 +69,12 @@ const LOCALE_OG_MAP: Record<Language, { locale: string; alternates: string[] }> 
 };
 
 const TITLE_SUFFIXES: Record<Language, string> = {
-  it: "Gratis nel Browser - 100% Privato | FileOmniTool",
-  en: "Free in Browser - 100% Private | FileOmniTool",
-  es: "Gratis en el Navegador - 100% Privado | FileOmniTool",
-  fr: "Gratuit dans le Navigateur - 100% Privé | FileOmniTool",
-  de: "Kostenlos im Browser - 100% Privat | FileOmniTool",
-  pt: "Grátis no Navegador - 100% Privado | FileOmniTool",
+  it: "- 100% Privato e Gratis | FileOmniTool",
+  en: "- 100% Private & Free | FileOmniTool",
+  es: "- 100% Privado y Gratis | FileOmniTool",
+  fr: "- 100% Privé et Gratuit | FileOmniTool",
+  de: "- 100% Privat & Kostenlos | FileOmniTool",
+  pt: "- 100% Privado e Grátis | FileOmniTool",
 };
 
 const COMMON_KEYWORDS: Record<Language, string[]> = {
@@ -88,7 +88,7 @@ const COMMON_KEYWORDS: Record<Language, string[]> = {
 
 export function getToolMetadata(tool: ToolDefinition, locale: Language): Metadata {
   const titleText = tool.title[locale] || tool.title.en;
-  const descText = tool.description[locale] || tool.description.en;
+  const descText = tool.metaDescription[locale] || tool.description[locale] || tool.metaDescription.en || tool.description.en;
   const keywordText = tool.seoKeyword[locale] || tool.seoKeyword.en || titleText;
 
   const fullTitle = `${titleText} ${TITLE_SUFFIXES[locale]}`;

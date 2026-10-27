@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   other: {
     "content-language": "it-IT",
   },
-  title: "FileOmniTool - Strumenti per File Gratuiti, Privati e nel Browser | Free In-Browser File Tools",
-  description: "Unisci PDF, converti immagini (WebP/PNG/JPG), comprimi file ed estrai archivi ZIP al 100% nel tuo browser senza upload su server. 100% privato e gratuito. Merge PDFs, convert images & extract ZIPs client-side.",
+  title: "FileOmniTool - Strumenti per File Gratuiti, Privati e nel Browser",
+  description: "Unisci PDF, converti immagini (WebP, PNG, JPG, AVIF), comprimi file ed estrai archivi ZIP al 100% nel tuo browser senza upload su server. 100% gratuito e sicuro.",
   keywords: [
     "unisci pdf", "converti immagini", "comprimi file", "estrai zip", "strumenti file gratis",
     "convertire webp in png", "riduci pdf", "privacy", "zero upload", "nel browser",

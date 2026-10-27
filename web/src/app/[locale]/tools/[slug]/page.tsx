@@ -57,6 +57,8 @@ export default async function LocalizedToolPage({ params }: LocalizedToolPagePro
     },
   }));
 
+  const instructions = tool.instructions[validLocale] || tool.instructions.en || [];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -109,10 +111,29 @@ export default async function LocalizedToolPage({ params }: LocalizedToolPagePro
           },
         ],
       },
-      {
-        "@type": "FAQPage",
-        "mainEntity": faqs,
-      },
+      ...(faqs.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              "mainEntity": faqs,
+            },
+          ]
+        : []),
+      ...(instructions.length > 0
+        ? [
+            {
+              "@type": "HowTo",
+              "name": `How to use ${toolTitle}`,
+              "description": `Step-by-step instructions to use ${toolTitle} client-side in your browser.`,
+              "step": instructions.map((stepText, idx) => ({
+                "@type": "HowToStep",
+                "position": idx + 1,
+                "name": `Step ${idx + 1}`,
+                "text": stepText,
+              })),
+            },
+          ]
+        : []),
     ],
   };
 

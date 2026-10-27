@@ -7,7 +7,7 @@ import { AdBanner } from "@/components/ads/AdBanner";
 import { GUIDES_REGISTRY, getGuideBySlug } from "@/lib/guides-registry";
 import { getToolById } from "@/lib/tools-registry";
 import { GuidePageClient } from "@/components/guides/GuidePageClient";
-import { getHreflangAlternates, SAME_AS_LINKS } from "@/lib/seo-helpers";
+import { getHreflangAlternates, SAME_AS_LINKS, getGuideMetadata } from "@/lib/seo-helpers";
 
 interface GuidePageProps {
   params: Promise<{ slug: string }>;
@@ -24,54 +24,10 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   const guide = getGuideBySlug(slug);
 
   if (!guide) {
-    return { title: "Guide Not Found | FileOmniTool" };
+    return { title: "Guida non trovata | FileOmniTool" };
   }
 
-  return {
-    title: `${guide.title.it} | ${guide.title.en}`,
-    description: `${guide.metaDescription.it} / ${guide.metaDescription.en}`,
-    keywords: Array.from(
-      new Set(
-        [
-          guide.seoKeyword.it,
-          guide.seoKeyword.en,
-          guide.title.it,
-          guide.title.en,
-          guide.title.es,
-          guide.title.fr,
-          guide.title.de,
-          guide.title.pt,
-          "guida",
-          "tutorial",
-          "gratis",
-          "nel browser",
-          "senza caricamento",
-          "privacy",
-          "how to",
-          "online free",
-          "no upload",
-        ].filter(Boolean) as string[]
-      )
-    ),
-    alternates: getHreflangAlternates(`/guides/${guide.slug}`, "it"),
-    other: {
-      "content-language": "it-IT",
-    },
-    openGraph: {
-      title: `${guide.title.it} | ${guide.title.en}`,
-      description: `${guide.metaDescription.it} • ${guide.metaDescription.en}`,
-      url: `https://www.fileomnitool.com/guides/${guide.slug}`,
-      type: "article",
-      publishedTime: guide.datePublished,
-      locale: "it_IT",
-      alternateLocale: ["en_US", "es_ES", "fr_FR", "de_DE", "pt_BR"],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${guide.title.it} | ${guide.title.en}`,
-      description: `${guide.metaDescription.it} • ${guide.metaDescription.en}`,
-    },
-  };
+  return getGuideMetadata(guide, "it");
 }
 
 export default async function SingleGuidePage({ params }: GuidePageProps) {
@@ -93,7 +49,7 @@ export default async function SingleGuidePage({ params }: GuidePageProps) {
         "@type": "HowTo",
         "name": guide.title.it,
         "description": guide.excerpt.it,
-        "inLanguage": ["it", "en", "es", "fr", "de", "pt"],
+        "inLanguage": "it",
         "tool": tool
           ? [
               {
@@ -117,7 +73,7 @@ export default async function SingleGuidePage({ params }: GuidePageProps) {
         "alternativeHeadline": guide.title.en,
         "description": guide.excerpt.it,
         "datePublished": guide.datePublished,
-        "inLanguage": ["it", "en", "es", "fr", "de", "pt"],
+        "inLanguage": "it",
         "author": {
           "@type": "Person",
           "name": "Cybsquatch",
