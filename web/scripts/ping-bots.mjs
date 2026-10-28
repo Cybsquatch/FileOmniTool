@@ -23,10 +23,9 @@ async function main() {
   console.log("🚀 FileOmniTool Search Engine Bot Pinger");
   console.log("=========================================\n");
 
-  // 1. Google & Bing sitemap pings
-  await pingUrl("Google Sitemap Ping", `https://www.google.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`);
-  await pingUrl("Bing Sitemap Ping", `https://www.bing.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`);
-  await pingUrl("Google Feed Ping", `https://www.google.com/ping?sitemap=${encodeURIComponent(FEED_URL)}`);
+  // Google and Bing retired their sitemap ping endpoints (2023/2022): Google reads
+  // the sitemap's lastmod on its own, Bing/Yandex are notified via IndexNow below.
+  console.log(`[Ping] Sitemap: ${SITEMAP_URL} | Feed: ${FEED_URL} (discovered via robots.txt / Search Console)`);
 
   console.log("\n[IndexNow] Dispatching IndexNow push to Bing & Yandex...");
   try {

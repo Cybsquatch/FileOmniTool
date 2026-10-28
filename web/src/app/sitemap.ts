@@ -16,13 +16,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   };
 
   const entries: MetadataRoute.Sitemap = [];
-  const now = new Date();
+  // Real content dates only: a lastmod that changes on every build is ignored by Google
+  const articleDates = ARTICLES_REGISTRY.map((a) => a.dateModified || a.datePublished);
+  const guideDates = GUIDES_REGISTRY.map((g) => g.datePublished);
+  const latest = (dates: string[]) => new Date(dates.reduce((max, d) => (d > max ? d : max)));
+  const latestContent = latest([...articleDates, ...guideDates]);
+  const latestArticle = latest(articleDates);
+  const latestGuide = latest(guideDates);
 
   // 1. Static Core Pages (Home, Guides Index, Privacy) across all 6 locales
   for (const locale of ALL_LOCALES) {
     entries.push({
       url: getLocalizedUrl("/", locale),
-      lastModified: now,
+      lastModified: latestContent,
       changeFrequency: "daily" as const,
       priority: locale === "it" || locale === "en" ? 1.0 : 0.9,
       alternates: getAlternates("/"),
@@ -30,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     entries.push({
       url: getLocalizedUrl("/guides", locale),
-      lastModified: now,
+      lastModified: latestGuide,
       changeFrequency: "daily" as const,
       priority: 0.85,
       alternates: getAlternates("/guides"),
@@ -38,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     entries.push({
       url: getLocalizedUrl("/articles", locale),
-      lastModified: now,
+      lastModified: latestArticle,
       changeFrequency: "daily" as const,
       priority: 0.88,
       alternates: getAlternates("/articles"),
@@ -46,7 +52,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     entries.push({
       url: getLocalizedUrl("/privacy", locale),
-      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.5,
       alternates: getAlternates("/privacy"),
@@ -54,7 +59,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     entries.push({
       url: getLocalizedUrl("/terms", locale),
-      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.5,
       alternates: getAlternates("/terms"),
@@ -69,7 +73,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const locale of ALL_LOCALES) {
       entries.push({
         url: getLocalizedUrl(path, locale),
-        lastModified: now,
         changeFrequency: "weekly" as const,
         priority: tool.popular ? 0.9 : 0.8,
         alternates,
