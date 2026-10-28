@@ -282,7 +282,7 @@ You can use [Encrypt PDF](/tools/pdf-encrypt) to set robust AES-256 password pro
     slug: "convert-heic-to-jpg-iphone-windows-free",
     category: "tutorials",
     datePublished: "2026-10-18",
-    dateModified: "2026-10-22",
+    dateModified: "2026-10-28",
     readTime: "6 min",
     author: "Cybsquatch",
     authorRole: {
