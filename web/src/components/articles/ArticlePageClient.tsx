@@ -78,6 +78,11 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
           </nav>
         </div>
 
+        {/* Top AdSlot Leaderboard */}
+        <section className="mx-auto max-w-4xl px-4 pt-4 sm:px-6 lg:px-8">
+          <AdBanner slot="leaderboard" />
+        </section>
+
         {/* Article Header */}
         <header className="mx-auto max-w-4xl px-4 pt-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400">

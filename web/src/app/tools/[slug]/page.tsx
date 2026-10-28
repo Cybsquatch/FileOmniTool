@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
+import { AdBanner } from "@/components/ads/AdBanner";
 import { getToolById, TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { ToolPageClient } from "@/components/tools/ToolPageClient";
 import { getToolMetadata } from "@/lib/seo-helpers";
@@ -143,6 +144,9 @@ export default async function ToolPage({ params }: PageProps) {
       <Header />
 
       <main className="flex-1 pb-16">
+        <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+          <AdBanner slot="leaderboard" />
+        </div>
 
         <ToolPageClient tool={tool} />
       </main>

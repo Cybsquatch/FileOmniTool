@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
+import { AdBanner } from "@/components/ads/AdBanner";
 import { GUIDES_REGISTRY } from "@/lib/guides-registry";
 import { GuidesIndexClient } from "@/components/guides/GuidesIndexClient";
 import { getHreflangAlternates } from "@/lib/seo-helpers";
@@ -46,6 +47,10 @@ export default function GuidesPage() {
       <Header />
 
       <main className="flex-1 pb-16">
+        {/* Top Ad Slot */}
+        <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+          <AdBanner slot="leaderboard" />
+        </div>
 
         <GuidesIndexClient guides={GUIDES_REGISTRY} />
       </main>

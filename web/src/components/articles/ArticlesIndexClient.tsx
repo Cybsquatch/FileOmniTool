@@ -59,6 +59,11 @@ export const ArticlesIndexClient: React.FC<ArticlesIndexClientProps> = ({ articl
           </nav>
         </div>
 
+        {/* Top AdSlot Leaderboard */}
+        <section className="mx-auto max-w-5xl px-4 pt-4 sm:px-6 lg:px-8">
+          <AdBanner slot="leaderboard" />
+        </section>
+
         {/* Hero Section */}
         <section className="mx-auto max-w-5xl px-4 pt-6 pb-10 text-center sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-3.5 py-1 text-xs font-semibold text-emerald-800 shadow-sm dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300">

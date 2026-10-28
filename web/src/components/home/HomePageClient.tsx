@@ -38,6 +38,10 @@ export function HomePageClient() {
       <Header />
 
       <main className="flex-1">
+        {/* Top AdSlot Leaderboard */}
+        <section className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+          <AdBanner slot="leaderboard" />
+        </section>
 
         {/* Hero Section */}
         <section className="mx-auto max-w-5xl px-4 pt-10 pb-12 text-center sm:px-6 lg:px-8">
