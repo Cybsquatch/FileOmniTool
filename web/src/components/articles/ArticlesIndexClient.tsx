@@ -6,6 +6,7 @@ import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { ArticleItem } from "@/lib/articles-registry";
+import { TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { useLanguage, Language } from "@/lib/i18n/context";
 import { 
   Sparkles, 
@@ -174,8 +175,8 @@ export const ArticlesIndexClient: React.FC<ArticlesIndexClientProps> = ({ articl
             </h3>
             <p className="mx-auto mt-2 max-w-xl text-xs text-zinc-600 dark:text-zinc-400">
               {language === "it"
-                ? "Scopri tutti i 75 strumenti gratuiti per PDF, immagini, audio e archivi. Nessun caricamento su server, zero limiti."
-                : "Explore all 75 free tools for PDF, images, audio, and archives. Zero server uploads, zero daily limits."}
+                ? `Scopri tutti i ${TOOLS_REGISTRY.length} strumenti gratuiti per PDF, immagini, audio e archivi. Nessun caricamento su server, zero limiti.`
+                : `Explore all ${TOOLS_REGISTRY.length} free tools for PDF, images, audio, and archives. Zero server uploads, zero daily limits.`}
             </p>
             <div className="mt-6">
               <Link

@@ -100,7 +100,7 @@ export const QuickSearchModal: React.FC<QuickSearchModalProps> = ({ isOpen, onCl
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder={language === "it" ? "Cerca tra 77 strumenti e articoli (es. unisci pdf, exif, schermo)..." : "Search 77 tools and articles..."}
+            placeholder={language === "it" ? `Cerca tra ${TOOLS_REGISTRY.length} strumenti e articoli (es. unisci pdf, exif, schermo)...` : `Search ${TOOLS_REGISTRY.length} tools and articles...`}
             className="w-full bg-transparent px-3 py-4 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none dark:text-white"
           />
           {query && (
@@ -201,7 +201,7 @@ export const QuickSearchModal: React.FC<QuickSearchModalProps> = ({ isOpen, onCl
             <span>•</span>
             <span>100% In-Browser Privacy</span>
           </div>
-          <span className="text-[10px] text-zinc-400">77 Strumenti • 5 Articoli</span>
+          <span className="text-[10px] text-zinc-400">{TOOLS_REGISTRY.length} Strumenti • {ARTICLES_REGISTRY.length} Articoli</span>
         </div>
       </div>
     </div>

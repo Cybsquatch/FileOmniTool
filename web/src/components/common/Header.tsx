@@ -28,6 +28,12 @@ import {
 } from "lucide-react";
 import { useLanguage, AVAILABLE_LANGUAGES, Language } from "@/lib/i18n/context";
 import { QuickSearchModal } from "@/components/common/QuickSearchModal";
+import { TOOLS_REGISTRY } from "@/lib/tools-registry";
+import { ARTICLES_REGISTRY } from "@/lib/articles-registry";
+
+// Counts come from the registries so the header never goes stale
+const TOOL_COUNT = TOOLS_REGISTRY.length;
+const ARTICLE_COUNT = ARTICLES_REGISTRY.length;
 
 // Localized UI strings for Header & Navigation
 const HEADER_I18N: Record<Language, {
@@ -77,17 +83,17 @@ const HEADER_I18N: Record<Language, {
 }> = {
   it: {
     toolsDropdown: "Strumenti",
-    allTools: "Tutti i 77 Strumenti",
-    allToolsBanner: "77 Strumenti In-Browser • 100% Gratuiti & Privati",
+    allTools: `Tutti i ${TOOL_COUNT} Strumenti`,
+    allToolsBanner: `${TOOL_COUNT} Strumenti In-Browser • 100% Gratuiti & Privati`,
     guides: "Guide",
     guidesDesc: "Tutorial ed esempi pratici",
     articles: "Articoli",
     articlesDesc: "Open source & alternative",
     privacy: "Garanzia Privacy",
     privacyBadge: "Zero Upload",
-    searchPlaceholder: "Cerca tra 77 strumenti e articoli...",
+    searchPlaceholder: `Cerca tra ${TOOL_COUNT} strumenti e articoli...`,
     quickSearch: "Cerca...",
-    viewAllTools: "Esplora tutti i 77 strumenti →",
+    viewAllTools: `Esplora tutti i ${TOOL_COUNT} strumenti →`,
     exploreAllCategories: "Catalogo Completo",
     newBadge: "Nuovo",
     categories: {
@@ -122,17 +128,17 @@ const HEADER_I18N: Record<Language, {
   },
   en: {
     toolsDropdown: "Tools",
-    allTools: "All 77 Tools",
-    allToolsBanner: "77 In-Browser Tools • 100% Free & Private",
+    allTools: `All ${TOOL_COUNT} Tools`,
+    allToolsBanner: `${TOOL_COUNT} In-Browser Tools • 100% Free & Private`,
     guides: "Guides",
     guidesDesc: "Step-by-step tutorials",
     articles: "Articles",
     articlesDesc: "Open source & privacy insights",
     privacy: "Privacy Guarantee",
     privacyBadge: "Zero Uploads",
-    searchPlaceholder: "Search 77 tools and articles...",
+    searchPlaceholder: `Search ${TOOL_COUNT} tools and articles...`,
     quickSearch: "Search...",
-    viewAllTools: "Explore all 77 tools →",
+    viewAllTools: `Explore all ${TOOL_COUNT} tools →`,
     exploreAllCategories: "Complete Catalog",
     newBadge: "New",
     categories: {
@@ -167,17 +173,17 @@ const HEADER_I18N: Record<Language, {
   },
   es: {
     toolsDropdown: "Herramientas",
-    allTools: "Las 77 Herramientas",
-    allToolsBanner: "77 Herramientas en el Navegador • 100% Gratuitas y Privadas",
+    allTools: `Las ${TOOL_COUNT} Herramientas`,
+    allToolsBanner: `${TOOL_COUNT} Herramientas en el Navegador • 100% Gratuitas y Privadas`,
     guides: "Guías",
     guidesDesc: "Tutoriales paso a paso",
     articles: "Artículos",
     articlesDesc: "Open source y alternativas",
     privacy: "Garantía de Privacidad",
     privacyBadge: "Cero Subidas",
-    searchPlaceholder: "Buscar en 77 herramientas y artículos...",
+    searchPlaceholder: `Buscar en ${TOOL_COUNT} herramientas y artículos...`,
     quickSearch: "Buscar...",
-    viewAllTools: "Explorar las 77 herramientas →",
+    viewAllTools: `Explorar las ${TOOL_COUNT} herramientas →`,
     exploreAllCategories: "Catálogo Completo",
     newBadge: "Nuevo",
     categories: {
@@ -212,17 +218,17 @@ const HEADER_I18N: Record<Language, {
   },
   fr: {
     toolsDropdown: "Outils",
-    allTools: "Tous les 77 Outils",
-    allToolsBanner: "77 Outils dans le Navigateur • 100% Gratuits et Privés",
+    allTools: `Tous les ${TOOL_COUNT} Outils`,
+    allToolsBanner: `${TOOL_COUNT} Outils dans le Navigateur • 100% Gratuits et Privés`,
     guides: "Guides",
     guidesDesc: "Tutoriels pas à pas",
     articles: "Articles",
     articlesDesc: "Open source et alternatives",
     privacy: "Garantie Confidentialité",
     privacyBadge: "Zéro Upload",
-    searchPlaceholder: "Rechercher parmi 77 outils et articles...",
+    searchPlaceholder: `Rechercher parmi ${TOOL_COUNT} outils et articles...`,
     quickSearch: "Rechercher...",
-    viewAllTools: "Explorer les 77 outils →",
+    viewAllTools: `Explorer les ${TOOL_COUNT} outils →`,
     exploreAllCategories: "Catalogue Complet",
     newBadge: "Nouveau",
     categories: {
@@ -257,17 +263,17 @@ const HEADER_I18N: Record<Language, {
   },
   de: {
     toolsDropdown: "Werkzeuge",
-    allTools: "Alle 77 Werkzeuge",
-    allToolsBanner: "77 Werkzeuge im Browser • 100% Kostenlos und Privat",
+    allTools: `Alle ${TOOL_COUNT} Werkzeuge`,
+    allToolsBanner: `${TOOL_COUNT} Werkzeuge im Browser • 100% Kostenlos und Privat`,
     guides: "Anleitungen",
     guidesDesc: "Schritt-für-Schritt-Anleitungen",
     articles: "Artikel",
     articlesDesc: "Open Source & Alternativen",
     privacy: "Datenschutzgarantie",
     privacyBadge: "Zero Uploads",
-    searchPlaceholder: "77 Werkzeuge und Artikel suchen...",
+    searchPlaceholder: `${TOOL_COUNT} Werkzeuge und Artikel suchen...`,
     quickSearch: "Suchen...",
-    viewAllTools: "Alle 77 Werkzeuge ansehen →",
+    viewAllTools: `Alle ${TOOL_COUNT} Werkzeuge ansehen →`,
     exploreAllCategories: "Gesamtkatalog",
     newBadge: "Neu",
     categories: {
@@ -302,17 +308,17 @@ const HEADER_I18N: Record<Language, {
   },
   pt: {
     toolsDropdown: "Ferramentas",
-    allTools: "Todas as 77 Ferramentas",
-    allToolsBanner: "77 Ferramentas no Navegador • 100% Gratuitas e Privadas",
+    allTools: `Todas as ${TOOL_COUNT} Ferramentas`,
+    allToolsBanner: `${TOOL_COUNT} Ferramentas no Navegador • 100% Gratuitas e Privadas`,
     guides: "Guias",
     guidesDesc: "Tutoriais passo a passo",
     articles: "Artigos",
     articlesDesc: "Open source e alternativas",
     privacy: "Garantia de Privacidade",
     privacyBadge: "Zero Uploads",
-    searchPlaceholder: "Buscar em 77 ferramentas e artigos...",
+    searchPlaceholder: `Buscar em ${TOOL_COUNT} ferramentas e artigos...`,
     quickSearch: "Buscar...",
-    viewAllTools: "Ver todas as 77 ferramentas →",
+    viewAllTools: `Ver todas as ${TOOL_COUNT} ferramentas →`,
     exploreAllCategories: "Catálogo Completo",
     newBadge: "Novo",
     categories: {
@@ -570,7 +576,7 @@ export const Header: React.FC = () => {
               >
                 <span>{strings.toolsDropdown}</span>
                 <span className="rounded-full bg-zinc-200/70 px-1.5 py-0.2 text-[10px] font-bold text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
-                  77
+                  {TOOL_COUNT}
                 </span>
                 <ChevronDown
                   className={`h-4 w-4 transition-transform duration-200 ${
@@ -692,7 +698,7 @@ export const Header: React.FC = () => {
               <Sparkles className="h-4 w-4 text-amber-500" />
               <span>{strings.articles}</span>
               <span className="rounded-full bg-amber-100 px-1.5 py-0.2 text-[10px] font-bold text-amber-800 dark:bg-amber-950/80 dark:text-amber-300">
-                5
+                {ARTICLE_COUNT}
               </span>
             </Link>
 
@@ -809,7 +815,7 @@ export const Header: React.FC = () => {
                   File<span className="text-emerald-600 dark:text-emerald-400">OmniTool</span>
                 </span>
                 <span className="rounded-full bg-emerald-100 px-1.5 py-0.2 text-[9px] font-bold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
-                  77 Tools
+                  {TOOL_COUNT} Tools
                 </span>
               </Link>
               <button
@@ -937,7 +943,7 @@ export const Header: React.FC = () => {
                           {strings.articles}
                         </span>
                         <span className="rounded-full bg-amber-200 px-1.5 py-0.2 text-[9px] font-bold text-amber-900 dark:bg-amber-900 dark:text-amber-200">
-                          5 Nuovi
+                          {ARTICLE_COUNT}
                         </span>
                       </div>
                       <p className="text-[11px] text-zinc-500 dark:text-zinc-400 font-normal">

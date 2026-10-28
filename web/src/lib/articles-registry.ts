@@ -34,7 +34,7 @@ const BASE_ARTICLES: ArticleItem[] = [
     slug: "artcraft-adobe-open-source-revolution",
     category: "open-source",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-27",
+    dateModified: "2026-10-28",
     readTime: "7 min",
     author: "Cybsquatch",
     authorRole: {
@@ -157,7 +157,7 @@ For everyday users, this means instant file drag-and-drop, pixel-perfect editing
 
 1. **Photopea (per il fotoritocco e i file PSD)**: Creato da un geniale sviluppatore indipendente, apre al 100% i file di Photoshop con livelli, maschere, stili e filtri avanzati. Funziona nel browser, supporta le tavolette grafiche con sensibilità alla pressione e non ti chiede un centesimo.
 2. **Penpot (l'alternativa aperta a Figma e Illustrator)**: Una piattaforma di design vettoriale e prototipazione nata con licenza open source. Basata su standard web (SVG nativo e CSS Flexbox), permette di lavorare in team senza limiti artificiali sul numero di progetti.
-3. **FileOmniTool (per la manipolazione istantanea dei file)**: Quando devi convertire centinaia di immagini da WebP a PNG, comprimere cartelle fotografiche per inviarle via email o estrarre frame da una GIF animata, non ti serve aprire una suite pesante. Con i nostri 75 strumenti in-browser fai tutto in due secondi e i tuoi file non lasciano mai la memoria del tuo dispositivo.`,
+3. **FileOmniTool (per la manipolazione istantanea dei file)**: Quando devi convertire centinaia di immagini da WebP a PNG, comprimere cartelle fotografiche per inviarle via email o estrarre frame da una GIF animata, non ti serve aprire una suite pesante. Con i nostri oltre 80 strumenti in-browser fai tutto in due secondi e i tuoi file non lasciano mai la memoria del tuo dispositivo.`,
           en: `To break free from subscription lock-in, here are three standout tools to bookmark:
 
 1. **Photopea (Photo Editing & PSDs)**: Opens Photoshop PSDs with complete fidelity (layers, smart objects, masks, blending modes). Fully functional in your browser.

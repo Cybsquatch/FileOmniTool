@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { TOOLS_REGISTRY } from "@/lib/tools-registry";
 
 export type Language = "en" | "it" | "es" | "fr" | "de" | "pt";
 
@@ -123,7 +124,7 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "guides.readGuide": "Read Guide",
     "guides.readyTitle": "Ready to work with your files?",
     "guides.readySubtitle": "Browse our complete suite of 75 in-browser utilities. 100% private, free forever, no installation required.",
-    "guides.readyBtn": "Browse All 75 Free Tools",
+    "guides.readyBtn": "Browse All {toolCount} Free Tools",
     "guides.freeTool": "Free In-Browser Tool",
     "guides.launchTool": "Launch Tool Now",
     "guides.whyLocal": "Why In-Browser Processing Matters",
@@ -141,10 +142,10 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     // Tool Detail Page
     "tool.fullTutorial": "Full Tutorial:",
     "tool.relatedTools": "Related & Recommended Tools",
-    "tool.viewAllTools": "View all 75 tools →",
+    "tool.viewAllTools": "View all {toolCount} tools →",
 
     // Home Page
-    "home.allToolsTitle": "All 75 Free In-Browser File Tools",
+    "home.allToolsTitle": "All {toolCount} Free In-Browser File Tools",
     "home.allToolsSubtitle": "Instant client-side file tools with zero cloud uploads and 100% privacy guarantee.",
 
     // Footer Guides
@@ -261,8 +262,8 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "guides.zeroUploads": "Zero Upload su Server",
     "guides.readGuide": "Leggi Guida",
     "guides.readyTitle": "Pronto a elaborare i tuoi file?",
-    "guides.readySubtitle": "Esplora la nostra suite completa di 75 strumenti gratuiti. 100% privati, gratuiti per sempre, senza registrazione.",
-    "guides.readyBtn": "Esplora tutti i 75 strumenti gratuiti",
+    "guides.readySubtitle": "Esplora la nostra suite completa di {toolCount} strumenti gratuiti. 100% privati, gratuiti per sempre, senza registrazione.",
+    "guides.readyBtn": "Esplora tutti i {toolCount} strumenti gratuiti",
     "guides.freeTool": "Strumento Gratuito nel Browser",
     "guides.launchTool": "Avvia Strumento Ora",
     "guides.whyLocal": "Perché l'elaborazione locale è fondamentale",
@@ -280,10 +281,10 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     // Tool Detail Page
     "tool.fullTutorial": "Guida completa:",
     "tool.relatedTools": "Strumenti Correlati & Consigliati",
-    "tool.viewAllTools": "Vedi tutti i 75 strumenti →",
+    "tool.viewAllTools": "Vedi tutti i {toolCount} strumenti →",
 
     // Home Page
-    "home.allToolsTitle": "Tutti i 75 Strumenti per File Gratuiti",
+    "home.allToolsTitle": "Tutti i {toolCount} Strumenti per File Gratuiti",
     "home.allToolsSubtitle": "Accesso immediato senza login, limiti di dimensione o caricamento su cloud server.",
 
     // Footer Guides
@@ -400,8 +401,8 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "guides.zeroUploads": "Cero Subidas a Servidores",
     "guides.readGuide": "Leer Guía",
     "guides.readyTitle": "¿Listo para trabajar con tus archivos?",
-    "guides.readySubtitle": "Explora nuestra suite completa de 75 herramientas gratuitas en el navegador. 100% privadas, gratis para siempre, sin instalación.",
-    "guides.readyBtn": "Explorar las 75 herramientas gratuitas",
+    "guides.readySubtitle": "Explora nuestra suite completa de {toolCount} herramientas gratuitas en el navegador. 100% privadas, gratis para siempre, sin instalación.",
+    "guides.readyBtn": "Explorar las {toolCount} herramientas gratuitas",
     "guides.freeTool": "Herramienta Gratuita en el Navegador",
     "guides.launchTool": "Abrir Herramienta Ahora",
     "guides.whyLocal": "Por qué es fundamental el procesamiento local",
@@ -419,10 +420,10 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     // Tool Detail Page
     "tool.fullTutorial": "Guía completa:",
     "tool.relatedTools": "Herramientas Relacionadas y Recomendadas",
-    "tool.viewAllTools": "Ver las 75 herramientas →",
+    "tool.viewAllTools": "Ver las {toolCount} herramientas →",
 
     // Home Page
-    "home.allToolsTitle": "Las 75 Herramientas de Archivos Gratuitas",
+    "home.allToolsTitle": "Las {toolCount} Herramientas de Archivos Gratuitas",
     "home.allToolsSubtitle": "Acceso inmediato sin registro, límites de tamaño ni subidas a servidores en la nube.",
 
     // Footer Guides
@@ -539,8 +540,8 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "guides.zeroUploads": "Zéro Téléversement Serveur",
     "guides.readGuide": "Lire le Guide",
     "guides.readyTitle": "Prêt à traiter vos fichiers ?",
-    "guides.readySubtitle": "Découvrez notre suite complète de 75 outils gratuits dans le navigateur. 100% privés, gratuits pour toujours, sans installation.",
-    "guides.readyBtn": "Explorer les 75 outils gratuits",
+    "guides.readySubtitle": "Découvrez notre suite complète de {toolCount} outils gratuits dans le navigateur. 100% privés, gratuits pour toujours, sans installation.",
+    "guides.readyBtn": "Explorer les {toolCount} outils gratuits",
     "guides.freeTool": "Outil Gratuit dans le Navigateur",
     "guides.launchTool": "Lancer l'Outil Maintenant",
     "guides.whyLocal": "Pourquoi le traitement local est essentiel",
@@ -558,10 +559,10 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     // Tool Detail Page
     "tool.fullTutorial": "Guide complet :",
     "tool.relatedTools": "Outils Associés et Recommandés",
-    "tool.viewAllTools": "Voir les 75 outils →",
+    "tool.viewAllTools": "Voir les {toolCount} outils →",
 
     // Home Page
-    "home.allToolsTitle": "Les 75 Outils de Fichiers Gratuits dans le Navigateur",
+    "home.allToolsTitle": "Les {toolCount} Outils de Fichiers Gratuits dans le Navigateur",
     "home.allToolsSubtitle": "Accès instantané sans inscription, sans limite de taille ni téléversement vers le cloud.",
 
     // Footer Guides
@@ -678,8 +679,8 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "guides.zeroUploads": "Keine Server-Uploads",
     "guides.readGuide": "Anleitung lesen",
     "guides.readyTitle": "Bereit, Ihre Dateien zu bearbeiten?",
-    "guides.readySubtitle": "Entdecken Sie unsere Suite mit 75 kostenlosen Browser-Tools. 100% privat, dauerhaft kostenlos, ohne Installation.",
-    "guides.readyBtn": "Alle 75 kostenlosen Tools entdecken",
+    "guides.readySubtitle": "Entdecken Sie unsere Suite mit {toolCount} kostenlosen Browser-Tools. 100% privat, dauerhaft kostenlos, ohne Installation.",
+    "guides.readyBtn": "Alle {toolCount} kostenlosen Tools entdecken",
     "guides.freeTool": "Kostenloses In-Browser-Tool",
     "guides.launchTool": "Tool jetzt starten",
     "guides.whyLocal": "Warum lokale Verarbeitung entscheidend ist",
@@ -697,10 +698,10 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     // Tool Detail Page
     "tool.fullTutorial": "Vollständige Anleitung:",
     "tool.relatedTools": "Verwandte & Empfohlene Werkzeuge",
-    "tool.viewAllTools": "Alle 75 Werkzeuge ansehen →",
+    "tool.viewAllTools": "Alle {toolCount} Werkzeuge ansehen →",
 
     // Home Page
-    "home.allToolsTitle": "Alle 75 kostenlosen Datei-Werkzeuge im Browser",
+    "home.allToolsTitle": "Alle {toolCount} kostenlosen Datei-Werkzeuge im Browser",
     "home.allToolsSubtitle": "Sofortiger Zugriff ohne Registrierung, Größenlimits oder Uploads auf Cloud-Server.",
 
     // Footer Guides
@@ -817,8 +818,8 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     "guides.zeroUploads": "Zero Uploads para Servidores",
     "guides.readGuide": "Ler Guia",
     "guides.readyTitle": "Pronto para processar seus arquivos?",
-    "guides.readySubtitle": "Explore nossa suíte completa de 75 ferramentas gratuitas no navegador. 100% privadas, gratuitas para sempre, sem instalação.",
-    "guides.readyBtn": "Explorar todas as 75 ferramentas gratuitas",
+    "guides.readySubtitle": "Explore nossa suíte completa de {toolCount} ferramentas gratuitas no navegador. 100% privadas, gratuitas para sempre, sem instalação.",
+    "guides.readyBtn": "Explorar todas as {toolCount} ferramentas gratuitas",
     "guides.freeTool": "Ferramenta Gratuita no Navegador",
     "guides.launchTool": "Iniciar Ferramenta Agora",
     "guides.whyLocal": "Por que o processamento local é fundamental",
@@ -836,10 +837,10 @@ export const DICTIONARY: Record<Language, Record<string, string>> = {
     // Tool Detail Page
     "tool.fullTutorial": "Guia completo:",
     "tool.relatedTools": "Ferramentas Relacionadas e Recomendadas",
-    "tool.viewAllTools": "Ver todas as 75 ferramentas →",
+    "tool.viewAllTools": "Ver todas as {toolCount} ferramentas →",
 
     // Home Page
-    "home.allToolsTitle": "Todas as 75 Ferramentas Gratuitas de Arquivos",
+    "home.allToolsTitle": "Todas as {toolCount} Ferramentas Gratuitas de Arquivos",
     "home.allToolsSubtitle": "Acesso imediato sem login, limites de tamanho ou uploads para servidores na nuvem.",
 
     // Footer Guides
@@ -885,7 +886,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLang
   };
 
   const t = (key: string): string => {
-    return DICTIONARY[language]?.[key] || DICTIONARY["en"]?.[key] || key;
+    const text = DICTIONARY[language]?.[key] || DICTIONARY["en"]?.[key] || key;
+    return text.replace(/{toolCount}/g, String(TOOLS_REGISTRY.length));
   };
 
   return (

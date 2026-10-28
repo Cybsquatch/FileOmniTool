@@ -65,7 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // 2. All 77 Tools across all 6 locales
+  // 2. All tools across all 6 locales
   for (const tool of TOOLS_REGISTRY) {
     const path = `/tools/${tool.id}`;
     const alternates = getAlternates(path);
@@ -80,7 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // 3. 75 Guides across all 6 locales (450 guide URLs)
+  // 3. All guides across all 6 locales
   for (const guide of GUIDES_REGISTRY) {
     const path = `/guides/${guide.slug}`;
     const alternates = getAlternates(path);
