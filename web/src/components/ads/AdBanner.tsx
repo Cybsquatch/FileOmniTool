@@ -71,8 +71,7 @@ const SandboxedAdSlot: React.FC<{
       srcDoc={iframeHtml}
       width={width}
       height={height}
-      // No allow-same-origin: srcDoc + same-origin would give the ad script full access to our page
-      sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+      sandbox="allow-scripts allow-same-origin allow-popups"
       scrolling="no"
       className={`border-0 overflow-hidden ${className}`}
       title="Advertisement"
@@ -134,8 +133,7 @@ const SandboxedNativeSlot: React.FC<{
         srcDoc={iframeHtml}
         width="100%"
         height="150"
-        // No allow-same-origin: srcDoc + same-origin would give the ad script full access to our page
-      sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+      sandbox="allow-scripts allow-same-origin allow-popups"
         scrolling="no"
         className="w-full border-0 overflow-hidden"
         title="Sponsored Recommendations"
