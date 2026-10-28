@@ -24,7 +24,8 @@ function getTodayString() {
 
 function hashBlock(block) {
   // Ignore the dateModified line itself, otherwise our own bump would change the hash
-  const normalized = block.replace(/^\s*dateModified:.*$/m, "").replace(/\r\n/g, "\n");
+  // Strip every CR first: on CRLF checkouts block boundaries leave a lone "\r" behind
+  const normalized = block.replace(/\r/g, "").replace(/^[ \t]*dateModified:.*$/m, "");
   return crypto.createHash("sha256").update(normalized).digest("hex");
 }
 

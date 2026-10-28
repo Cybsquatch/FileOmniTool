@@ -34,7 +34,7 @@ const BASE_ARTICLES: ArticleItem[] = [
     slug: "artcraft-adobe-open-source-revolution",
     category: "open-source",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-27",
     readTime: "7 min",
     author: "Cybsquatch",
     authorRole: {
@@ -191,7 +191,7 @@ Open-source, browser-native tools eliminate this hazard completely. The code run
     slug: "best-github-privacy-tools-replace-saas",
     category: "open-source",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-27",
     readTime: "8 min",
     author: "Cybsquatch",
     authorRole: {
@@ -338,7 +338,7 @@ Within days, you'll slash recurring costs, protect your confidentiality, and reg
     slug: "fileomnitool-vs-smallpdf-ilovepdf-privacy-gdpr",
     category: "comparisons",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-27",
     readTime: "9 min",
     author: "Cybsquatch",
     authorRole: {
@@ -523,7 +523,7 @@ How our platform operates:
     slug: "free-adobe-acrobat-pro-alternatives",
     category: "tutorials",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-22",
     readTime: "7 min",
     author: "Cybsquatch",
     authorRole: {
@@ -654,7 +654,7 @@ Paying hundreds of dollars every year just to merge two pages or rotate an upsid
     slug: "exif-metadata-privacy-guide",
     category: "privacy",
     datePublished: "2026-10-13",
-    dateModified: "2026-10-28",
+    dateModified: "2026-10-22",
     readTime: "6 min",
     author: "Cybsquatch",
     authorRole: {
