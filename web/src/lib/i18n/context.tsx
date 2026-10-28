@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export type Language = "en" | "it" | "es" | "fr" | "de" | "pt";
 
@@ -862,13 +863,18 @@ const LanguageContext = createContext<LanguageContextType>({
   t: (key: string) => key,
 });
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLanguage?: Language }> = ({ children, initialLanguage = "it" }) => {
-  const [language, setLanguageState] = useState<Language>(initialLanguage);
+export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLanguage?: Language }> = ({ children, initialLanguage }) => {
+  // The root provider (cookie banner, modals) has no explicit language: derive it from the
+  // URL so it matches the nested locale provider instead of always being Italian
+  const pathname = usePathname();
+  const effectiveLanguage: Language =
+    initialLanguage ?? ((pathname?.match(/^\/(en|es|fr|de|pt)(?:\/|$)/)?.[1] as Language | undefined) || "it");
+  const [language, setLanguageState] = useState<Language>(effectiveLanguage);
 
   useEffect(() => {
-    setLanguageState(initialLanguage);
-    document.documentElement.lang = initialLanguage;
-  }, [initialLanguage]);
+    setLanguageState(effectiveLanguage);
+    document.documentElement.lang = effectiveLanguage;
+  }, [effectiveLanguage]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
