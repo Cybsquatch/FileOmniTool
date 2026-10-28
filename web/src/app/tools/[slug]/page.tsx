@@ -82,14 +82,7 @@ export default async function ToolPage({ params }: PageProps) {
           "Zero caricamenti di file su server cloud",
           "Gratuito senza registrazione o limiti",
           "Compatibile con tutti i moderni browser",
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "bestRating": "5",
-          "worstRating": "1",
-          "ratingCount": "1280",
-        },
+        ]
       },
       {
         "@type": "BreadcrumbList",

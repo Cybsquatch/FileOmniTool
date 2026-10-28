@@ -78,14 +78,7 @@ export default async function LocalizedToolPage({ params }: LocalizedToolPagePro
           "100% Client-Side Processing",
           "Zero file uploads to cloud servers",
           "Free without registration or limits",
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "bestRating": "5",
-          "worstRating": "1",
-          "ratingCount": "1280",
-        },
+        ]
       },
       {
         "@type": "BreadcrumbList",

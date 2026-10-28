@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const description = article.metaDescription.it || article.metaDescription.en;
 
   return {
-    title: `${title} | FileOmniTool`,
+    title: title.includes("FileOmniTool") ? title : `${title} | FileOmniTool`,
     description,
     keywords: [
       article.seoKeyword.it,

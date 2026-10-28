@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: LocalizedArticlePageProps): P
   const description = article.metaDescription[validLocale] || article.metaDescription.it || article.metaDescription.en;
 
   return {
-    title: `${title} | FileOmniTool`,
+    title: title.includes("FileOmniTool") ? title : `${title} | FileOmniTool`,
     description,
     keywords: [
       article.seoKeyword[validLocale] || article.seoKeyword.en,

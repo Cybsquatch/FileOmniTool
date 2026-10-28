@@ -31,6 +31,14 @@ const securityHeaders = [
   },
 ];
 
+const LOCALE_LANG: Record<string, string> = {
+  en: "en-US",
+  es: "es-ES",
+  fr: "fr-FR",
+  de: "de-DE",
+  pt: "pt-BR",
+};
+
 const nextConfig: NextConfig = {
   async headers() {
     return [
@@ -38,6 +46,12 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      // Italian is the default locale at the root; other locales live under /<locale>
+      { source: "/:path*", headers: [{ key: "Content-Language", value: "it-IT" }] },
+      ...Object.entries(LOCALE_LANG).flatMap(([locale, lang]) => [
+        { source: `/${locale}`, headers: [{ key: "Content-Language", value: lang }] },
+        { source: `/${locale}/:path*`, headers: [{ key: "Content-Language", value: lang }] },
+      ]),
     ];
   },
 };

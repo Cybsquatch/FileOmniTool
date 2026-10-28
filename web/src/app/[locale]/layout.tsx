@@ -20,6 +20,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <LanguageProvider initialLanguage={validLocale}>
+      {/* The root layout hardcodes lang="it"; fix it for this locale before paint (Content-Language header is set in next.config.ts) */}
+      <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang=${JSON.stringify(contentLang)}` }} />
       {children}
     </LanguageProvider>
   );
