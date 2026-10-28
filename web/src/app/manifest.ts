@@ -54,6 +54,55 @@ export default function manifest(): MetadataRoute.Manifest {
         label: "FileOmniTool Mobile Interface",
       },
     ],
+    // Android share sheet: the POST is intercepted by public/sw.js and the
+    // files stay in IndexedDB on the device; it never reaches the server.
+    share_target: {
+      action: "/share-target",
+      method: "POST",
+      enctype: "multipart/form-data",
+      params: {
+        files: [
+          {
+            name: "files",
+            accept: [
+              "application/pdf", ".pdf",
+              "image/*",
+              "audio/*",
+              "video/*",
+              "application/zip", "application/x-zip-compressed", ".zip",
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document", ".docx",
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", ".xlsx",
+            ],
+          },
+        ],
+      },
+    },
+    // Desktop "Open with FileOmniTool": /open reads the files from window.launchQueue.
+    file_handlers: [
+      {
+        action: "/open",
+        accept: {
+          "application/pdf": [".pdf"],
+          "image/png": [".png"],
+          "image/jpeg": [".jpg", ".jpeg"],
+          "image/webp": [".webp"],
+          "image/gif": [".gif"],
+          "image/avif": [".avif"],
+          "image/bmp": [".bmp"],
+          "image/svg+xml": [".svg"],
+          "audio/mpeg": [".mp3"],
+          "audio/wav": [".wav"],
+          "audio/ogg": [".ogg", ".oga", ".opus"],
+          "audio/flac": [".flac"],
+          "audio/mp4": [".m4a"],
+          "audio/aac": [".aac"],
+          "application/zip": [".zip"],
+        },
+      },
+    ],
+    launch_handler: {
+      client_mode: ["navigate-existing", "auto"],
+    },
     shortcuts: [
       {
         name: "Merge PDF",

@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { UploadCloud, File, AlertCircle } from "lucide-react";
 import { validateFileSize } from "@/lib/security-guard";
 import { useLanguage } from "@/lib/i18n/context";
+import { fileMatchesAccept, takePendingFilesOnce } from "@/lib/pwa/shared-files";
 
 interface DropzoneProps {
   accept?: string;
@@ -27,7 +28,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({
 
   const displayHelperText = helperText || t("dropzone.default");
 
-  const handleFiles = (fileList: FileList | null) => {
+  const handleFiles = (fileList: FileList | File[] | null) => {
     setErrorMessage(null);
     if (!fileList || fileList.length === 0) return;
 
@@ -47,6 +48,27 @@ export const Dropzone: React.FC<DropzoneProps> = ({
       onFilesSelected(validFiles);
     }
   };
+
+  // Files shared to the installed app (share sheet / "Open with") arrive via
+  // /open, which links here with ?shared=1. They are read from IndexedDB on
+  // this device and handed to the tool as if the user had picked them.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (!params.has("shared")) return;
+    let cancelled = false;
+    takePendingFilesOnce().then((files) => {
+      if (cancelled) return;
+      params.delete("shared");
+      const query = params.toString();
+      window.history.replaceState(window.history.state, "", window.location.pathname + (query ? `?${query}` : "") + window.location.hash);
+      const accepted = files.filter((file) => fileMatchesAccept(file, accept));
+      if (accepted.length > 0) handleFiles(multiple ? accepted : accepted.slice(0, 1));
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onDragOver = (e: React.DragEvent) => {
     e.preventDefault();
