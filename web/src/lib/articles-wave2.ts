@@ -342,7 +342,7 @@ You can use [Encrypt PDF](/tools/pdf-encrypt) to set robust AES-256 password pro
       de: "heic in jpg umwandeln windows kostenlos iphone fotos heic öffnen",
       pt: "converter heic para jpg windows gratis fotos iphone abrir heic",
     },
-    relatedToolIds: ["image-convert", "image-compress", "image-resize", "batch-image-watermark"],
+    relatedToolIds: ["heic-to-jpg", "image-convert", "image-compress", "image-resize"],
     keyTakeaways: [
       {
         it: "Il formato HEIC (High Efficiency Image Container) dimezza il peso delle foto rispetto al vecchio JPG a parità di qualità visiva, ma manca del supporto nativo su molti sistemi Windows e web form.",

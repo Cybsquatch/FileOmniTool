@@ -86,6 +86,8 @@ import { QrScannerTool } from "@/components/tools/QrScannerTool";
 import { BarcodeGeneratorTool } from "@/components/tools/BarcodeGeneratorTool";
 import { MicTestTool } from "@/components/tools/MicTestTool";
 import { WebcamTestTool } from "@/components/tools/WebcamTestTool";
+import { PdfCompressTool } from "@/components/tools/PdfCompressTool";
+import { HeicToJpgTool } from "@/components/tools/HeicToJpgTool";
 import { ComparisonTable } from "@/components/tools/ComparisonTable";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { EmbedWidgetModal } from "@/components/tools/EmbedWidgetModal";
@@ -276,6 +278,10 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         return <MicTestTool />;
       case "webcam-test":
         return <WebcamTestTool />;
+      case "pdf-compress":
+        return <PdfCompressTool />;
+      case "heic-to-jpg":
+        return <HeicToJpgTool />;
       default:
         return <div>Tool in development.</div>;
     }
