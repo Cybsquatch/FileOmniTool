@@ -1,8 +1,32 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useSyncExternalStore } from "react";
 import { EyeOff } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
+import { CookiePreferences } from "@/components/common/CookieConsent";
+
+// GDPR: ad networks load only after explicit marketing consent (same rule as ThirdPartyScripts)
+function subscribeToConsent(onChange: () => void) {
+  window.addEventListener("cookie_consent_updated", onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    window.removeEventListener("cookie_consent_updated", onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+
+function readMarketingConsent(): boolean {
+  try {
+    const stored = localStorage.getItem("omnitool_cookie_consent");
+    return stored ? Boolean((JSON.parse(stored) as CookiePreferences).marketing) : false;
+  } catch {
+    return false;
+  }
+}
+
+function useMarketingConsent(): boolean {
+  return useSyncExternalStore(subscribeToConsent, readMarketingConsent, () => false);
+}
 
 export type AdSlotType = "leaderboard" | "action-card" | "sticky-footer" | "native";
 
@@ -47,7 +71,8 @@ const SandboxedAdSlot: React.FC<{
       srcDoc={iframeHtml}
       width={width}
       height={height}
-      sandbox="allow-scripts allow-same-origin allow-popups"
+      // No allow-same-origin: srcDoc + same-origin would give the ad script full access to our page
+      sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
       scrolling="no"
       className={`border-0 overflow-hidden ${className}`}
       title="Advertisement"
@@ -109,7 +134,8 @@ const SandboxedNativeSlot: React.FC<{
         srcDoc={iframeHtml}
         width="100%"
         height="150"
-        sandbox="allow-scripts allow-same-origin allow-popups"
+        // No allow-same-origin: srcDoc + same-origin would give the ad script full access to our page
+      sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
         scrolling="no"
         className="w-full border-0 overflow-hidden"
         title="Sponsored Recommendations"
@@ -125,9 +151,10 @@ export const AdBanner: React.FC<AdBannerProps> = ({
   adSlotId,
 }) => {
   const [closed, setClosed] = useState(false);
+  const hasConsent = useMarketingConsent();
 
   useEffect(() => {
-    if (adSlotId && typeof window !== "undefined") {
+    if (hasConsent && adSlotId && typeof window !== "undefined") {
       try {
         // @ts-expect-error Google adsbygoogle array
         (window.adsbygoogle = window.adsbygoogle || []).push({});
@@ -135,9 +162,9 @@ export const AdBanner: React.FC<AdBannerProps> = ({
         console.error("AdSense unit initialization error", e);
       }
     }
-  }, [adSlotId]);
+  }, [adSlotId, hasConsent]);
 
-  if (closed) return null;
+  if (closed || !hasConsent) return null;
 
   // Se è specificato uno slot ID manuale di Google AdSense, usiamo AdSense
   if (adSlotId) {

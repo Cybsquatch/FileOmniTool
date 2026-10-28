@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { X, Sparkles, Share2, Check, Heart } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/context";
-import { AdBanner } from "@/components/ads/AdBanner";
 import { SocialLinks } from "@/components/common/SocialLinks";
 
 const COOKIE_NAME = "fot_support_prompt";
@@ -17,7 +16,6 @@ const TEXTS = {
     subtitle: "100% In-Browser & Senza Server",
     desc: "FileOmniTool è un software indipendente e completamente gratuito. Tutti i file vengono manipolati nella memoria del tuo browser senza mai essere caricati online, proteggendo la tua riservatezza.",
     supportNotice: "Per aiutarci a mantenere i tool gratuiti e senza abbonamenti, puoi supportare il progetto condividendolo con un collega o supportando il nostro lavoro!",
-    sponsorTitle: "SPONSOR",
     shareBtn: "Condividi FileOmniTool",
     shareCopied: "Link copiato negli appunti!",
     continueBtn: "Continua a usare i tool",
@@ -27,7 +25,6 @@ const TEXTS = {
     subtitle: "100% In-Browser & Zero Server Uploads",
     desc: "FileOmniTool is an independent, 100% free software suite with no paid subscriptions. Your files are processed entirely in your device's memory to ensure total privacy.",
     supportNotice: "To help us keep all tools free with zero subscriptions, you can support our project by sharing it with a colleague or supporting our work!",
-    sponsorTitle: "SPONSORED",
     shareBtn: "Share FileOmniTool",
     shareCopied: "Link copied to clipboard!",
     continueBtn: "Continue using tools",
@@ -37,7 +34,6 @@ const TEXTS = {
     subtitle: "100% En el Navegador y Sin Servidores",
     desc: "FileOmniTool es un software independiente y completamente gratuito. Todos tus archivos se procesan en la memoria local de tu navegador con privacidad absoluta.",
     supportNotice: "Para ayudarnos a mantener los servicios gratuitos, ¡puedes apoyar el proyecto compartiendo el enlace con un colega o apoyando nuestro trabajo!",
-    sponsorTitle: "PATROCINADO",
     shareBtn: "Compartir FileOmniTool",
     shareCopied: "¡Enlace copiado!",
     continueBtn: "Continuar",
@@ -47,7 +43,6 @@ const TEXTS = {
     subtitle: "100% Dans le Navigateur & Sans Serveur",
     desc: "FileOmniTool est une suite d'outils indépendante et gratuite. Vos fichiers sont manipulés localement dans votre navigateur pour une confidentialité totale.",
     supportNotice: "Pour nous aider à maintenir ces outils gratuits, vous pouvez soutenir notre projet en le partageant avec un collègue !",
-    sponsorTitle: "SPONSORISÉ",
     shareBtn: "Partager FileOmniTool",
     shareCopied: "Lien copié !",
     continueBtn: "Continuer",
@@ -57,7 +52,6 @@ const TEXTS = {
     subtitle: "100% Im Browser & Ohne Server-Uploads",
     desc: "FileOmniTool ist eine unabhängige, 100% kostenlose Suite ohne Abonnements. Ihre Dateien werden lokal im Browser verarbeitet, um höchste Privatsphäre zu garantieren.",
     supportNotice: "Damit diese Tools kostenlos bleiben, unterstützen Sie unser Projekt gerne, indem Sie es mit Kollegen teilen!",
-    sponsorTitle: "GESPONSERT",
     shareBtn: "FileOmniTool teilen",
     shareCopied: "Link kopiert!",
     continueBtn: "Weiter",
@@ -67,7 +61,6 @@ const TEXTS = {
     subtitle: "100% No Navegador & Sem Servidores",
     desc: "FileOmniTool é um software independente e 100% gratuito. Todos os arquivos são processados na memória local do seu navegador para garantir privacidade total.",
     supportNotice: "Para nos ajudar a manter as ferramentas gratuitas, você pode apoiar nosso projeto compartilhando com um amigo ou colega!",
-    sponsorTitle: "PATROCINADO",
     shareBtn: "Compartilhar FileOmniTool",
     shareCopied: "Link copiado!",
     continueBtn: "Continuar",
@@ -245,19 +238,6 @@ export const SupportPromptModal: React.FC = () => {
           <p className="font-medium text-emerald-800 dark:text-emerald-300">
             {t.supportNotice}
           </p>
-        </div>
-
-        {/* Slot Pubblicitario Compliant (Nessun testo incoraggiante click, etichettato a norma) */}
-        <div className="my-4 overflow-hidden rounded-2xl border border-zinc-200/80 bg-zinc-50 p-2.5 dark:border-zinc-800 dark:bg-zinc-950">
-          <div className="mb-1 flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-            <span>{t.sponsorTitle}</span>
-            <span className="rounded bg-zinc-200/60 px-1.5 py-0.5 text-[9px] dark:bg-zinc-800">
-              adv
-            </span>
-          </div>
-          <div className="flex min-h-[250px] items-center justify-center">
-            <AdBanner slot="action-card" />
-          </div>
         </div>
 
         {/* Canali Social & Autore */}

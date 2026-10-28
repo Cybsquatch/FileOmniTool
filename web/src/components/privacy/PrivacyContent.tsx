@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { ShieldCheck, Lock, Terminal, Cpu, CheckCircle2, ArrowLeft, UserCheck, Cookie, Sliders, Mail } from "lucide-react";
 import { useLanguage, Language } from "@/lib/i18n/context";
-import { AdBanner } from "@/components/ads/AdBanner";
 
 interface PrivacyCopy {
   backBtn: string;
@@ -344,10 +343,6 @@ export const PrivacyContent: React.FC = () => {
             </div>
           </section>
 
-          {/* Sponsor Banner */}
-          <div className="pt-2">
-            <AdBanner slot="leaderboard" />
-          </div>
         </div>
       </div>
     </main>

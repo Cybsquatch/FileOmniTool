@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { FileText, ShieldAlert, ArrowLeft, Scale, CheckCircle2, AlertTriangle, Mail } from "lucide-react";
 import { useLanguage, Language } from "@/lib/i18n/context";
-import { AdBanner } from "@/components/ads/AdBanner";
 
 interface TermsCopy {
   backBtn: string;
@@ -247,10 +246,6 @@ export const TermsContent: React.FC = () => {
             <p className="mt-3">{t.sec6Text}</p>
           </section>
 
-          {/* Sponsor Banner */}
-          <div className="pt-2">
-            <AdBanner slot="leaderboard" />
-          </div>
         </div>
       </div>
     </main>

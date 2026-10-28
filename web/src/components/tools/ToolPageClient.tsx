@@ -347,11 +347,6 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         <ShareButtons title={title} description={description} variant="banner" />
       </div>
 
-      {/* Post-Tool Sponsor Slot (High Viewability, Non-Invasive) */}
-      <div className="mx-auto mt-10 max-w-4xl px-4 sm:px-6 lg:px-8">
-        <AdBanner slot="leaderboard" />
-      </div>
-
       {/* How It Works (Step-by-step Guide) */}
       <section className="mx-auto mt-12 max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-zinc-200/80 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70">
@@ -468,10 +463,6 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         </div>
       </section>
 
-      {/* Sticky Footer Ad Banner */}
-      <div className="fixed bottom-0 left-0 z-40 w-full bg-white/90 p-1 shadow-lg backdrop-blur-md dark:bg-zinc-950/90">
-        <AdBanner slot="sticky-footer" />
-      </div>
     </>
   );
 };
