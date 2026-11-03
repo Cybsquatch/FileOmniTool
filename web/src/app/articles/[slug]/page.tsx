@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ARTICLES_REGISTRY, getArticleBySlug } from "@/lib/articles-registry";
 import { ArticlePageClient } from "@/components/articles/ArticlePageClient";
-import { getHreflangAlternates, SAME_AS_LINKS } from "@/lib/seo-helpers";
+import { getHreflangAlternates, SAME_AS_LINKS, completeDescription } from "@/lib/seo-helpers";
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   }
 
   const title = article.metaTitle.it || article.metaTitle.en;
-  const description = article.metaDescription.it || article.metaDescription.en;
+  const description = completeDescription(article.metaDescription.it || article.metaDescription.en, "it", "article");
 
   return {
     title: title.includes("FileOmniTool") ? title : `${title} | FileOmniTool`,

@@ -86,9 +86,50 @@ const COMMON_KEYWORDS: Record<Language, string[]> = {
   pt: ["online grátis", "no navegador", "sem envio de arquivos", "privacidade", "client-side"],
 };
 
+// Bing flags descriptions under ~120 chars as too short. Short ones get a true, page-type
+// specific closing sentence: the longest variant that keeps the total within 160 chars.
+const DESCRIPTION_TAILS: Record<"tool" | "guide" | "article", Record<Language, string[]>> = {
+  tool: {
+    it: ["Gratis e senza registrazione: il file resta sul tuo dispositivo, nessun upload su server.", "Gratis, senza registrazione e senza upload su server.", "Gratis e senza upload."],
+    en: ["Free, no signup: your file stays on your device and is never uploaded to a server.", "Free, no signup and no server uploads.", "Free, no uploads."],
+    es: ["Gratis y sin registro: tu archivo se queda en tu dispositivo, sin subirlo a ningún servidor.", "Gratis, sin registro y sin subir archivos.", "Gratis y sin subidas."],
+    fr: ["Gratuit, sans inscription : votre fichier reste sur votre appareil, aucun envoi sur un serveur.", "Gratuit, sans inscription ni envoi de fichiers.", "Gratuit, sans envoi."],
+    de: ["Kostenlos, ohne Anmeldung: Ihre Datei bleibt auf Ihrem Gerät und wird nie hochgeladen.", "Kostenlos, ohne Anmeldung und ohne Upload.", "Kostenlos, ohne Upload."],
+    pt: ["Grátis e sem cadastro: seu arquivo fica no seu dispositivo, sem envio para servidores.", "Grátis, sem cadastro e sem envio de arquivos.", "Grátis e sem envio."],
+  },
+  guide: {
+    it: ["Guida passo-passo con uno strumento gratuito che lavora nel browser, senza upload né registrazione.", "Guida passo-passo, gratis e senza upload dei file.", "Guida passo-passo gratuita."],
+    en: ["Step-by-step guide using a free in-browser tool, with no uploads and no signup.", "Step-by-step guide, free and with no file uploads.", "Free step-by-step guide."],
+    es: ["Guía paso a paso con una herramienta gratuita en el navegador, sin subidas ni registro.", "Guía paso a paso, gratis y sin subir archivos.", "Guía paso a paso gratuita."],
+    fr: ["Guide pas à pas avec un outil gratuit dans le navigateur, sans envoi ni inscription.", "Guide pas à pas, gratuit et sans envoi de fichiers.", "Guide pas à pas gratuit."],
+    de: ["Schritt-für-Schritt-Anleitung mit einem kostenlosen Browser-Tool, ohne Upload und Anmeldung.", "Schritt-für-Schritt-Anleitung, kostenlos und ohne Upload.", "Kostenlose Anleitung."],
+    pt: ["Guia passo a passo com uma ferramenta gratuita no navegador, sem envio nem cadastro.", "Guia passo a passo, grátis e sem envio de arquivos.", "Guia passo a passo grátis."],
+  },
+  article: {
+    it: ["Approfondimento di FileOmniTool, strumenti per file che lavorano nel browser senza upload.", "Approfondimento di FileOmniTool.", ""],
+    en: ["An in-depth read from FileOmniTool, file tools that run in your browser with no uploads.", "An in-depth read from FileOmniTool.", ""],
+    es: ["Un análisis de FileOmniTool, herramientas de archivos que funcionan en el navegador sin subidas.", "Un análisis de FileOmniTool.", ""],
+    fr: ["Un dossier de FileOmniTool, des outils de fichiers qui tournent dans le navigateur sans envoi.", "Un dossier de FileOmniTool.", ""],
+    de: ["Ein Hintergrundartikel von FileOmniTool, Datei-Tools, die ohne Upload im Browser laufen.", "Ein Hintergrundartikel von FileOmniTool.", ""],
+    pt: ["Uma análise do FileOmniTool, ferramentas de arquivos que rodam no navegador sem envio.", "Uma análise do FileOmniTool.", ""],
+  },
+};
+
+export function completeDescription(text: string, locale: Language, kind: keyof typeof DESCRIPTION_TAILS): string {
+  const base = text.trim();
+  if (base.length >= 120) return base;
+  const sep = /[.!?…]$/.test(base) ? " " : ". ";
+  const tail = DESCRIPTION_TAILS[kind][locale].find((t) => t && base.length + sep.length + t.length <= 160);
+  return tail ? `${base}${sep}${tail}` : base;
+}
+
 export function getToolMetadata(tool: ToolDefinition, locale: Language): Metadata {
   const titleText = tool.title[locale] || tool.title.en;
-  const descText = tool.metaDescription[locale] || tool.description[locale] || tool.metaDescription.en || tool.description.en;
+  const descText = completeDescription(
+    tool.metaDescription[locale] || tool.description[locale] || tool.metaDescription.en || tool.description.en,
+    locale,
+    "tool"
+  );
   const keywordText = tool.seoKeyword[locale] || tool.seoKeyword.en || titleText;
 
   const fullTitle = tool.metaTitle[locale] || `${titleText} ${TITLE_SUFFIXES[locale]}`;
@@ -127,7 +168,7 @@ export function getToolMetadata(tool: ToolDefinition, locale: Language): Metadat
 
 export function getGuideMetadata(guide: GuideArticle, locale: Language): Metadata {
   const titleText = guide.title[locale] || guide.title.en;
-  const excerptText = guide.excerpt[locale] || guide.excerpt.en;
+  const excerptText = completeDescription(guide.excerpt[locale] || guide.excerpt.en, locale, "guide");
   const keywordText = guide.seoKeyword[locale] || guide.seoKeyword.en || titleText;
 
   const fullTitle = `${titleText} | FileOmniTool`;

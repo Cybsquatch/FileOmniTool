@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ARTICLES_REGISTRY, getArticleBySlug } from "@/lib/articles-registry";
 import { ArticlePageClient } from "@/components/articles/ArticlePageClient";
-import { NON_DEFAULT_LOCALES, getHreflangAlternates, SAME_AS_LINKS, LOCALE_CONTENT_LANG_MAP } from "@/lib/seo-helpers";
+import { NON_DEFAULT_LOCALES, getHreflangAlternates, SAME_AS_LINKS, LOCALE_CONTENT_LANG_MAP, completeDescription } from "@/lib/seo-helpers";
 import { Language } from "@/lib/i18n/context";
 
 interface LocalizedArticlePageProps {
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: LocalizedArticlePageProps): P
   }
 
   const title = article.metaTitle[validLocale] || article.metaTitle.it || article.metaTitle.en;
-  const description = article.metaDescription[validLocale] || article.metaDescription.it || article.metaDescription.en;
+  const description = completeDescription(article.metaDescription[validLocale] || article.metaDescription.it || article.metaDescription.en, validLocale, "article");
 
   return {
     title: title.includes("FileOmniTool") ? title : `${title} | FileOmniTool`,
