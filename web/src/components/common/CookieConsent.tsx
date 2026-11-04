@@ -62,7 +62,7 @@ const COOKIE_I18N: Record<Language, {
     categoryAnalyticsTitle: "Analytics Cookies (Statistics)",
     categoryAnalyticsDesc: "Help us understand website usage through aggregate, anonymized metrics to improve speed and tools.",
     categoryMarketingTitle: "Advertising Cookies (Sponsors)",
-    categoryMarketingDesc: "Enable non-intrusive ad banners that fund hosting and ongoing open-source tool development.",
+    categoryMarketingDesc: "Enable non-intrusive ad banners that fund hosting and ongoing tool development.",
     alwaysActive: "Always Active",
   },
   es: {
