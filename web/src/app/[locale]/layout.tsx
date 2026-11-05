@@ -8,6 +8,9 @@ export async function generateStaticParams() {
   }));
 }
 
+// Unknown first segments (e.g. /about) must 404, not render the home page as a soft duplicate
+export const dynamicParams = false;
+
 interface LocaleLayoutProps {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
