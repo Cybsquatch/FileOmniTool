@@ -8,6 +8,8 @@ import { TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { GUIDES_REGISTRY } from "@/lib/guides-registry";
 import { SocialLinks } from "@/components/common/SocialLinks";
 
+const ABOUT_LABEL: Record<string, string> = { it: "Chi siamo e contatti", en: "About & contact", es: "Quiénes somos y contacto", fr: "À propos et contact", de: "Über uns & Kontakt", pt: "Quem somos e contato" };
+
 export const Footer: React.FC = () => {
   const { language, t } = useLanguage();
 
@@ -219,6 +221,10 @@ export const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} FileOmniTool.com — {t("footer.rights")}
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-zinc-500 dark:text-zinc-400 sm:mt-0">
+            <Link href={language === "it" ? "/about" : `/${language}/about`} className="hover:text-emerald-600 transition">
+              {ABOUT_LABEL[language] ?? ABOUT_LABEL.en}
+            </Link>
+            <span>•</span>
             <Link href={language === "it" ? "/privacy" : `/${language}/privacy`} className="hover:text-emerald-600 transition">
               {language === "it" ? "Informativa Privacy" : "Privacy Policy"}
             </Link>

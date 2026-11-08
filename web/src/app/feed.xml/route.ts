@@ -26,7 +26,7 @@ export async function GET() {
       <guid isPermaLink="true">${url}</guid>
       <pubDate>${pubDate}</pubDate>
       <description>${description}</description>
-      <author>security@fileomnitool.com (${escapeXml(article.author)})</author>
+      <author>riccardo.belli00@gmail.com (${escapeXml(article.author)})</author>
       <category>${escapeXml(article.category)}</category>
     </item>`;
   }).join("\n");

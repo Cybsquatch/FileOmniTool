@@ -47,7 +47,7 @@ const TERMS_TEXTS: Record<Language, TermsCopy> = {
     sec5Title: "5. Pubblicità e Collegamenti a Terze Parti",
     sec5Text: "Al fine di sostenere i costi di infrastruttura e mantenere l'accesso 100% gratuito, il sito ospita annunci pubblicitari (Google AdSense, Adsterra). Le inserzioni sono gestite da reti terze indipendenti e regolamentate dalle rispettive informative sulla privacy e dai consensi cookie espressi dall'utente.",
     sec6Title: "6. Legge Applicabile, Modifiche e Contatti",
-    sec6Text: "I presenti termini sono regolati dalla normativa vigente nell'Unione Europea e in Italia. FileOmniTool si riserva il diritto di aggiornare i termini in qualsiasi momento pubblicando la versione aggiornata su questa pagina. Per qualsiasi chiarimento o richiesta legale è possibile contattare l'amministrazione all'indirizzo email: contact@fileomnitool.com.",
+    sec6Text: "I presenti termini sono regolati dalla normativa vigente nell'Unione Europea e in Italia. FileOmniTool si riserva il diritto di aggiornare i termini in qualsiasi momento pubblicando la versione aggiornata su questa pagina. Per qualsiasi chiarimento o richiesta legale è possibile contattare l'amministrazione all'indirizzo email: riccardo.belli00@gmail.com.",
   },
   en: {
     backBtn: "Back to all tools",
@@ -68,7 +68,7 @@ const TERMS_TEXTS: Record<Language, TermsCopy> = {
     sec5Title: "5. Advertising and Third-Party Links",
     sec5Text: "To cover ongoing hosting costs and keep all tools 100% free, non-intrusive advertisements (Google AdSense, Adsterra) may be displayed in accordance with user cookie consent preferences.",
     sec6Title: "6. Governing Law, Updates, and Contact",
-    sec6Text: "These terms are governed by the laws of the European Union. We reserve the right to revise these terms at any time. For legal inquiries, contact: contact@fileomnitool.com.",
+    sec6Text: "These terms are governed by the laws of the European Union. We reserve the right to revise these terms at any time. For legal inquiries, contact: riccardo.belli00@gmail.com.",
   },
   es: {
     backBtn: "Volver a todas las herramientas",
@@ -89,7 +89,7 @@ const TERMS_TEXTS: Record<Language, TermsCopy> = {
     sec5Title: "5. Publicidad",
     sec5Text: "El sitio se financia con publicidad no invasiva sujeta al consentimiento del usuario.",
     sec6Title: "6. Ley Aplicable y Contacto",
-    sec6Text: "Regulado por la legislación de la UE. Contacto: contact@fileomnitool.com.",
+    sec6Text: "Regulado por la legislación de la UE. Contacto: riccardo.belli00@gmail.com.",
   },
   fr: {
     backBtn: "Retour aux outils",
@@ -110,7 +110,7 @@ const TERMS_TEXTS: Record<Language, TermsCopy> = {
     sec5Title: "5. Financement Publicitaire",
     sec5Text: "Le site est financé par des annonces conformes au consentement des utilisateurs.",
     sec6Title: "6. Droit Applicable et Contact",
-    sec6Text: "Soumis au droit européen. Contact : contact@fileomnitool.com.",
+    sec6Text: "Soumis au droit européen. Contact : riccardo.belli00@gmail.com.",
   },
   de: {
     backBtn: "Zurück zu allen Werkzeugen",
@@ -131,7 +131,7 @@ const TERMS_TEXTS: Record<Language, TermsCopy> = {
     sec5Title: "5. Werbefinanzierung",
     sec5Text: "Finanzierung erfolgt durch unaufdringliche, datenschutzkonforme Anzeigen.",
     sec6Title: "6. Anwendbares Recht und Kontakt",
-    sec6Text: "Geltendes Recht der EU. Kontakt: contact@fileomnitool.com.",
+    sec6Text: "Geltendes Recht der EU. Kontakt: riccardo.belli00@gmail.com.",
   },
   pt: {
     backBtn: "Voltar para as ferramentas",
@@ -152,7 +152,7 @@ const TERMS_TEXTS: Record<Language, TermsCopy> = {
     sec5Title: "5. Publicidade",
     sec5Text: "Financiado por publicidade não invasiva sujeita a consentimento.",
     sec6Title: "6. Lei Aplicável e Contato",
-    sec6Text: "Regido pela legislação da União Europeia. Contato: contact@fileomnitool.com.",
+    sec6Text: "Regido pela legislação da União Europeia. Contato: riccardo.belli00@gmail.com.",
   },
 };
 
