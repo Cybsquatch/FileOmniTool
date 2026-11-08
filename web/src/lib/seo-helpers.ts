@@ -38,20 +38,23 @@ export function getLocalizedUrl(path: string, locale: Language): string {
   return `${SITE_URL}/${locale}${cleanPath}`;
 }
 
-export function getHreflangAlternates(path: string, currentLocale: Language) {
+// Long-form guides and articles are fully written only in these locales. In the
+// others the body falls back to English, so those pages are noindex and kept out
+// of the sitemap and hreflang until a real translation exists.
+export const LONGFORM_LOCALES: Language[] = ["it", "en"];
+
+export function isLongformIndexable(locale: Language): boolean {
+  return LONGFORM_LOCALES.includes(locale);
+}
+
+export function getHreflangAlternates(path: string, currentLocale: Language, locales: Language[] = ALL_LOCALES) {
   const isRoot = path === "" || path === "/";
   const cleanPath = isRoot ? "" : (path.startsWith("/") ? path : `/${path}`);
   const canonical = getLocalizedUrl(path, currentLocale);
 
-  const languages: Record<string, string> = {
-    "it": isRoot ? SITE_URL : `${SITE_URL}${cleanPath}`,
-    "en": `${SITE_URL}/en${cleanPath}`,
-    "es": `${SITE_URL}/es${cleanPath}`,
-    "fr": `${SITE_URL}/fr${cleanPath}`,
-    "de": `${SITE_URL}/de${cleanPath}`,
-    "pt": `${SITE_URL}/pt${cleanPath}`,
-    "x-default": `${SITE_URL}/en${cleanPath}`,
-  };
+  const languages: Record<string, string> = {};
+  for (const loc of locales) languages[loc] = getLocalizedUrl(path, loc);
+  languages["x-default"] = `${SITE_URL}/en${cleanPath}`;
 
   return {
     canonical,
@@ -173,12 +176,13 @@ export function getGuideMetadata(guide: GuideArticle, locale: Language): Metadat
 
   const fullTitle = `${titleText} | FileOmniTool`;
   const path = `/guides/${guide.slug}`;
-  const hreflang = getHreflangAlternates(path, locale);
+  const hreflang = getHreflangAlternates(path, locale, LONGFORM_LOCALES);
   const ogConfig = LOCALE_OG_MAP[locale];
 
   return {
     title: fullTitle,
     description: excerptText,
+    ...(isLongformIndexable(locale) ? {} : { robots: { index: false, follow: true } }),
     keywords: [
       keywordText,
       titleText,
@@ -418,3 +422,59 @@ export function getTermsMetadata(locale: Language): Metadata {
   };
 }
 
+
+const ABOUT_TITLES: Record<Language, string> = {
+  it: "Chi Siamo e Contatti - Progetto Indipendente | FileOmniTool",
+  en: "About & Contact - An Independent Project | FileOmniTool",
+  es: "Quiénes Somos y Contacto - Proyecto Independiente | FileOmniTool",
+  fr: "À Propos et Contact - Un Projet Indépendant | FileOmniTool",
+  de: "Über Uns & Kontakt - Ein Unabhängiges Projekt | FileOmniTool",
+  pt: "Quem Somos e Contato - Projeto Independente | FileOmniTool",
+};
+
+const ABOUT_DESCRIPTIONS: Record<Language, string> = {
+  it: "Chi c'è dietro FileOmniTool, come funzionano gli strumenti nel browser senza caricare file, come si mantiene il sito e come contattarci per bug, idee e licenze.",
+  en: "Who is behind FileOmniTool, how the tools work in your browser without uploading files, how the site is funded and how to reach us for bugs, ideas and licensing.",
+  es: "Quién está detrás de FileOmniTool, cómo funcionan las herramientas en el navegador sin subir archivos, cómo se financia y cómo contactarnos.",
+  fr: "Qui est derrière FileOmniTool, comment les outils fonctionnent dans le navigateur sans envoi de fichiers, comment le site est financé et comment nous contacter.",
+  de: "Wer hinter FileOmniTool steht, wie die Werkzeuge ohne Datei-Upload im Browser laufen, wie die Website finanziert wird und wie Sie uns erreichen.",
+  pt: "Quem está por trás do FileOmniTool, como as ferramentas funcionam no navegador sem enviar arquivos, como o site se mantém e como falar conosco.",
+};
+
+export function getAboutMetadata(locale: Language): Metadata {
+  const hreflang = getHreflangAlternates("/about", locale);
+  const ogConfig = LOCALE_OG_MAP[locale];
+  return {
+    title: ABOUT_TITLES[locale],
+    description: ABOUT_DESCRIPTIONS[locale],
+    alternates: hreflang,
+    other: { "content-language": LOCALE_CONTENT_LANG_MAP[locale] },
+    openGraph: {
+      title: ABOUT_TITLES[locale],
+      description: ABOUT_DESCRIPTIONS[locale],
+      url: hreflang.canonical,
+      type: "website",
+      locale: ogConfig.locale,
+      alternateLocale: ogConfig.alternates,
+    },
+  };
+}
+
+export function getAboutJsonLd(locale: Language) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: ABOUT_TITLES[locale],
+    description: ABOUT_DESCRIPTIONS[locale],
+    url: getLocalizedUrl("/about", locale),
+    inLanguage: LOCALE_CONTENT_LANG_MAP[locale],
+    mainEntity: {
+      "@type": "Organization",
+      name: "FileOmniTool",
+      url: SITE_URL,
+      founder: { "@type": "Person", name: "Riccardo", alternateName: "Cybsquatch", url: SOCIAL_LINKS.github },
+      contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: "riccardo.belli00@gmail.com", availableLanguage: ["Italian", "English"] },
+      sameAs: SAME_AS_LINKS,
+    },
+  };
+}

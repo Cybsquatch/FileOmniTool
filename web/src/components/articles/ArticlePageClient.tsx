@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import Link from "next/link";
+import { ArticleMarkdown } from "./ArticleMarkdown";
 import { Header } from "@/components/common/Header";
 import { Footer } from "@/components/common/Footer";
 import { AdBanner } from "@/components/ads/AdBanner";
@@ -27,16 +28,36 @@ import {
 
 interface ArticlePageClientProps {
   article: ArticleItem;
-  otherArticles: ArticleItem[];
+  otherArticles: Pick<ArticleItem, "slug" | "coverEmoji" | "category" | "title">[];
 }
+
+const AUTHOR_BIO: Record<string, string> = {
+  it: "Riccardo sviluppa e mantiene FileOmniTool da solo. Gli articoli spiegano come funzionano i formati di file e come lavorarci senza caricare documenti online.",
+  en: "Riccardo builds and maintains FileOmniTool on his own. The articles explain how file formats work and how to handle them without uploading documents.",
+  es: "Riccardo desarrolla y mantiene FileOmniTool por su cuenta. Los artículos explican cómo funcionan los formatos de archivo y cómo trabajar con ellos sin subir documentos.",
+  fr: "Riccardo développe et maintient FileOmniTool seul. Les articles expliquent le fonctionnement des formats de fichiers et comment les traiter sans envoyer de documents.",
+  de: "Riccardo entwickelt und betreut FileOmniTool allein. Die Artikel erklären, wie Dateiformate funktionieren und wie man sie ohne Upload bearbeitet.",
+  pt: "Riccardo desenvolve e mantém o FileOmniTool sozinho. Os artigos explicam como os formatos de arquivo funcionam e como lidar com eles sem enviar documentos.",
+};
+const AUTHOR_MORE: Record<string, string> = { it: "Chi siamo →", en: "About →", es: "Quiénes somos →", fr: "À propos →", de: "Über uns →", pt: "Quem somos →" };
+
+const UI: Record<string, Record<"articles" | "updated" | "badge" | "takeaways" | "related" | "practice" | "more" | "viewAll" | "read", string>> = {
+  it: { articles: "Articoli", updated: "Aggiornato", badge: "Strumenti senza upload", takeaways: "Punti chiave in sintesi", related: "Strumenti gratuiti correlati su FileOmniTool", practice: "Metti in pratica ciò che hai letto, 100% nel tuo browser:", more: "Altri approfondimenti", viewAll: "Vedi tutti gli articoli", read: "Leggi l'articolo" },
+  en: { articles: "Articles", updated: "Updated", badge: "No-upload tools", takeaways: "Key takeaways", related: "Related free tools on FileOmniTool", practice: "Put this into practice directly in your browser:", more: "More in-depth articles", viewAll: "View all articles", read: "Read article" },
+  es: { articles: "Artículos", updated: "Actualizado", badge: "Herramientas sin subidas", takeaways: "Puntos clave", related: "Herramientas gratuitas relacionadas en FileOmniTool", practice: "Ponlo en práctica directamente en tu navegador:", more: "Más artículos", viewAll: "Ver todos los artículos", read: "Leer artículo" },
+  fr: { articles: "Articles", updated: "Mis à jour", badge: "Outils sans envoi", takeaways: "Points clés", related: "Outils gratuits associés sur FileOmniTool", practice: "Mettez-le en pratique directement dans votre navigateur :", more: "Autres articles", viewAll: "Voir tous les articles", read: "Lire l'article" },
+  de: { articles: "Artikel", updated: "Aktualisiert", badge: "Werkzeuge ohne Upload", takeaways: "Das Wichtigste in Kürze", related: "Passende kostenlose Werkzeuge auf FileOmniTool", practice: "Direkt im Browser ausprobieren:", more: "Weitere Artikel", viewAll: "Alle Artikel ansehen", read: "Artikel lesen" },
+  pt: { articles: "Artigos", updated: "Atualizado", badge: "Ferramentas sem upload", takeaways: "Pontos principais", related: "Ferramentas gratuitas relacionadas no FileOmniTool", practice: "Coloque em prática direto no seu navegador:", more: "Mais artigos", viewAll: "Ver todos os artigos", read: "Ler artigo" },
+};
 
 export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, otherArticles }) => {
   const { language, t } = useLanguage();
+  const ui = UI[language] ?? UI.en;
 
-  const title = article.title[language] || article.title.it || article.title.en;
-  const subtitle = article.subtitle[language] || article.subtitle.it || article.subtitle.en;
-  const excerpt = article.excerpt[language] || article.excerpt.it || article.excerpt.en;
-  const authorRole = article.authorRole[language] || article.authorRole.it || article.authorRole.en;
+  const title = article.title[language] || article.title.en;
+  const subtitle = article.subtitle[language] || article.subtitle.en;
+  const excerpt = article.excerpt[language] || article.excerpt.en;
+  const authorRole = article.authorRole[language] || article.authorRole.en;
 
   useEffect(() => {
     if (typeof document !== "undefined") {
@@ -69,7 +90,7 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
             </Link>
             <ChevronRight className="h-3.5 w-3.5 text-zinc-400" />
             <Link href={language === "it" ? "/articles" : `/${language}/articles`} className="hover:text-emerald-600 dark:hover:text-emerald-400">
-              {language === "it" ? "Articoli" : "Articles"}
+              {ui.articles}
             </Link>
             <ChevronRight className="h-3.5 w-3.5 text-zinc-400" />
             <span className="font-semibold text-zinc-800 dark:text-zinc-200 truncate max-w-xs sm:max-w-md">
@@ -105,14 +126,14 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
                 <span>•</span>
                 <span className="flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
                   <Sparkles className="h-3 w-3 text-emerald-500" />
-                  {language === "it" ? `Aggiornato: ${article.dateModified}` : `Updated: ${article.dateModified}`}
+                  {`${ui.updated}: ${article.dateModified}`}
                 </span>
               </>
             )}
             <span>•</span>
             <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
               <ShieldCheck className="h-3.5 w-3.5" />
-              <span>{language === "it" ? "Verificato Anti-Tracciamento" : "Verified Privacy"}</span>
+              <span>{ui.badge}</span>
             </div>
           </div>
 
@@ -156,13 +177,13 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
             <div className="rounded-2xl border-2 border-emerald-500/30 bg-emerald-50/50 p-6 dark:border-emerald-600/30 dark:bg-emerald-950/20">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-300">
                 <Sparkles className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                <span>{language === "it" ? "Punti Chiave in Sintesi" : "Key Takeaways"}</span>
+                <span>{ui.takeaways}</span>
               </div>
               <ul className="mt-4 space-y-2.5">
                 {article.keyTakeaways.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
                     <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600 mt-0.5" />
-                    <span>{item[language] || item.it || item.en}</span>
+                    <span>{item[language] || item.en}</span>
                   </li>
                 ))}
               </ul>
@@ -173,8 +194,8 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
         {/* Article Content Sections */}
         <article className="mx-auto mt-10 max-w-4xl px-4 sm:px-6 lg:px-8 space-y-10">
           {article.sections.map((section, idx) => {
-            const heading = section.heading[language] || section.heading.it || section.heading.en;
-            const content = section.content[language] || section.content.it || section.content.en;
+            const heading = section.heading[language] || section.heading.en;
+            const content = section.content[language] || section.content.en;
 
             return (
               <React.Fragment key={idx}>
@@ -185,23 +206,7 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
                     {heading}
                   </h2>
                   <div className="mt-5 space-y-4 text-sm sm:text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-                    {content.split("\n\n").map((paragraph, pIdx) => {
-                      // Check if paragraph is a table or list
-                      if (paragraph.startsWith("|")) {
-                        return (
-                          <div key={pIdx} className="overflow-x-auto py-2">
-                            <pre className="text-xs font-mono bg-zinc-50 dark:bg-zinc-950 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-x-auto whitespace-pre-wrap">
-                              {paragraph}
-                            </pre>
-                          </div>
-                        );
-                      }
-                      return (
-                        <p key={pIdx} className="leading-relaxed">
-                          {paragraph}
-                        </p>
-                      );
-                    })}
+                    <ArticleMarkdown content={content} language={language} />
                   </div>
                 </div>
 
@@ -220,10 +225,10 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
             <section className="rounded-2xl border border-emerald-500/40 bg-gradient-to-br from-emerald-50/70 via-white to-teal-50/50 p-6 shadow-sm dark:border-emerald-600/40 dark:from-emerald-950/30 dark:via-zinc-900 dark:to-zinc-900">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400">
                 <Wrench className="h-4 w-4" />
-                <span>{language === "it" ? "Strumenti Gratuiti Correlati su FileOmniTool" : "Related Free Tools on FileOmniTool"}</span>
+                <span>{ui.related}</span>
               </div>
               <h3 className="mt-2 text-lg font-bold text-zinc-900 dark:text-white">
-                {language === "it" ? "Metti in pratica ciò che hai letto, 100% nel tuo browser:" : "Put this into practice directly in your browser:"}
+                {ui.practice}
               </h3>
 
               <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -235,10 +240,10 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
                   >
                     <div>
                       <h4 className="text-xs font-bold text-zinc-900 group-hover:text-emerald-600 transition dark:text-white dark:group-hover:text-emerald-400">
-                        {tool.title[language] || tool.title.it || tool.title.en}
+                        {tool.title[language] || tool.title.en}
                       </h4>
                       <p className="mt-1 text-[11px] text-zinc-500 line-clamp-1 dark:text-zinc-400">
-                        {tool.description[language] || tool.description.it || tool.description.en}
+                        {tool.description[language] || tool.description.en}
                       </p>
                     </div>
                     <ArrowRight className="h-4 w-4 shrink-0 text-emerald-600 group-hover:translate-x-1 transition-transform" />
@@ -271,24 +276,11 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
                   <SocialLinks size="sm" className="ml-1" />
                 </div>
                 <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  {language === "it"
-                    ? "Sviluppatore software e ricercatore di sicurezza informatica. Promotore instancabile del software libero, del self-hosting e della privacy digitale zero-knowledge. Tutti gli strumenti consigliati sono testati in laboratorio."
-                    : "Software developer and cybersecurity researcher. Passionate advocate of open-source software, self-hosting, and zero-knowledge digital privacy."}
+                  {AUTHOR_BIO[language] ?? AUTHOR_BIO.en}{" "}
+                  <Link href={language === "it" ? "/about" : `/${language}/about`} className="font-semibold text-emerald-700 hover:underline dark:text-emerald-400">
+                    {AUTHOR_MORE[language] ?? AUTHOR_MORE.en}
+                  </Link>
                 </p>
-                <div className="mt-3 flex flex-wrap items-center gap-4 text-[11px] font-medium text-emerald-700 dark:text-emerald-400">
-                  <span className="flex items-center gap-1">
-                    <CheckCircle2 className="h-3 w-3" />
-                    {language === "it" ? "Verificato sul campo" : "Field Tested"}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Lock className="h-3 w-3" />
-                    {language === "it" ? "Zero log su server" : "Zero Server Logs"}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Sparkles className="h-3 w-3" />
-                    {language === "it" ? "100% Gratuito" : "100% Free"}
-                  </span>
-                </div>
               </div>
             </div>
           </section>
@@ -303,13 +295,13 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
             <section className="pt-6">
               <div className="flex items-center justify-between pb-4">
                 <h2 className="text-lg font-bold text-zinc-900 dark:text-white">
-                  {language === "it" ? "Altri Approfondimenti & Guide" : "More In-Depth Articles"}
+                  {ui.more}
                 </h2>
                 <Link
                   href={language === "it" ? "/articles" : `/${language}/articles`}
                   className="text-xs font-semibold text-emerald-600 hover:underline dark:text-emerald-400"
                 >
-                  {language === "it" ? "Vedi tutti gli articoli" : "View All Articles"}
+                  {ui.viewAll}
                 </Link>
               </div>
 
@@ -328,11 +320,11 @@ export const ArticlePageClient: React.FC<ArticlePageClientProps> = ({ article, o
                         </span>
                       </div>
                       <h3 className="mt-2 text-xs font-bold text-zinc-900 group-hover:text-emerald-600 transition dark:text-white dark:group-hover:text-emerald-400 line-clamp-2">
-                        {other.title[language] || other.title.it || other.title.en}
+                        {other.title[language] || other.title.en}
                       </h3>
                     </div>
                     <div className="mt-4 flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
-                      <span>{language === "it" ? "Leggi approfondimento" : "Read Article"}</span>
+                      <span>{ui.read}</span>
                       <ArrowRight className="h-3 w-3" />
                     </div>
                   </Link>

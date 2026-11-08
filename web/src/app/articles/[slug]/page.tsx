@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ARTICLES_REGISTRY, getArticleBySlug } from "@/lib/articles-registry";
+import { ARTICLES_REGISTRY, getArticleBySlug, getArticleLocales } from "@/lib/articles-registry";
 import { ArticlePageClient } from "@/components/articles/ArticlePageClient";
 import { getHreflangAlternates, SAME_AS_LINKS, completeDescription } from "@/lib/seo-helpers";
 
@@ -33,12 +33,11 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       article.seoKeyword.it,
       article.seoKeyword.en,
       article.category,
-      "open source",
       "privacy",
       "cybsquatch",
       "fileomnitool",
     ],
-    alternates: getHreflangAlternates(`/articles/${slug}`, "it"),
+    alternates: getHreflangAlternates(`/articles/${slug}`, "it", getArticleLocales(article)),
     other: {
       "content-language": "it-IT",
     },
@@ -69,7 +68,11 @@ export default async function SingleArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
-  const otherArticles = ARTICLES_REGISTRY.filter((a) => a.slug !== slug);
+  const otherArticles = ARTICLES_REGISTRY.filter((a) => a.slug !== slug)
+    // Same category first, then the rest; only the fields the "read next" box shows
+    .sort((a, b) => Number(b.category === article.category) - Number(a.category === article.category))
+    .slice(0, 2)
+    .map(({ slug: s, coverEmoji, category, title }) => ({ slug: s, coverEmoji, category, title }));
 
   // Article Schema.org JSON-LD structured data
   const jsonLd = {

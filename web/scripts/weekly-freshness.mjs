@@ -16,6 +16,7 @@ const filesToInspect = [
   path.resolve(__dirname, "../src/lib/articles-registry.ts"),
   path.resolve(__dirname, "../src/lib/articles-wave2.ts"),
   path.resolve(__dirname, "../src/lib/articles-wave3.ts"),
+  path.resolve(__dirname, "../src/lib/articles-wave4.ts"),
 ];
 
 function getTodayString() {

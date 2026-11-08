@@ -1,14 +1,14 @@
 import { MetadataRoute } from "next";
 import { TOOLS_REGISTRY } from "@/lib/tools-registry";
 import { GUIDES_REGISTRY } from "@/lib/guides-registry";
-import { ARTICLES_REGISTRY } from "@/lib/articles-registry";
-import { ALL_LOCALES, getLocalizedUrl } from "@/lib/seo-helpers";
+import { ARTICLES_REGISTRY, getArticleLocales } from "@/lib/articles-registry";
+import { ALL_LOCALES, LONGFORM_LOCALES, getLocalizedUrl } from "@/lib/seo-helpers";
 import { Language } from "@/lib/i18n/context";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const getAlternates = (path: string) => {
+  const getAlternates = (path: string, locales: Language[] = ALL_LOCALES) => {
     const languages: Record<string, string> = {};
-    for (const loc of ALL_LOCALES) {
+    for (const loc of locales) {
       languages[loc] = getLocalizedUrl(path, loc);
     }
     languages["x-default"] = getLocalizedUrl(path, "en");
@@ -58,6 +58,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
 
     entries.push({
+      url: getLocalizedUrl("/about", locale),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: getAlternates("/about"),
+    });
+
+    entries.push({
       url: getLocalizedUrl("/terms", locale),
       changeFrequency: "monthly" as const,
       priority: 0.5,
@@ -80,13 +87,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // 3. All guides across all 6 locales
+  // 3. Guides, only in the locales where their body is fully written
   for (const guide of GUIDES_REGISTRY) {
     const path = `/guides/${guide.slug}`;
-    const alternates = getAlternates(path);
+    const alternates = getAlternates(path, LONGFORM_LOCALES);
     const published = new Date(guide.datePublished);
 
-    for (const locale of ALL_LOCALES) {
+    for (const locale of LONGFORM_LOCALES) {
       entries.push({
         url: getLocalizedUrl(path, locale),
         lastModified: published,
@@ -97,13 +104,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // 4. Articles across all 6 locales (30 article URLs)
+  // 4. Articles, only in the locales where their body is fully written
   for (const article of ARTICLES_REGISTRY) {
     const path = `/articles/${article.slug}`;
-    const alternates = getAlternates(path);
+    const locales = getArticleLocales(article);
+    const alternates = getAlternates(path, locales);
     const lastMod = new Date(article.dateModified || article.datePublished);
 
-    for (const locale of ALL_LOCALES) {
+    for (const locale of locales) {
       entries.push({
         url: getLocalizedUrl(path, locale),
         lastModified: lastMod,

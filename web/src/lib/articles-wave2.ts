@@ -1,4 +1,5 @@
 import { ArticleItem } from "./articles-registry";
+import { AUTHOR_ROLE } from "./articles-author";
 
 export const WAVE2_ARTICLES: ArticleItem[] = [
   // 6. COMPRIMERE PDF SOTTO 2MB / 5MB PER PEC E CONCORSI
@@ -9,14 +10,7 @@ export const WAVE2_ARTICLES: ArticleItem[] = [
     dateModified: "2026-10-22",
     readTime: "7 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ricercatore Cybersecurity & Appassionato Open-Source",
-      en: "Cybersecurity Researcher & Open-Source Advocate",
-      es: "Investigador de Ciberseguridad y Software Libre",
-      fr: "Chercheur en Cybersécurité et Logiciels Libres",
-      de: "Cybersicherheits-Forscher & Open-Source-Befürworter",
-      pt: "Pesquisador de Segurança e Defensor do Código Aberto",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "📉",
     featured: true,
     title: {
@@ -109,12 +103,12 @@ Panicking, people often search *"free PDF compressor"* and upload sensitive file
         content: {
           it: `Per la consultazione a video e la stampa documentale da ufficio, una densità di pixel di **150 DPI (punti per pollice)** è ampiamente sufficiente per garantire che ogni carattere, timbro a inchiostro e firma autografa resti perfettamente nitido e leggibile. 
 
-Le scansioni a 300 o 600 DPI quadruplicano o decuplicano il numero di pixel per pagina, ma l'occhio umano su schermo non percepisce alcuna differenza. Utilizzando il tool [Comprimi PDF](/tools/pdf-flatten) di FileOmniTool, l'algoritmo ri-campiona le immagini incorporate portandole al livello ottimale di compressione JPEG/WebP senza sfocare i bordi del testo.
+Le scansioni a 300 o 600 DPI quadruplicano o decuplicano il numero di pixel per pagina, ma l'occhio umano su schermo non percepisce alcuna differenza. Utilizzando il tool [Comprimi PDF](/tools/pdf-compress) di FileOmniTool, l'algoritmo ri-campiona le immagini incorporate portandole al livello ottimale di compressione JPEG/WebP senza sfocare i bordi del testo.
 
 Se il tuo documento include pagine vuote o pagine di copertina inutili, usa prima [Dividi PDF](/tools/pdf-split) per estrarre solo le pagine strettamente necessarie: ogni pagina risparmiata sono circa 300-500 KB in meno!`,
           en: `For on-screen review and office printing, a resolution of **150 DPI (dots per inch)** is more than sufficient to keep letters, ink stamps, and signatures razor-sharp.
 
-Scans at 300 or 600 DPI multiply pixel counts exponentially without noticeable benefits on modern monitors. Using FileOmniTool's [Compress PDF](/tools/pdf-flatten), the engine resamples embedded image streams to an optimal compression ratio without blurring letter outlines.
+Scans at 300 or 600 DPI multiply pixel counts exponentially without noticeable benefits on modern monitors. Using FileOmniTool's [Compress PDF](/tools/pdf-compress), the engine resamples embedded image streams to an optimal compression ratio without blurring letter outlines.
 
 If your document has blank or redundant separator pages, use [Split PDF](/tools/pdf-split) to discard unnecessary sheets first: eliminating two extra pages can save up to 1 MB instantly!`,
         },
@@ -148,14 +142,7 @@ With FileOmniTool's client-side WebAssembly engine, compression happens entirely
     dateModified: "2026-10-22",
     readTime: "8 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ricercatore Cybersecurity & Appassionato Open-Source",
-      en: "Cybersecurity Researcher & Open-Source Advocate",
-      es: "Investigador de Ciberseguridad y Software Libre",
-      fr: "Chercheur en Cybersécurité et Logiciels Libres",
-      de: "Cybersicherheits-Forscher & Open-Source-Befürworter",
-      pt: "Pesquisador de Segurança e Defensor do Código Aberto",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "🔒",
     title: {
       it: "Perché non dovresti mai caricare contratti, bilanci e buste paga su convertitori PDF online gratis",
@@ -285,14 +272,7 @@ You can use [Encrypt PDF](/tools/pdf-encrypt) to set robust AES-256 password pro
     dateModified: "2026-10-28",
     readTime: "6 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ricercatore Cybersecurity & Appassionato Open-Source",
-      en: "Cybersecurity Researcher & Open-Source Advocate",
-      es: "Investigador de Ciberseguridad y Software Libre",
-      fr: "Chercheur en Cybersécurité et Logiciels Libres",
-      de: "Cybersicherheits-Forscher & Open-Source-Befürworter",
-      pt: "Pesquisador de Segurança e Defensor do Código Aberto",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "📱",
     title: {
       it: "Guida definitiva al formato HEIC: come convertire le foto da iPhone a JPG su Windows e Android gratis",
@@ -384,7 +364,7 @@ The friction begins outside the Apple walled garden: public web forms, Windows a
         content: {
           it: `Non serve acquistare licenze né scaricare programmi pieni di pubblicità sul computer. Con il convertitore di FileOmniTool, la procedura è immediata:
 
-1. Apri lo strumento [Converti Immagini](/tools/image-convert).
+1. Apri lo strumento [Convertitore HEIC in JPG](/tools/heic-to-jpg).
 2. Trascina i tuoi file .HEIC (puoi trascinare anche decine di foto contemporaneamente).
 3. Seleziona **JPG** o **WebP** come formato di destinazione.
 4. Clicca su scarica: i file convertiti sono immediatamente pronti all'uso sul tuo PC, compatibili al 100% con qualsiasi programma.
@@ -392,7 +372,7 @@ The friction begins outside the Apple walled garden: public web forms, Windows a
 L'operazione avviene interamente nella memoria locale del tuo browser grazie ai motori WebAssembly: le tue foto non vengono caricate su nessun server remoto, garantendo la totale riservatezza delle tue foto private e di famiglia.`,
           en: `You don't need paid store licenses or ad-infested desktop converters. With FileOmniTool, conversion is seamless:
 
-1. Open the [Convert Image](/tools/image-convert) tool.
+1. Open the [HEIC to JPG Converter](/tools/heic-to-jpg).
 2. Drag and drop your .HEIC files (you can batch upload dozens of photos at once).
 3. Select **JPG** or **WebP** as your target format.
 4. Click download: your photos are instantly ready and universally compatible with every Windows application.
@@ -429,14 +409,7 @@ Our client-side processing engine can re-render image pixels to produce clean JP
     dateModified: "2026-10-22",
     readTime: "6 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ricercatore Cybersecurity & Appassionato Open-Source",
-      en: "Cybersecurity Researcher & Open-Source Advocate",
-      es: "Investigador de Ciberseguridad y Software Libre",
-      fr: "Chercheur en Cybersécurité et Logiciels Libres",
-      de: "Cybersicherheits-Forscher & Open-Source-Befürworter",
-      pt: "Pesquisador de Segurança e Defensor do Código Aberto",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "🎙️",
     title: {
       it: "Come estrarre audio MP3 da video MP4, WebM e MKV direttamente nel browser senza caricare file",
@@ -563,14 +536,7 @@ Local client-side execution guarantees audio streams never touch public networks
     dateModified: "2026-10-22",
     readTime: "9 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ricercatore Cybersecurity & Appassionato Open-Source",
-      en: "Cybersecurity Researcher & Open-Source Advocate",
-      es: "Investigador de Ciberseguridad y Software Libre",
-      fr: "Chercheur en Cybersécurité et Logiciels Libres",
-      de: "Cybersicherheits-Forscher & Open-Source-Befürworter",
-      pt: "Pesquisador de Segurança e Defensor do Código Aberto",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "⚡",
     title: {
       it: "Guida Open-Source 2026: come sostituire abbonamenti SaaS e cloud con strumenti liberi nel browser",
@@ -662,13 +628,13 @@ The SaaS explosion triggered widespread subscription fatigue. In 2026, paying re
         content: {
           it: `Ecco come puoi ripensare il tuo kit di strumenti digitali azzerando i costi:
 
-* **Invece di SmallPDF / iLovePDF**: usa la suite PDF di FileOmniTool ([Unisci PDF](/tools/pdf-merge), [Comprimi PDF](/tools/pdf-flatten), [Dividi PDF](/tools/pdf-split)). Zero upload, nessun limite di file giornalieri.
+* **Invece di SmallPDF / iLovePDF**: usa la suite PDF di FileOmniTool ([Unisci PDF](/tools/pdf-merge), [Comprimi PDF](/tools/pdf-compress), [Dividi PDF](/tools/pdf-split)). Zero upload, nessun limite di file giornalieri.
 * **Invece di CloudConvert / Zamzar**: usa il nostro [Converti Immagini](/tools/image-convert) con supporto ultra-rapido per WebP, PNG, JPG e SVG.
 * **Invece di WinZip / WinRAR a pagamento**: usa [Estrai Archivio](/tools/zip-extract) per decomprimere archivi ZIP e TAR istantaneamente nel browser.
 * **Invece di strumenti di diff proprietari**: usa [Confronta Testo (Diff)](/tools/text-diff) per evidenziare modifiche contrattuali e righe di codice.`,
           en: `Here is your blueprint to eliminate recurring overhead:
 
-* **Replace SmallPDF & iLovePDF**: with FileOmniTool's PDF suite ([Merge PDF](/tools/pdf-merge), [Compress PDF](/tools/pdf-flatten), [Split PDF](/tools/pdf-split)). Zero uploads, zero daily usage caps.
+* **Replace SmallPDF & iLovePDF**: with FileOmniTool's PDF suite ([Merge PDF](/tools/pdf-merge), [Compress PDF](/tools/pdf-compress), [Split PDF](/tools/pdf-split)). Zero uploads, zero daily usage caps.
 * **Replace CloudConvert & Zamzar**: with [Convert Image](/tools/image-convert), supporting instant WebP, PNG, JPG, and SVG workflows.
 * **Replace paid desktop unzippers**: with [Extract Archive](/tools/zip-extract) to unpack ZIP and TAR files inside the browser.
 * **Replace paid diff checkers**: with [Compare Text (Diff)](/tools/text-diff) for tracking revisions and contract clause changes.`,

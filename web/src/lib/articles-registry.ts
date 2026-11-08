@@ -1,6 +1,10 @@
 import { LocalizedText } from "./guides-registry";
+import type { Language } from "./i18n/context";
+import { AUTHOR_ROLE } from "./articles-author";
 import { WAVE2_ARTICLES } from "./articles-wave2";
 import { WAVE3_ARTICLES } from "./articles-wave3";
+import { WAVE4_ARTICLES } from "./articles-wave4";
+import { ARTICLE_TRANSLATIONS } from "./i18n/articles-translations";
 
 export interface ArticleSection {
   heading: LocalizedText;
@@ -37,14 +41,7 @@ const BASE_ARTICLES: ArticleItem[] = [
     dateModified: "2026-10-28",
     readTime: "7 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ricercatore Cybersecurity & Appassionato Open-Source",
-      en: "Cybersecurity Researcher & Open-Source Advocate",
-      es: "Investigador de Ciberseguridad y Software Libre",
-      fr: "Chercheur en Cybersécurité et Logiciels Libres",
-      de: "Cybersicherheits-Forscher & Open-Source-Befürworter",
-      pt: "Pesquisador de Segurança e Defensor do Código Aberto",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "🎨",
     featured: true,
     title: {
@@ -194,14 +191,7 @@ Open-source, browser-native tools eliminate this hazard completely. The code run
     dateModified: "2026-10-27",
     readTime: "8 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ricercatore Cybersecurity & Appassionato Open-Source",
-      en: "Cybersecurity Researcher & Open-Source Advocate",
-      es: "Investigador de Ciberseguridad y Software Libre",
-      fr: "Chercheur en Cybersécurité et Logiciels Libres",
-      de: "Cybersicherheits-Forscher & Open-Source-Befürworter",
-      pt: "Pesquisador de Segurança e Defensor do Código Aberto",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "🐙",
     featured: true,
     title: {
@@ -341,14 +331,7 @@ Within days, you'll slash recurring costs, protect your confidentiality, and reg
     dateModified: "2026-10-27",
     readTime: "9 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ricercatore Cybersecurity & Appassionato Open-Source",
-      en: "Cybersecurity Researcher & Open-Source Advocate",
-      es: "Investigador de Ciberseguridad y Software Libre",
-      fr: "Chercheur en Cybersécurité et Logiciels Libres",
-      de: "Cybersicherheits-Forscher & Open-Source-Befürworter",
-      pt: "Pesquisador de Segurança e Defensor do Código Aberto",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "⚖️",
     featured: true,
     title: {
@@ -455,14 +438,14 @@ Secondo il Regolamento Generale sulla Protezione dei Dati (GDPR, Regolamento UE 
 
 In caso di ispezione del Garante della Privacy o di una violazione, l'azienda rischia sanzioni fino al 4% del fatturato globale annuo. Dire al controllore: *"L'ho unito con un sito trovato su Google che cancellava i file dopo un'ora"* non è una scusa accettabile.
 
-*Nota di aggiornamento (Ottobre 2026):* Alla luce dei recenti richiami dell'EDPB sull'uso di file caricati sui convertitori cloud per l'addestramento non supervisionato di algoritmi predittivi, la scelta di eseguire manipolazioni PDF a livello puramente client-side in memoria RAM è ormai considerata l'unica architettura "Privacy by Design" pienamente conforme all'Art. 25 del GDPR.`,
+L'Art. 25 del GDPR chiede la "protezione dei dati fin dalla progettazione": elaborare i PDF direttamente nel browser, senza trasferirli a terzi, è il modo più semplice per non creare il problema in partenza.`,
           en: `For casual files, the danger may seem negligible. But for legal, healthcare, accounting, and corporate workflows, regulatory exposure is severe.
 
 Under European GDPR regulations (and international equivalents):
 - Uploading client contracts, medical summaries, bank credentials, or tax declarations to third-party endpoints without a formal Data Processing Agreement (DPA) constitutes an unauthorized transfer of personal data.
 - Saying *"the site stated it deletes files after an hour"* does not protect you from regulatory fines or corporate liabilities in case of audits.
 
-*Editorial Update (October 2026):* Following renewed EDPB scrutiny over undocumented automated scanning and AI training on cloud conversion pipelines, zero-upload local RAM processing is recognized as the leading standard for Article 25 ("Data protection by design and by default").`,
+GDPR Article 25 asks for "data protection by design and by default": processing PDFs inside the browser, without transferring them to a third party, is the simplest way to avoid the problem in the first place.`,
         },
       },
       {
@@ -526,14 +509,7 @@ How our platform operates:
     dateModified: "2026-10-22",
     readTime: "7 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ricercatore Cybersecurity & Appassionato Open-Source",
-      en: "Cybersecurity Researcher & Open-Source Advocate",
-      es: "Investigador de Ciberseguridad y Software Libre",
-      fr: "Chercheur en Cybersécurité et Logiciels Libres",
-      de: "Cybersicherheits-Forscher & Open-Source-Befürworter",
-      pt: "Pesquisador de Segurança e Defensor do Código Aberto",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "📄",
     featured: false,
     title: {
@@ -657,14 +633,7 @@ Paying hundreds of dollars every year just to merge two pages or rotate an upsid
     dateModified: "2026-10-22",
     readTime: "6 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ricercatore Cybersecurity & Appassionato Open-Source",
-      en: "Cybersecurity Researcher & Open-Source Advocate",
-      es: "Investigador de Ciberseguridad y Software Libre",
-      fr: "Chercheur en Cybersécurité et Logiciels Libres",
-      de: "Cybersicherheits-Forscher & Open-Source-Befürworter",
-      pt: "Pesquisador de Segurança e Defensor do Código Aberto",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "🔍",
     featured: false,
     title: {
@@ -803,7 +772,28 @@ Everything executes locally in your browser's RAM with zero server transfers.`,
   },
 ];
 
-export const ARTICLES_REGISTRY: ArticleItem[] = [...BASE_ARTICLES, ...WAVE2_ARTICLES, ...WAVE3_ARTICLES];
+// Article bodies for es/fr/de/pt live in i18n/articles-translations-*.ts, keyed by slug
+function withTranslations(article: ArticleItem): ArticleItem {
+  let sections = article.sections;
+  let keyTakeaways = article.keyTakeaways;
+  for (const [locale, bySlug] of Object.entries(ARTICLE_TRANSLATIONS)) {
+    const tr = bySlug[article.slug];
+    if (!tr || tr.sections.length !== sections.length) continue;
+    sections = sections.map((sec, i) => ({
+      heading: { ...sec.heading, [locale]: tr.sections[i].heading },
+      content: { ...sec.content, [locale]: tr.sections[i].content },
+    }));
+    keyTakeaways = keyTakeaways.map((k, i) => (tr.keyTakeaways[i] ? { ...k, [locale]: tr.keyTakeaways[i] } : k));
+  }
+  return { ...article, sections, keyTakeaways };
+}
+
+export const ARTICLES_REGISTRY: ArticleItem[] = [...BASE_ARTICLES, ...WAVE2_ARTICLES, ...WAVE3_ARTICLES, ...WAVE4_ARTICLES].map(withTranslations);
+
+/** Locales in which the whole article body is written (only these are indexed). */
+export function getArticleLocales(article: ArticleItem): Language[] {
+  return (["it", "en", "es", "fr", "de", "pt"] as Language[]).filter((l) => article.sections.every((s) => !!s.content[l] && !!s.heading[l]));
+}
 
 export function getArticleBySlug(slug: string): ArticleItem | undefined {
   return ARTICLES_REGISTRY.find((a) => a.slug === slug);

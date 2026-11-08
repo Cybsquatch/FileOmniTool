@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ARTICLES_REGISTRY, getArticleBySlug } from "@/lib/articles-registry";
+import { ARTICLES_REGISTRY, getArticleBySlug, getArticleLocales } from "@/lib/articles-registry";
 import { ArticlePageClient } from "@/components/articles/ArticlePageClient";
 import { NON_DEFAULT_LOCALES, getHreflangAlternates, SAME_AS_LINKS, LOCALE_CONTENT_LANG_MAP, completeDescription } from "@/lib/seo-helpers";
 import { Language } from "@/lib/i18n/context";
@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: LocalizedArticlePageProps): P
     return { title: "Article Not Found | FileOmniTool" };
   }
 
-  const title = article.metaTitle[validLocale] || article.metaTitle.it || article.metaTitle.en;
-  const description = completeDescription(article.metaDescription[validLocale] || article.metaDescription.it || article.metaDescription.en, validLocale, "article");
+  const title = article.metaTitle[validLocale] || article.metaTitle.en;
+  const description = completeDescription(article.metaDescription[validLocale] || article.metaDescription.en, validLocale, "article");
 
   return {
     title: title.includes("FileOmniTool") ? title : `${title} | FileOmniTool`,
@@ -43,12 +43,12 @@ export async function generateMetadata({ params }: LocalizedArticlePageProps): P
     keywords: [
       article.seoKeyword[validLocale] || article.seoKeyword.en,
       article.category,
-      "open source",
       "privacy",
       "cybsquatch",
       "fileomnitool",
     ],
-    alternates: getHreflangAlternates(`/articles/${slug}`, validLocale),
+    alternates: getHreflangAlternates(`/articles/${slug}`, validLocale, getArticleLocales(article)),
+    ...(getArticleLocales(article).includes(validLocale) ? {} : { robots: { index: false, follow: true } }),
     other: {
       "content-language": LOCALE_CONTENT_LANG_MAP[validLocale],
     },
@@ -79,10 +79,14 @@ export default async function LocalizedArticlePage({ params }: LocalizedArticleP
     notFound();
   }
 
-  const otherArticles = ARTICLES_REGISTRY.filter((a) => a.slug !== slug);
+  const otherArticles = ARTICLES_REGISTRY.filter((a) => a.slug !== slug)
+    // Same category first, then the rest; only the fields the "read next" box shows
+    .sort((a, b) => Number(b.category === article.category) - Number(a.category === article.category))
+    .slice(0, 2)
+    .map(({ slug: s, coverEmoji, category, title }) => ({ slug: s, coverEmoji, category, title }));
 
-  const articleTitle = article.title[validLocale] || article.title.it || article.title.en;
-  const articleExcerpt = article.excerpt[validLocale] || article.excerpt.it || article.excerpt.en;
+  const articleTitle = article.title[validLocale] || article.title.en;
+  const articleExcerpt = article.excerpt[validLocale] || article.excerpt.en;
 
   const jsonLd = {
     "@context": "https://schema.org",

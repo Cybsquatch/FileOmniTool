@@ -1,4 +1,5 @@
 import { ArticleItem } from "./articles-registry";
+import { AUTHOR_ROLE } from "./articles-author";
 
 export const WAVE3_ARTICLES: ArticleItem[] = [
   // 11. AI SCRAPING ON CLOUD CONVERTERS
@@ -9,14 +10,7 @@ export const WAVE3_ARTICLES: ArticleItem[] = [
     dateModified: "2026-10-22",
     readTime: "8 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ingegnere della Privacy & Giornalista Tecnologico Indipendente",
-      en: "Privacy Engineer & Independent Tech Journalist",
-      es: "Ingeniero de Privacidad y Periodista Tecnológico",
-      fr: "Ingénieur en Confidentialité & Journaliste Tech",
-      de: "Datenschutz-Ingenieur & Unabhängiger Tech-Journalist",
-      pt: "Engenheiro de Privacidade e Jornalista Tech",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "🤖",
     title: {
       it: "Allarme AI e Privacy Documentale: I Tuoi PDF Caricati Online Stanno Addestrando Modelli Linguistici?",
@@ -89,12 +83,12 @@ export const WAVE3_ARTICLES: ArticleItem[] = [
           en: "The Modern Workplace Paradox: Banning LLMs While Uploading Invoices",
         },
         content: {
-          it: `Nel corso dell'ultimo biennio, oltre il 70% delle multinazionali e degli studi professionali ha emanato policy draconiane: è severamente vietato incollare brevetti, bozze legali, cartelle sanitarie o codice sorgente dentro ChatGPT, Claude o Copilot per timore che il provider utilizzi questi dati per l'addestramento dei propri modelli futuri.
+          it: `Negli ultimi due anni moltissime aziende e studi professionali hanno introdotto policy severe: è severamente vietato incollare brevetti, bozze legali, cartelle sanitarie o codice sorgente dentro ChatGPT, Claude o Copilot per timore che il provider utilizzi questi dati per l'addestramento dei propri modelli futuri.
 
 Eppure, a pochi monitor di distanza nello stesso identico ufficio, dipendenti e collaboratori affrontano un problema quotidiano: *unire due file PDF firmati*, *comprimere un allegato per l'email* o *convertire un report finanziario da PNG a PDF*. 
 
 Cosa fanno? Aprono Google, digitano *"unisci pdf online gratis"* e trascinano decine di pagine dense di segreti aziendali, coordinate bancarie e dati sensibili su server sconosciuti gestiti da micro-aziende offshore. È il più clamoroso punto cieco della sicurezza informatica moderna.`,
-          en: `Over the past two years, more than 70% of enterprises introduced strict acceptable-use policies: employees are explicitly forbidden from pasting confidential patents, client negotiations, or medical reports into ChatGPT or Claude due to data retention and AI model training concerns.
+          en: `Over the past two years, many companies and professional firms introduced strict acceptable-use policies: employees are explicitly forbidden from pasting confidential patents, client negotiations, or medical reports into ChatGPT or Claude due to data retention and AI model training concerns.
 
 Yet in the exact same offices, staff routinely encounter trivial daily roadblocks: *merging two signed PDF agreements*, *compressing a scanned invoice*, or *extracting text from an image*.
 
@@ -154,14 +148,7 @@ You can disconnect your network cable or switch on Airplane Mode before dragging
     dateModified: "2026-10-22",
     readTime: "7 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ingegnere della Privacy & Giornalista Tecnologico Indipendente",
-      en: "Privacy Engineer & Independent Tech Journalist",
-      es: "Ingeniero de Privacidad y Periodista Tecnológico",
-      fr: "Ingénieur en Confidentialité & Journaliste Tech",
-      de: "Datenschutz-Ingenieur & Unabhängiger Tech-Journalist",
-      pt: "Engenheiro de Privacidade e Jornalista Tech",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "🖼️",
     title: {
       it: "AVIF, WebP o JPEG XL nel 2026? Guida Tecnica Definitiva alla Guerra dei Formati Web",
@@ -248,13 +235,13 @@ The software engineering community responded by adopting video compression break
           en: "Head-to-Head Comparison: Where AVIF Wins and Where WebP Prevails",
         },
         content: {
-          it: `Ecco cosa rivelano i test di laboratorio condotti su oltre 1.000 campioni fotografici e grafiche vettoriali:
+          it: `Ecco come si comportano i formati sui casi più comuni, foto, grafiche e screenshot:
 
 1. **Rapporto di Compressione**: AVIF è il vincitore incontrastato per le fotografie ricche di sfumature, cieli e gradienti. Riesce a ridurre il peso del file del 30% rispetto a WebP e fino al 60% rispetto a JPEG mantenendo gradienti morbidi senza "banding".
 2. **Supporto Trasparenza e Grafica**: Entrambi supportano la trasparenza (canale Alpha a 8-bit). Tuttavia, per icone piatte, loghi e screenshot con bordi netti, WebP Lossless spesso supera AVIF in nitidezza e velocità di generazione.
 3. **Velocità di Decodifica CPU**: Decodificare un'immagine AVIF richiede una potenza di calcolo superiore rispetto a WebP. Su smartphone di fascia economica, pagine con decine di immagini AVIF possono provocare micro-scatti durante lo scrolling rapido, mentre WebP si decodifica praticamente a costo zero.
 4. **Il caso JPEG XL**: JPEG XL offre prestazioni straordinarie ed eccezionale fedeltà lossless, ma il suo supporto nei browser mainstream (in particolare il motore Chromium) è rimasto frammentato o relegato a flag sperimentali, rendendolo al momento un formato di nicchia per archivisti e fotografi RAW.`,
-          en: `Lab benchmarks across over 1,000 diverse photographs, vector renderings, and UI assets illustrate distinct operational advantages:
+          en: `Here is how the formats behave on the most common cases, photos, graphics and screenshots:
 
 1. **Compression Efficiency**: AVIF takes the crown for continuous-tone photography and subtle color gradients. It routinely shrinks asset sizes by an additional 25-35% beyond WebP, and up to 60% below legacy JPEG without introducing posterization or color banding.
 2. **Transparency & UI Elements**: Both codecs support 8-bit alpha channels. However, for sharp vector rasterizations, application screenshots, and flat corporate logos, WebP Lossless often matches or exceeds AVIF in edge fidelity while remaining lighter.
@@ -293,14 +280,7 @@ You do not need heavyweight desktop suites or server-dependent cloud tools to mo
     dateModified: "2026-10-22",
     readTime: "7 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ingegnere della Privacy & Giornalista Tecnologico Indipendente",
-      en: "Privacy Engineer & Independent Tech Journalist",
-      es: "Ingeniero de Privacidad y Periodista Tecnológico",
-      fr: "Ingénieur en Confidentialité & Journaliste Tech",
-      de: "Datenschutz-Ingenieur & Unabhängiger Tech-Journalist",
-      pt: "Engenheiro de Privacidade e Jornalista Tech",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "💼",
     title: {
       it: "Addio Adobe Acrobat: Perché Freelance e Studi Professionali Stanno Abbandonando l'Abbonamento nel 2026",
@@ -440,14 +420,7 @@ The bottom line: \$240 returned to your balance sheet every single year, snappie
     dateModified: "2026-10-22",
     readTime: "8 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ingegnere della Privacy & Giornalista Tecnologico Indipendente",
-      en: "Privacy Engineer & Independent Tech Journalist",
-      es: "Ingeniero de Privacidad y Periodista Tecnológico",
-      fr: "Ingénieur en Confidentialité & Journaliste Tech",
-      de: "Datenschutz-Ingenieur & Unabhängiger Tech-Journalist",
-      pt: "Engenheiro de Privacidade e Jornalista Tech",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "🔒",
     title: {
       it: "Igiene Digitale: Come Verificare Hash SHA-256 e Checksum Prima di Aprire File Scaricati",
@@ -593,14 +566,7 @@ Zero network transmissions, zero cloud exposure, and instant mathematical verifi
     dateModified: "2026-10-28",
     readTime: "9 min",
     author: "Cybsquatch",
-    authorRole: {
-      it: "Ingegnere della Privacy & Giornalista Tecnologico Indipendente",
-      en: "Privacy Engineer & Independent Tech Journalist",
-      es: "Ingeniero de Privacidad y Periodista Tecnológico",
-      fr: "Ingénieur en Confidentialité & Journaliste Tech",
-      de: "Datenschutz-Ingenieur & Unabhängiger Tech-Journalist",
-      pt: "Engenheiro de Privacidade e Jornalista Tech",
-    },
+    authorRole: AUTHOR_ROLE,
     coverEmoji: "⚡",
     title: {
       it: "Utility a Conoscenza Zero: Il Futuro del Software Web Senza Backend e Basato su WebAssembly",
