@@ -5,6 +5,10 @@ import Link from "next/link";
 import { ToolDefinition } from "@/lib/tools-registry";
 import { useLanguage } from "@/lib/i18n/context";
 import {
+  Wand2,
+  Images,
+  Droplets,
+  Scale,
   FilePlus2,
   Split,
   RefreshCw,
@@ -48,6 +52,10 @@ interface ToolCardProps {
 }
 
 const ICON_MAP: Record<string, React.ElementType> = {
+  Wand2,
+  Images,
+  Droplets,
+  Scale,
   FilePlus2,
   Split,
   RefreshCw,

@@ -49,7 +49,10 @@ export function ServiceWorkerRegister() {
         });
     };
 
-    if ("serviceWorker" in navigator) {
+    // Dev chunk URLs are not content-hashed, so the cache-first worker would serve stale code
+    if ("serviceWorker" in navigator && process.env.NODE_ENV !== "production") {
+      navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => void r.unregister()));
+    } else if ("serviceWorker" in navigator) {
       if (document.readyState === "complete") register();
       else window.addEventListener("load", register, { once: true });
     }

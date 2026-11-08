@@ -88,6 +88,10 @@ import { MicTestTool } from "@/components/tools/MicTestTool";
 import { WebcamTestTool } from "@/components/tools/WebcamTestTool";
 import { PdfCompressTool } from "@/components/tools/PdfCompressTool";
 import { HeicToJpgTool } from "@/components/tools/HeicToJpgTool";
+import { BackgroundRemoverTool } from "@/components/tools/BackgroundRemoverTool";
+import { PdfToImageTool } from "@/components/tools/PdfToImageTool";
+import { ImageCompressKbTool } from "@/components/tools/ImageCompressKbTool";
+import { PdfWatermarkTool } from "@/components/tools/PdfWatermarkTool";
 import { ComparisonTable } from "@/components/tools/ComparisonTable";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { EmbedWidgetModal } from "@/components/tools/EmbedWidgetModal";
@@ -281,6 +285,14 @@ export const ToolPageClient: React.FC<ToolPageClientProps> = ({ tool }) => {
         return <WebcamTestTool />;
       case "pdf-compress":
         return <PdfCompressTool />;
+      case "pdf-to-image":
+        return <PdfToImageTool />;
+      case "image-compress-kb":
+        return <ImageCompressKbTool />;
+      case "pdf-watermark":
+        return <PdfWatermarkTool />;
+      case "background-remover":
+        return <BackgroundRemoverTool />;
       case "heic-to-jpg":
         return <HeicToJpgTool />;
       default:

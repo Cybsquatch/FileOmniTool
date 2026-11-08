@@ -15,7 +15,7 @@ const PRESETS: RegexPreset[] = [
     name: "Email",
     pattern: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
     flags: "g",
-    sample: "Contattaci a info@fileomnitool.com oppure supporto@google.com per domande.",
+    sample: "Contattaci a info@esempio.it oppure supporto@google.com per domande.",
   },
   {
     name: "Indirizzo URL",
@@ -51,7 +51,7 @@ export const RegexTesterTool: React.FC = () => {
   const [flagS, setFlagS] = useState(false);
 
   const [testString, setTestString] = useState<string>(
-    "Scrivi a info@fileomnitool.com per supporto commerciale oppure a privacy@azienda.it per questioni legali."
+    "Scrivi a vendite@esempio.it per supporto commerciale oppure a privacy@azienda.it per questioni legali."
   );
 
   const flags = `${flagG ? "g" : ""}${flagI ? "i" : ""}${flagM ? "m" : ""}${flagS ? "s" : ""}`;
