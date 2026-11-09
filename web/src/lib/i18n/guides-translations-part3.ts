@@ -151,7 +151,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-convert-srt-to-vtt-subtitles-online": {
+  "how-to-convert-srt-to-vtt-subtitles": {
     title: {
       es: "Cómo Convertir Subtítulos SRT a WebVTT Para Reproductores HTML5",
       fr: "Comment Convertir des Sous-titres SRT en WebVTT pour HTML5",
@@ -166,7 +166,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-convert-srt-to-plain-text-transcript": {
+  "how-to-extract-text-transcript-from-srt": {
     title: {
       es: "Cómo Convertir Subtítulos SRT en Texto Plano Limpio (Transcripción)",
       fr: "Comment Convertir des Sous-titres SRT en Texte Brut Continu",
@@ -181,7 +181,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-extract-frames-from-gif-animation": {
+  "how-to-extract-frames-from-animated-gif": {
     title: {
       es: "Cómo Extraer Todos los Fotogramas de un GIF Animado en PNG",
       fr: "Comment Extraire Toutes les Images d'un GIF Animé en PNG",
@@ -196,7 +196,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-convert-images-to-ascii-art": {
+  "how-to-convert-image-to-ascii-art": {
     title: {
       es: "Cómo Convertir Cualquier Imagen o Foto en Arte ASCII Retro",
       fr: "Comment Transformer N'importe Quelle Image en Art ASCII Rétro",
@@ -226,9 +226,9 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-clean-minify-svg-vector-files": {
+  "how-to-clean-minify-svg-files": {
     title: {
-      es: "Cómo Limpiar y Minificar Archivos SVG Para Que Pesan Menos",
+      es: "Cómo Limpiar y Minificar Archivos SVG Para Que Pesen Menos",
       fr: "Comment Nettoyer et Réduire la Taille de Fichiers SVG",
       de: "Wie man SVG-Vektordateien bereinigt und die Ladezeit verkürzt",
       pt: "Como Limpar e Minificar Arquivos SVG Para Ficar Mais Leves",
@@ -241,7 +241,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-encrypt-password-protect-pdf-locally": {
+  "how-to-protect-pdf-with-password-aes256": {
     title: {
       es: "Cómo Proteger un Documento PDF con Contraseña de Forma 100% Privada",
       fr: "Comment Verrouiller un PDF par Mot de Passe de Manière Sécurisée",
@@ -256,7 +256,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-flatten-pdf-form-fields-signatures": {
+  "how-to-flatten-pdf-form-fields": {
     title: {
       es: "Cómo Aplanar Formularios y Firmas en un PDF (Flatten PDF)",
       fr: "Comment Aplatir les Formulaires et Signatures d'un PDF (Flatten)",
@@ -286,7 +286,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-convert-html-to-markdown-text": {
+  "how-to-convert-html-to-markdown": {
     title: {
       es: "Cómo Convertir Código HTML a Markdown Limpio Para Blogs y Notion",
       fr: "Comment Convertir du Code HTML en Markdown Propre pour Notion",
@@ -301,7 +301,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-decode-inspect-jwt-tokens-offline": {
+  "how-to-decode-jwt-tokens-offline": {
     title: {
       es: "Cómo Decodificar Tokens JWT de Forma Segura y Sin Fugas de Datos",
       fr: "Comment Décoder des Jetons JWT Sans Risque de Fuite de Secrets",
@@ -316,7 +316,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-minify-compress-css-stylesheets": {
+  "how-to-minify-css-stylesheets": {
     title: {
       es: "Cómo Minificar Hojas de Estilo CSS Para Acelerar Tu Sitio Web",
       fr: "Comment Minifier des Fichiers CSS pour Accélérer Votre Site",
@@ -331,7 +331,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-convert-unix-epoch-timestamp-to-date": {
+  "how-to-convert-unix-epoch-timestamps": {
     title: {
       es: "Cómo Convertir Marcas de Tiempo Unix Epoch a Fechas Humanas",
       fr: "Comment Convertir un Timestamp Unix Epoch en Date Lisible",
@@ -346,7 +346,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-convert-any-file-to-base64-string": {
+  "how-to-convert-any-file-to-base64": {
     title: {
       es: "Cómo Convertir Cualquier Archivo a Código Base64 y Viceversa",
       fr: "Comment Convertir N'importe Quel Fichier en Chaîne Base64",
@@ -361,7 +361,7 @@ export const GUIDES_TRANSLATIONS_PART3: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-identify-unknown-file-types-magic-bytes": {
+  "how-to-identify-unknown-file-type-magic-bytes": {
     title: {
       es: "Cómo Identificar Archivos Sin Extensión Mediante Magic Bytes",
       fr: "Comment Identifier des Fichiers Inconnus par Leurs Magic Bytes",

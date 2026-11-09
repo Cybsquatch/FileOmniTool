@@ -207,7 +207,7 @@ export const GUIDES_TRANSLATIONS_PART1: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-pick-colors-from-images-online": {
+  "how-to-pick-colors-and-palette-from-images": {
     title: {
       es: "Cómo Extraer Códigos de Color HEX y RGB de Cualquier Imagen",
       fr: "Comment Prélever des Couleurs HEX et RGB sur une Image",
@@ -222,7 +222,7 @@ export const GUIDES_TRANSLATIONS_PART1: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-create-favicons-ico-for-websites": {
+  "how-to-generate-favicon-package-for-website": {
     title: {
       es: "Cómo Crear un Favicon .ICO para Tu Sitio Web desde un Logo",
       fr: "Comment Créer un Favicon .ICO pour Site Web depuis un Logo",
@@ -237,7 +237,7 @@ export const GUIDES_TRANSLATIONS_PART1: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-convert-svg-vector-to-png-image": {
+  "how-to-convert-svg-to-png-high-resolution": {
     title: {
       es: "Cómo Convertir Gráficos Vectoriales SVG a Imágenes PNG Transparentes",
       fr: "Comment Convertir un SVG Vectoriel en Image PNG Transparente",
@@ -252,7 +252,7 @@ export const GUIDES_TRANSLATIONS_PART1: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-crop-photos-online-free": {
+  "how-to-crop-photos-aspect-ratio-online": {
     title: {
       es: "Cómo Recortar Fotos Online Gratis en Formatos Estándar (1:1, 16:9)",
       fr: "Comment Recadrer des Photos en Ligne aux Formats Standards",
@@ -267,7 +267,7 @@ export const GUIDES_TRANSLATIONS_PART1: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-blur-censor-faces-in-photos": {
+  "how-to-blur-photos-and-censor-faces-data": {
     title: {
       es: "Cómo Desenfocar y Censurar Rostros o Datos en Fotos",
       fr: "Comment Flouter et Censurer des Visages sur une Photo",
@@ -282,7 +282,7 @@ export const GUIDES_TRANSLATIONS_PART1: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-invert-photo-colors-negative-online": {
+  "how-to-invert-colors-negative-photo-online": {
     title: {
       es: "Cómo Invertir los Colores de una Foto (Efecto Negativo)",
       fr: "Comment Inverser les Couleurs d'une Photo (Effet Négatif)",
@@ -297,7 +297,7 @@ export const GUIDES_TRANSLATIONS_PART1: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-flip-mirror-images-online": {
+  "how-to-flip-mirror-photos-horizontally-vertically": {
     title: {
       es: "Cómo Voltear y Reflejar Fotos Horizontal o Verticalmente",
       fr: "Comment Retourner et Miroiter une Image en Ligne",
@@ -312,7 +312,7 @@ export const GUIDES_TRANSLATIONS_PART1: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-convert-color-photos-to-black-white": {
+  "how-to-convert-photos-to-black-and-white-online": {
     title: {
       es: "Cómo Convertir Fotos a Blanco y Negro con Estilo Monocromático",
       fr: "Comment Transformer des Photos Couleur en Noir et Blanc",
@@ -327,7 +327,7 @@ export const GUIDES_TRANSLATIONS_PART1: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-remove-exif-metadata-from-photos": {
+  "how-to-remove-exif-metadata-and-gps-from-photos": {
     title: {
       es: "Cómo Eliminar Metadatos EXIF Ocultos de Tus Fotografías",
       fr: "Comment Supprimer les Métadonnées EXIF de Vos Photos",
@@ -342,7 +342,7 @@ export const GUIDES_TRANSLATIONS_PART1: Record<string, GuideTranslationEntry> = 
     }
   },
 
-  "how-to-convert-image-to-base64-data-uri": {
+  "how-to-convert-images-to-base64-data-uri": {
     title: {
       es: "Cómo Convertir Imágenes a Cadenas Base64 Data URI Para Web",
       fr: "Comment Convertir une Image en Base64 Data URI pour le Web",

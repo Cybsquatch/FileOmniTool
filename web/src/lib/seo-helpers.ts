@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ToolDefinition } from "./tools-registry";
-import { GuideArticle } from "./guides-registry";
+import { GuideArticle, getGuideLocales } from "./guides-registry";
 import { Language } from "./i18n/context";
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.fileomnitool.com";
@@ -38,14 +38,6 @@ export function getLocalizedUrl(path: string, locale: Language): string {
   return `${SITE_URL}/${locale}${cleanPath}`;
 }
 
-// Long-form guides and articles are fully written only in these locales. In the
-// others the body falls back to English, so those pages are noindex and kept out
-// of the sitemap and hreflang until a real translation exists.
-export const LONGFORM_LOCALES: Language[] = ["it", "en"];
-
-export function isLongformIndexable(locale: Language): boolean {
-  return LONGFORM_LOCALES.includes(locale);
-}
 
 export function getHreflangAlternates(path: string, currentLocale: Language, locales: Language[] = ALL_LOCALES) {
   const isRoot = path === "" || path === "/";
@@ -176,13 +168,15 @@ export function getGuideMetadata(guide: GuideArticle, locale: Language): Metadat
 
   const fullTitle = `${titleText} | FileOmniTool`;
   const path = `/guides/${guide.slug}`;
-  const hreflang = getHreflangAlternates(path, locale, LONGFORM_LOCALES);
+  // Only locales where the whole guide is written are indexed and listed in hreflang
+  const locales = getGuideLocales(guide);
+  const hreflang = getHreflangAlternates(path, locale, locales);
   const ogConfig = LOCALE_OG_MAP[locale];
 
   return {
     title: fullTitle,
     description: excerptText,
-    ...(isLongformIndexable(locale) ? {} : { robots: { index: false, follow: true } }),
+    ...(locales.includes(locale) ? {} : { robots: { index: false, follow: true } }),
     keywords: [
       keywordText,
       titleText,

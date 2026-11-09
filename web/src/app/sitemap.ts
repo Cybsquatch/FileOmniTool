@@ -1,8 +1,8 @@
 import { MetadataRoute } from "next";
 import { TOOLS_REGISTRY } from "@/lib/tools-registry";
-import { GUIDES_REGISTRY } from "@/lib/guides-registry";
+import { GUIDES_REGISTRY, getGuideLocales } from "@/lib/guides-registry";
 import { ARTICLES_REGISTRY, getArticleLocales } from "@/lib/articles-registry";
-import { ALL_LOCALES, LONGFORM_LOCALES, getLocalizedUrl } from "@/lib/seo-helpers";
+import { ALL_LOCALES, getLocalizedUrl } from "@/lib/seo-helpers";
 import { Language } from "@/lib/i18n/context";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -90,10 +90,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 3. Guides, only in the locales where their body is fully written
   for (const guide of GUIDES_REGISTRY) {
     const path = `/guides/${guide.slug}`;
-    const alternates = getAlternates(path, LONGFORM_LOCALES);
+    const locales = getGuideLocales(guide);
+    const alternates = getAlternates(path, locales);
     const published = new Date(guide.datePublished);
 
-    for (const locale of LONGFORM_LOCALES) {
+    for (const locale of locales) {
       entries.push({
         url: getLocalizedUrl(path, locale),
         lastModified: published,
