@@ -337,7 +337,7 @@ const BASE_TOOLS: ToolDefinition[] = [
     iconName: "ArchiveRestore",
     badge: { en: "Secure", it: "Sicuro" },
     popular: false,
-    acceptedMime: ".zip,application/zip,application/x-zip-compressed",
+    acceptedMime: ".zip,.rar,.7z,.tar,.gz,.tgz,application/zip,application/x-zip-compressed,application/vnd.rar,application/x-7z-compressed,application/x-tar,application/gzip",
     maxSizeMB: 100,
     title: {
       en: "Extract ZIP Files",

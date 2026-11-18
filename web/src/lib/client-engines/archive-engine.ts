@@ -74,3 +74,38 @@ export async function extractZipArchive(
 
   return results;
 }
+
+/**
+ * RAR, 7z, TAR, GZ and other formats via libarchive (WebAssembly, MIT license).
+ * The worker and WASM are served from /vendor on our own domain; nothing is uploaded.
+ */
+export async function extractAnyArchive(file: File, maxTotalSizeMB: number = 250): Promise<ExtractedFile[]> {
+  if (/\.zip$/i.test(file.name)) return extractZipArchive(file, maxTotalSizeMB);
+
+  const { Archive } = await import("libarchive.js");
+  Archive.init({ workerUrl: "/vendor/libarchive/worker-bundle.js" });
+  const archive = await Archive.open(file);
+  if (await archive.hasEncryptedData()) {
+    throw new Error("Archivio protetto da password: non supportato.");
+  }
+
+  // Bomb guard before extracting: sum the declared uncompressed sizes
+  const listing = (await archive.getFilesArray()) as { file: { size?: number } }[];
+  const declared = listing.reduce((sum, e) => sum + (e.file.size ?? 0), 0);
+  const maxBytes = maxTotalSizeMB * 1024 * 1024;
+  if (declared > maxBytes) {
+    throw new Error(`Archivio troppo grande da estrarre nel browser (oltre ${maxTotalSizeMB}MB decompressi).`);
+  }
+
+  const results: ExtractedFile[] = [];
+  let total = 0;
+  await archive.extractFiles((entry: { file: File; path: string }) => {
+    total += entry.file.size;
+    if (total > maxBytes) return;
+    results.push({ name: sanitizeFileName(`${entry.path}${entry.file.name}`), size: entry.file.size, blob: entry.file });
+  });
+  if (total > maxBytes) {
+    throw new Error(`Archivio troppo grande da estrarre nel browser (oltre ${maxTotalSizeMB}MB decompressi).`);
+  }
+  return results;
+}

@@ -2,12 +2,23 @@
 
 import React, { useState } from "react";
 import { Dropzone } from "./Dropzone";
-import { extractZipArchive, ExtractedFile } from "@/lib/client-engines/archive-engine";
+import { extractAnyArchive, ExtractedFile } from "@/lib/client-engines/archive-engine";
 import { formatBytes, sanitizeFileName } from "@/lib/security-guard";
 import { AdBanner } from "../ads/AdBanner";
+import { useLanguage } from "@/lib/i18n/context";
+
+const DROP_TEXT: Record<string, string> = {
+  it: "Trascina l'archivio ZIP, RAR, 7z o TAR da aprire ed estrarre",
+  en: "Drop the ZIP, RAR, 7z or TAR archive to open and extract",
+  es: "Arrastra el archivo ZIP, RAR, 7z o TAR que quieres abrir y extraer",
+  fr: "Déposez l'archive ZIP, RAR, 7z ou TAR à ouvrir et extraire",
+  de: "ZIP-, RAR-, 7z- oder TAR-Archiv zum Öffnen und Entpacken ablegen",
+  pt: "Arraste o arquivo ZIP, RAR, 7z ou TAR para abrir e extrair",
+};
 import { ArchiveRestore, Download, File, Loader2, RefreshCw } from "lucide-react";
 
 export const ZipExtractTool: React.FC = () => {
+  const { language } = useLanguage();
   const [zipFile, setZipFile] = useState<File | null>(null);
   const [extractedFiles, setExtractedFiles] = useState<ExtractedFile[]>([]);
   const [processing, setProcessing] = useState(false);
@@ -21,7 +32,7 @@ export const ZipExtractTool: React.FC = () => {
     setProcessing(true);
 
     try {
-      const results = await extractZipArchive(file);
+      const results = await extractAnyArchive(file);
       setExtractedFiles(results);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Errore durante l'estrazione dello ZIP.";
@@ -53,11 +64,11 @@ export const ZipExtractTool: React.FC = () => {
     <div className="space-y-6">
       {!zipFile ? (
         <Dropzone
-          accept=".zip,application/zip,application/x-zip-compressed"
+          accept=".zip,.rar,.7z,.tar,.gz,.tgz,.bz2,.xz,application/zip,application/x-zip-compressed,application/vnd.rar,application/x-7z-compressed,application/x-tar,application/gzip"
           multiple={false}
           maxSizeMB={100}
           onFilesSelected={handleFilesSelected}
-          helperText="Trascina l'archivio ZIP da esplorare ed estrarre"
+          helperText={DROP_TEXT[language] ?? DROP_TEXT.en}
         />
       ) : (
         <div className="space-y-6">

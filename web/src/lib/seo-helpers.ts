@@ -63,6 +63,28 @@ const LOCALE_OG_MAP: Record<Language, { locale: string; alternates: string[] }> 
   pt: { locale: "pt_BR", alternates: ["it_IT", "en_US", "es_ES", "fr_FR", "de_DE"] },
 };
 
+// Fallback SERP title for tools without a hand-written metaTitle: adds the words
+// people type ("online", "free") unless the name already has them, plus the no-upload angle.
+const TITLE_WORDS: Record<Language, { online: string; free: string; tail: string }> = {
+  it: { online: "Online", free: "Gratis", tail: "Senza Upload" },
+  en: { online: "Online", free: "Free", tail: "No Upload" },
+  es: { online: "Online", free: "Gratis", tail: "Sin Subir Archivos" },
+  fr: { online: "en Ligne", free: "Gratuit", tail: "Sans Envoi" },
+  de: { online: "Online", free: "Kostenlos", tail: "Ohne Upload" },
+  pt: { online: "Online", free: "Grátis", tail: "Sem Upload" },
+};
+
+function buildToolTitle(name: string, locale: Language): string {
+  const w = TITLE_WORDS[locale];
+  const lower = name.toLowerCase();
+  const parts = [name];
+  if (!/online|en ligne/.test(lower)) parts.push(w.online);
+  if (!lower.includes(w.free.toLowerCase())) parts.push(w.free);
+  const head = parts.join(" ");
+  const full = `${head} - ${w.tail} | FileOmniTool`;
+  return full.length <= 70 ? full : `${head} | FileOmniTool`;
+}
+
 const TITLE_SUFFIXES: Record<Language, string> = {
   it: "- 100% Privato e Gratis | FileOmniTool",
   en: "- 100% Private & Free | FileOmniTool",
@@ -127,7 +149,7 @@ export function getToolMetadata(tool: ToolDefinition, locale: Language): Metadat
   );
   const keywordText = tool.seoKeyword[locale] || tool.seoKeyword.en || titleText;
 
-  const fullTitle = tool.metaTitle[locale] || `${titleText} ${TITLE_SUFFIXES[locale]}`;
+  const fullTitle = tool.metaTitle[locale] || buildToolTitle(titleText, locale);
   const path = `/tools/${tool.id}`;
   const hreflang = getHreflangAlternates(path, locale);
   const ogConfig = LOCALE_OG_MAP[locale];

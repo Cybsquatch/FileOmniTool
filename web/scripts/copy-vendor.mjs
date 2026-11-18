@@ -11,6 +11,8 @@ const copies = [
   ["node_modules/pdfjs-dist/build/pdf.worker.min.mjs", "pdfjs/pdf.worker.min.mjs"],
   ["node_modules/pdfjs-dist/standard_fonts", "pdfjs/standard_fonts"],
   ["node_modules/pdfjs-dist/wasm", "pdfjs/wasm"],
+  ["node_modules/libarchive.js/dist/worker-bundle.js", "libarchive/worker-bundle.js"],
+  ["node_modules/libarchive.js/dist/libarchive.wasm", "libarchive/libarchive.wasm"],
 ];
 
 for (const [from, to] of copies) {
