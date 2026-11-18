@@ -2,6 +2,7 @@ import { EXPANDED_TOOLS } from "./tools-registry-expanded";
 import { WAVE3_TOOLS } from "./tools-registry-wave3";
 import { WAVE4_TOOLS } from "./tools-registry-wave4";
 import { TOOLS_TRANSLATIONS } from "./i18n/tools-translations";
+import { TOOL_SEO_OVERRIDES } from "./tool-seo-overrides";
 
 export interface ToolFaq {
   question: string;
@@ -2093,13 +2094,23 @@ export const TOOLS_REGISTRY: ToolDefinition[] = [
   ...WAVE4_TOOLS,
 ].map((tool) => {
   const trans = TOOLS_TRANSLATIONS[tool.id];
-  if (!trans) return tool;
+  const merged: ToolDefinition = trans
+    ? {
+        ...tool,
+        title: { ...tool.title, ...trans.title },
+        description: { ...tool.description, ...trans.description },
+        instructions: { ...tool.instructions, ...(trans.instructions || {}) },
+        faq: { ...tool.faq, ...(trans.faq || {}) },
+      }
+    : tool;
+  // Search-driven titles for tools already getting impressions (see tool-seo-overrides.ts)
+  const seo = TOOL_SEO_OVERRIDES[tool.id];
+  if (!seo) return merged;
   return {
-    ...tool,
-    title: { ...tool.title, ...trans.title },
-    description: { ...tool.description, ...trans.description },
-    instructions: { ...tool.instructions, ...(trans.instructions || {}) },
-    faq: { ...tool.faq, ...(trans.faq || {}) },
+    ...merged,
+    title: seo.h1 ? { ...merged.title, ...seo.h1 } : merged.title,
+    metaTitle: { ...merged.metaTitle, ...seo.metaTitle },
+    metaDescription: { ...merged.metaDescription, ...seo.metaDescription },
   };
 });
 
